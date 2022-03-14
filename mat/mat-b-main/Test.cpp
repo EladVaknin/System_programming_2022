@@ -4,13 +4,11 @@
  * 
  * Date: 2021-02
  */
-
+#include <string>
+#include <algorithm>
 #include "doctest.h"
 #include "mat.hpp"
 using namespace ariel;
-
-#include <string>
-#include <algorithm>
 using namespace std;
 
 /**
