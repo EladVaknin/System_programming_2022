@@ -13,7 +13,6 @@ namespace ariel{
            string result = " ";
            const int min = 33;
            const int max = 127;
-
             //check invaild input
             if (r%2==0||c%2==0){
                 throw "invaild input - the input should be odd number";
@@ -37,8 +36,15 @@ namespace ariel{
             // regular cases
             vector <string> v1 ;
             char tmpMatrix [r][c];
+            // initalize all the matrix in the second char
+            for (int i= 0;i<r;i++){
+                for (int j=0 ;j<c;j++){
+                    tmpMatrix[i][j] =m2;
+                }
+            }            
             int x = 0;
             int y = 0;
+            //workin on the first char
             while (x < r && y < c ){
             for (int i = 0; i < r; i++){
                // fill the first and last line in the first char.
