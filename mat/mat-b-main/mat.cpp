@@ -13,6 +13,8 @@ namespace ariel{
            string result = "";
            const int min = 33;
            const int max = 127;
+           int col = c ;
+           int row = r;
             //check invaild input
             if (r%2==0||c%2==0){
                 throw "invaild input - the input should be odd number";
@@ -39,47 +41,30 @@ namespace ariel{
             // initalize all the matrix in the second char
             for (int i= 0;i<r;i++){
                 for (int j=0 ;j<c;j++){
-                    tmpMatrix[i][j] =m2;
+                    tmpMatrix[i][j] = m2;
                 }
             }            
             int x = 0;
             int y = 0;
-            int col =c ;
-            int row =r;
-            //workin on the first char
-            // while (x < r && y < c ){
-           while (x < c ){
-               for (int i = x; i < c; ++i){
-               // fill the first frame in the first char.
-               tmpMatrix[y][i] = n1;
-               tmpMatrix[i][y] = n1;
-               tmpMatrix[row-1][i] =n1;
-               tmpMatrix[i][col-1] =n1;
+            int z =0;
+
+            //working on the first char
+             while (col>(c/2)+1 || row >(r/2)+1 ){
+               // fill the frame in the first char.
+               for (int i = x; i < col ;++i){
+                   for (int j = z; j<row; ++j){
+                       tmpMatrix[j][y] =n1;      // first col
+                       tmpMatrix[y][i]=n1;       // first row
+                       tmpMatrix[j][col-1] =n1;  // last col
+                       tmpMatrix[row-1][i]=n1;   // last row
+                  } 
                }
-        
                 y += 2;
-                x +=2  ;
+                z +=2;
+                x +=2;
                 row -= 2;
                 col -= 2;
            }
-
-            //    for (int j = y; j < c; j++){
-            //    // fill the first and last colum in  the first char.
-            //    tmpMatrix[0][j] = n1;
-            //    tmpMatrix[c-1][j] = n1;
-            //     }  
-           // }
-
-          // r= 7 ,c = 9
-            // "@@@@@@@@@
-		    // "@-------@
-			// "@-@@@@@-@
-			// "@-@---@-@
-			// "@-@@@@@-@
-			// "@-------@
-			// "@@@@@@@@@
-          
-            
 
             // print the matrix
             for (int i =0 ; i<r; i++){
@@ -95,4 +80,16 @@ namespace ariel{
             return result;
    
     }
+
 }
+
+
+          // r= 7 ,c = 9
+            // "@@@@@@@@@
+		    // "@-------@
+			// "@-@@@@@-@
+			// "@-@---@-@
+			// "@-@@@@@-@
+			// "@-------@
+			// "@@@@@@@@@
+

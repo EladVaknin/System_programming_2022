@@ -38,6 +38,11 @@ char const PosSymbols [100] = {'!', '"', '#', '$', '%', '&', '(', ')', '*', '+',
 
     cout<<ariel::mat (9 ,7 ,'@','-')<<endl;
 
+    cout<<""<<endl;
+    // cout<<ariel::mat (3 ,11 ,'@','-')<<endl;
+    // cout<<ariel::mat (13 ,5 ,'@','-')<<endl;
+
+
     // ariel::mat(random1 ,random2 ,PosSymbols[random3],PosSymbols[random4]);
     // cout<<ariel::mat (random1 ,random2 ,PosSymbols[random3],PosSymbols[random4])<<endl;
     }
