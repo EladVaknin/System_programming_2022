@@ -36,12 +36,6 @@ namespace ariel{
                 result = n1;
                 return result;
             }
-
-            // praivate case - test num 77.
-            if (c == num && r== num && n1 == 'G' && m2 =='L'){
-                result = "GGGGGGGGGGLLLLLLLGGLGGGGGLGGLGLLLGLGGLGLGLGLGGLGLLLGLGGLGGGGGLGGLLLLLLLGGGGGGGGGG";
-                return result; 
-            }
             // regular cases
             vector<vector<char>> tmpMatrix(r, vector<char>(c));
             // char tmpMatrix [r][c];
@@ -54,9 +48,8 @@ namespace ariel{
             int x = 0;
             int y = 0;
             int z =0;
-
             //working on the first char
-             while (col>(c/2)+1 || row >(r/2)+1 ){
+             while (col>=(c/2)+1 || row >=(r/2)+1 ){
                // fill the frame in the first char.
                for (int i = x; i < col ;++i){
                    for (int j = z; j<row; ++j){
