@@ -36,9 +36,12 @@ char const PosSymbols [100] = {'!', '"', '#', '$', '%', '&', '(', ')', '*', '+',
      }
     }
 
-    cout<<ariel::mat (9 ,7 ,'@','-')<<endl;
+    cout<<ariel::mat (9 ,9 ,'@','-')<<endl;
 
     cout<<""<<endl;
+
+    cout<<ariel::mat (9 ,9 ,'G','L')<<endl;
+
     // cout<<ariel::mat (3 ,11 ,'@','-')<<endl;
     // cout<<ariel::mat (13 ,5 ,'@','-')<<endl;
 
