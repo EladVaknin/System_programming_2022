@@ -2,8 +2,11 @@
 #include<string>
 #include<iostream>
 #include<vector>
-// #include <exception>
+#include <exception>
 #include "mat.hpp"
+
+/* To see the whole process and the committees -
+https://github.com/EladVaknin/System_programming_2022 */
 
 using namespace std ;
 
@@ -36,6 +39,8 @@ namespace ariel{
                 result = n1;
                 return result;
             }
+
+
             // regular cases
             vector<vector<char>> tmpMatrix(r, vector<char>(c));
             // char tmpMatrix [r][c];
@@ -84,12 +89,5 @@ namespace ariel{
 }
 
 
-          // r= 7 ,c = 9
-            // "@@@@@@@@@
-		    // "@-------@
-			// "@-@@@@@-@
-			// "@-@---@-@
-			// "@-@@@@@-@
-			// "@-------@
-			// "@@@@@@@@@
+ 
 
