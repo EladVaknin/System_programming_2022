@@ -14,7 +14,10 @@ using namespace std;
 namespace ariel {
 
     void Notebook::write (unsigned int page,unsigned int row,unsigned int colum,Direction direction,string st){}
-    string Notebook::read (unsigned int page,unsigned int row,unsigned int colum,Direction direction,unsigned int len) {}
+    string Notebook::read (unsigned int page,unsigned int row,unsigned int colum,Direction direction,unsigned int len) {
+        string result = "h";
+        return result;
+    }
     void Notebook::erase (unsigned int page,unsigned int row,unsigned int colum,Direction direction,int len) {}
     void Notebook::show (unsigned int page){}
 
