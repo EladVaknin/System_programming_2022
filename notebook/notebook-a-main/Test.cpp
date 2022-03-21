@@ -40,35 +40,35 @@ TEST_CASE("Notebook working") {
    CHECK (notebook.read(2,4,5,Direction::Vertical,6)=="~~~~~~");
 }
 
-// TEST_CASE("Random tests ") {
-//     Notebook notebook3;
-//     //randoms numbers 0- 100
-//     int random1 ,random2,random3,random4,len5;
-// 	len5 = rand() % 100;
-//     for (int i =0 ;i<len5;i++){
-//         random1 = rand() % 100; // page
-// 	    random2 = rand() % 100; //row
-//         random3 = rand() % 100; //col
-// 	    random4 = rand() % 100;
-//         // wirte
-//         CHECK_NOTHROW (notebook.write(random1,random2,random3,Direction::Horizontal,"Elad"));
-//         CHECK_NOTHROW (notebook.write(random1,random2,random3,Direction::Vertical,"Vaknin"));
-//         //read
-//         CHECK (notebook.read(random1,random2,random3,Direction::Horizontal,4)=="Elad");
-//         CHECK (notebook.read(random1,random2,random3,Direction::Vertical,6)=="Vaknin");
-//         //erase
-//         CHECK_NOTHROW (notebook.erase(random1,random2,random3,Direction::Horizontal,4));
-//         CHECK (notebook.read(random1,random2,random3,Direction::Horizontal,4)=="~~~~");
-//     }
+TEST_CASE("Random tests ") {
+    Notebook notebook3;
+    //randoms numbers 0- 100
+    unsigned int random1 ,random2,random3,random4,len5;
+	len5 = rand() % 100;
+    for (int i =0 ;i<len5;i++){
+        random1 = rand() % 100; // page
+	    random2 = rand() % 100; //row
+        random3 = rand() % 100; //col
+	    random4 = rand() % 100;
+        // wirte
+        CHECK_NOTHROW (notebook3.write(random1,random2,random3,Direction::Horizontal,"Elad"));
+        CHECK_NOTHROW (notebook3.write(random1,random2,random3,Direction::Vertical,"Vaknin"));
+        //read
+        CHECK (notebook3.read(random1,random2,random3,Direction::Horizontal,4)=="Elad");
+        CHECK (notebook3.read(random1,random2,random3,Direction::Vertical,6)=="Vaknin");
+        //erase
+        CHECK_NOTHROW (notebook3.erase(random1,random2,random3,Direction::Horizontal,4));
+        CHECK (notebook3.read(random1,random2,random3,Direction::Horizontal,4)=="~~~~");
+    }
 
-//}
-
-
+}
 
 
-TEST_CASE("Invaild input") {
-    Notebook notebook2;
-   //the rules :  page >= 0 && col >= 0 && row >= 0 
+
+
+// TEST_CASE("Invaild input") {
+//     Notebook notebook2;
+//    //the rules :  page >= 0 && col >= 0 && row >= 0 
 
 //    //001 - check row
 //    CHECK_NOTHROW (notebook2.write(0,0,-1,Direction::Horizontal,"Amit"));
@@ -88,4 +88,4 @@ TEST_CASE("Invaild input") {
 
 
 
-}
+// }
