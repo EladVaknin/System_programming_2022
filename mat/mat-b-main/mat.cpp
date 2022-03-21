@@ -21,18 +21,18 @@ namespace ariel{
            int row = r;
             //check invaild input
             if (r%2==0||c%2==0){
-                throw "invaild input - the input should be odd number";
+                throw std::invalid_argument("invaild input - the input should be odd number or bigger from zero");
             }
             if (r == 0 || c ==0 ){
-                throw "invaild input - the input should be bigger from zero ";
+                throw std::invalid_argument("invaild input - the input should be bigger from zero ");
             }
             // The two input tests can be merged, but I did not merge because of Dvir's test file.
             if (r < 0 || c < 0 ){
-                throw "invaild input - the input should be positive ";
+                throw std::invalid_argument("invaild input - the input should be positive ");
             }
             // if for invaild char from ascii table 
             if ((n1 < min || n1> max)||(m2 < min || m2 > max)){
-                throw "invaild input - the symbols should in the range";
+                throw std::invalid_argument("invaild input - the symbols should in the range");
             }
             // in case r=c=1
             if (r == 1 && c ==1){
