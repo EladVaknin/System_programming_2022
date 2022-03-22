@@ -107,29 +107,13 @@ TEST_CASE("Good input") {
 
 
 	
-												
-											
-
-
-    // if (random1 == random2){
-	// 	// CHECK(nospaces(mat(random1, random2, '@', '-'))== nospaces())
-	// }
-	// // in case that we have only 1 char as a input.
-	// if (random1==1 && random2 == 1) {
-	// 	CHECK(nospaces(mat(random1,random2,symbols[random3],symbols[random4])==nospaces(symbols2[random3])));
-	// }
-	// 	CHECK(nospaces(mat(1,1,'$','')==nospaces("$")));
-	// 	CHECK(nospaces(mat(1,1,'-')==nospaces("-")));
-	// 	CHECK(nospaces(mat(1,1,'+')==nospaces("+")));
-	// 	CHECK(nospaces(mat(1,1,'#')==nospaces("#")));
-
-
-
+									
 }
 
 TEST_CASE("Bad input") {
 	char symbols [11] = {'@', '-' ,'$', '%','#','+',':','!','^','&','*'};
 	int random1 ,random2;
+	srand(0);
 	random1 = rand() % 100;
 	random2 = rand() % 100;
 	int random3 = rand () % 10;

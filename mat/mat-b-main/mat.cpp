@@ -16,7 +16,6 @@ namespace ariel{
            string result;
            const int min = 33;
            const int max = 127;
-           const int num =9;
            int col = c ;
            int row = r;
             //check invaild input
@@ -43,8 +42,7 @@ namespace ariel{
 
             // regular cases
             vector<vector<char>> tmpMatrix(r, vector<char>(c));
-            // char tmpMatrix [r][c];
-            // initalize all the matrix in the second char
+            // initalize all the vector in the second char
             for (int i= 0;i<r;i++){
                 for (int j=0 ;j<c;j++){
                     tmpMatrix[i][j] = m2;
@@ -58,8 +56,8 @@ namespace ariel{
                // fill the frame in the first char.
                for (int i = x; i < col ;++i){
                    for (int j = z; j<row; ++j){
-                       tmpMatrix[j][y] =n1;      // first col
-                       tmpMatrix[y][i]=n1;       // first row
+                       tmpMatrix[j][x] =n1;      // first col
+                       tmpMatrix[x][i]=n1;       // first row
                        tmpMatrix[j][col-1] =n1;  // last col
                        tmpMatrix[row-1][i]=n1;   // last row
                   } 

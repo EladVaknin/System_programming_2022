@@ -44,6 +44,7 @@ TEST_CASE("Random tests ") {
     Notebook notebook3;
     //randoms numbers 0- 100
     unsigned int random1 ,random2,random3,random4,len5;
+    srand(0);
 	len5 = rand() % 100;
     for (int i =0 ;i<len5;i++){
         random1 = rand() % 100; // page
@@ -66,10 +67,23 @@ TEST_CASE("Random tests ") {
 
 
 
-// TEST_CASE("Invaild input") {
-//     Notebook notebook2;
-//    //the rules :  page >= 0 && col >= 0 && row >= 0 
+TEST_CASE("Invaild input") {
+    Notebook notebook2;
+    CHECK_NOTHROW(notebook2.write(0,0,0,Direction::Horizontal,"Elad"));
+    CHECK_NOTHROW(notebook2.write(0,0,0,Direction::Vertical,"Vaknin"));
+    CHECK_THROWS(notebook2.read(0,0,0,Direction::Horizontal,7));
+    CHECK_THROWS(notebook2.read(0,0,0,Direction::Vertical,8));
+    CHECK_NOTHROW(notebook2.write(550,550,550,Direction::Horizontal,"Elad"));
+    CHECK_NOTHROW(notebook2.write(550,550,550,Direction::Vertical,"Vaknin"));
+    CHECK_THROWS(notebook2.read(550,550,550,Direction::Horizontal,7));
+    CHECK_THROWS(notebook2.read(550,550,550,Direction::Vertical,8));
 
+
+
+
+
+
+//the rules :  page >= 0 && col >= 0 && row >= 0 
 //    //001 - check row
 //    CHECK_NOTHROW (notebook2.write(0,0,-1,Direction::Horizontal,"Amit"));
 //    CHECK_THROWS(notebook2.read(0,0,-1,Direction::Horizontal,4));
@@ -88,4 +102,4 @@ TEST_CASE("Random tests ") {
 
 
 
-// }
+}
