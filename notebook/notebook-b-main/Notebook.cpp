@@ -15,7 +15,8 @@ using ariel::Direction;
 using namespace std;
 
 namespace ariel {
-    Notebook::Notebook(){} //cons
+    //cons
+    Notebook::Notebook(){} 
 
 
 // check input functions
@@ -32,6 +33,16 @@ namespace ariel {
     }
    }
 
+   int the_next_data(int row,int colum ,Direction direction){
+        if (Direction::Vertical == direction){
+                row ++;
+                return row;
+        }else{
+                colum++;
+                return colum;
+            }
+   }
+
 
 // notebook functions
     void Notebook::write (int page, int row, int colum,Direction direction,string input){
@@ -40,14 +51,14 @@ namespace ariel {
         if(map_notebbok[make_tuple(page,row,colum)] == NULL ){
         for (int i=0;i<input.length();i++){
             map_notebbok[make_tuple(page,row,colum)]=input.at(i);
-            //check if the exact location not erased
+            the_next_data (row,colum,direction);
+            //check if the exact location not erased or wirted
             }if(map_notebbok[make_tuple(page,row,colum)]== '~'){
-                throw invalid_argument("The page is busy");
+                throw invalid_argument("The place in the notebook has been deleted");
             }
           }else{
                 throw invalid_argument("The page is busy");
         }
-
     }
 
 
@@ -62,20 +73,23 @@ namespace ariel {
                 line = '_';
             }
             result += line;
-            if (Direction::Vertical == direction){
-                row ++;
-            }else{
-                colum++;
-            }
+            the_next_data (row,colum,direction);
         }
         return result;
     }
 
 
 
-    void Notebook::erase ( int page, int row, int colum,Direction direction,int length) {
-        check_inputs2 (page,row,colum,length);
-
+    void Notebook::erase ( int page, int row, int colum,Direction direction,int length_char) {
+        check_inputs2 (page,row,colum,length_char);
+         if(map_notebbok[make_tuple(page,row,colum)] == '~' ){
+             throw invalid_argument("The place in the notebook has been deleted");
+         }else{
+             for (int i =0 ;i <length_char;i++){
+                 map_notebbok[make_tuple(page,row,colum)] = '~';
+                 the_next_data (row,colum,direction);
+           }
+        }
     }
 
 
