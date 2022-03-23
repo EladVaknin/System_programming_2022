@@ -23,6 +23,4 @@ namespace ariel {
         void erase( int page, int row, int colum,Direction direction,int len);
         void show ( int page);
     };
-
-   void check_inputs(int page, int row, int colum);
 }
