@@ -19,20 +19,27 @@ namespace ariel {
     Notebook::Notebook(){} 
 
 
-// check input functions
-   void check_inputs(int page, int row, int colum){
+// check input functions - The functions are similar but the arguments are different.
+   void check_inputs(int page, int row, int colum,string input){  // to write func
      if (page < 0 || row < 0 || colum < 0){
          throw invalid_argument( "The input should be minimum zero");
-     }
-   }
-
-   void check_inputs2(int page, int row, int colum,int len){
-    check_inputs (page,row,colum);
-    if (len >= 100 ){
-    throw invalid_argument("The length should be smaller from 100");
+     }if((row+input.length())>100){
+        throw invalid_argument("The length of the row + data should be smaller from 100");
+     }if(input.length()>100){
+        throw invalid_argument("The length should be smaller from 100");
     }
    }
 
+   void check_inputs2(int page, int row, int colum,int len){  // to the other functions
+     if (page < 0 || row < 0 || colum < 0){
+         throw invalid_argument( "The input should be minimum zero");
+    }if (len >= 100 ){
+        throw invalid_argument("The length should be smaller from 100");
+    }if((row+len)>100){
+        throw invalid_argument("The length of the row + data should be smaller from 100");
+    }
+   }
+   // maybe its  not usable - need tests
    int the_next_data(int row,int colum ,Direction direction){
         if (Direction::Vertical == direction){
                 row ++;
@@ -46,7 +53,7 @@ namespace ariel {
 
 // notebook functions
     void Notebook::write (int page, int row, int colum,Direction direction,string input){
-        check_inputs  (page,row, colum);
+        check_inputs  (page,row, colum,input);
         // check if the page is empty
         if(map_notebbok[make_tuple(page,row,colum)] == NULL ){
         for (int i=0;i<input.length();i++){
@@ -65,7 +72,7 @@ namespace ariel {
     string Notebook::read (int page, int row, int colum,Direction direction, int length) {
         check_inputs2 (page,row,colum,length);
         string result ;
-        char line ='_';
+        char line = '_';
         for (int i =0;i<length; i++){
             if (map_notebbok[make_tuple(page,row,colum)] > 0 ){
                 line = map_notebbok[make_tuple(page,row,colum)];
