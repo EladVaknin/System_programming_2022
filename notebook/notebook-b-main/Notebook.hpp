@@ -17,6 +17,7 @@ namespace ariel {
         map < place_notebook, char> map_notebbok; 
     public: 
         Notebook ();  // constructor
+        Notebook (int page ,int row ,int colum);
         // functions
         void write( int page, int row, int colum,Direction direction,string st);
         string read( int page, int row, int colum,Direction direction, int len);

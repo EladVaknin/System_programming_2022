@@ -6,6 +6,10 @@
 /* To see the whole process and the committees -
 https://github.com/EladVaknin/System_programming_2022 */
 
+/* Because this is the second time I'm doing the course, I relied on my exercise last year -
+https://github.com/EladVaknin/CPP-*/
+
+
 #include "Notebook.hpp"
 #include "Direction.hpp"
 #include <iostream>
@@ -15,8 +19,20 @@ using ariel::Direction;
 using namespace std;
 
 namespace ariel {
-    //cons
+//cons
     Notebook::Notebook(){} 
+
+// inizalize the notebook
+    Notebook::Notebook(int page,int row,int colum){
+        char line ='_';
+        for (int i =0 ;i<page;i++){
+            for (int j=0;j<row;j++){
+                for (int k=0;k<colum;k++){
+                    map_notebbok[make_tuple(page,row,colum)]=line;
+                }
+            }
+        }
+    }
 
 
 // check input functions - The functions are similar but the arguments are different.
