@@ -20,7 +20,7 @@ using namespace std;
 
 namespace ariel {
 //cons
-    Notebook::Notebook(){} 
+   Notebook::Notebook(){} 
 
 // inizalize the notebook
     Notebook::Notebook(int page,int row,int colum){
@@ -32,6 +32,7 @@ namespace ariel {
                 }
             }
         }
+        cout<<"The notebook inizalized";
     }
 
 
@@ -123,14 +124,14 @@ namespace ariel {
         if (page < 0 ) {
             throw invalid_argument("The input page should be 0 or bigger - page not found");
         }
-        string from_read;
-        for (int i = 0;i<row;i++){
-            for (int j =0 ;j<colum;j++){
-                from_read += read(page,row,colum,Direction::Horizontal,row);
-                cout<<from_read<<endl;
-            }
-            from_read += '\n';
-        }
+    //     string from_read;
+    //     for (int i = 0;i<row;i++){
+    //         for (int j =0 ;j<colum;j++){
+    //             from_read += read(page,row,colum,Direction::Horizontal,row);
+    //             cout<<from_read<<endl;
+    //         }
+    //         from_read += '\n';
+    //     }
     }
 
 };

@@ -23,9 +23,13 @@ using namespace ariel;
         cin>>row;
         cout<<"Please choose the num of colums :"<<endl;
         cin>>colum;
-
-        Notebook::Notebook(page,row,colum);
-
+       // create my nootbook
+        Notebook notebook (page,row,colum);
+        int x = 1;
+        int y = 3;
+        int z = 4;
+        notebook.write (x,y,z,Direction::Horizontal,"elad");
+        notebook.read(x,y,z,Direction::Horizontal,4);
    
 
 
