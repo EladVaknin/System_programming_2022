@@ -43,6 +43,8 @@ namespace ariel {
         throw invalid_argument("The length of the row + data should be smaller from 100");
      }if(input.length()>100){
         throw invalid_argument("The length should be smaller from 100");
+    }if (input == "~"){
+        throw invalid_argument("Invaild input");
     }
    }
 
@@ -71,7 +73,7 @@ namespace ariel {
     void Notebook::write (int page, int row, int colum,Direction direction,string input){
         check_inputs  (page,row, colum,input);
         // check if the page is empty
-        if(map_notebbok[make_tuple(page,row,colum)] == NULL ){
+        if(map_notebbok[make_tuple(page,row,colum)] == '_' ){
         for (int i=0;i<input.length();i++){
             map_notebbok[make_tuple(page,row,colum)]=input.at(i);
             the_next_data (row,colum,direction);
@@ -106,7 +108,7 @@ namespace ariel {
     void Notebook::erase ( int page, int row, int colum,Direction direction,int length_char) {
         check_inputs2 (page,row,colum,length_char);
          if(map_notebbok[make_tuple(page,row,colum)] == '~' ){
-             throw invalid_argument("The place in the notebook has been deleted");
+             throw invalid_argument("The place in the notebook has already been deleted");
          }else{
              for (int i =0 ;i <length_char;i++){
                  map_notebbok[make_tuple(page,row,colum)] = '~';
