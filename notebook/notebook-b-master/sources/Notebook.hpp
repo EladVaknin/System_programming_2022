@@ -17,11 +17,12 @@ namespace ariel {
      private:
         typedef tuple < int,int, int> place_notebook;
         map < place_notebook, char> map_notebbok; 
+        int page,row,colum;
     public: 
        Notebook ();  // constructor
        Notebook (int page ,int row ,int colum);
         // functions
-        void write( int page, int row, int colum,Direction direction,string st);
+        void write( int page, int row, int colum,Direction direction,string input);
         string read( int page, int row, int colum,Direction direction, int len);
         void erase( int page, int row, int colum,Direction direction,int len);
         void show ( int page);

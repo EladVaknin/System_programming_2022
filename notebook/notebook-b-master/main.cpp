@@ -28,8 +28,9 @@ using namespace ariel;
         int x = 1;
         int y = 3;
         int z = 4;
-        notebook.write (x,y,z,Direction::Horizontal,"elad");
-        notebook.read(x,y,z,Direction::Horizontal,4);
+        string input = "elad";
+        notebook.write (x,y,z,Direction::Horizontal,input);
+        notebook.read(x,y,z,Direction::Horizontal,input.length());
    
 
 
