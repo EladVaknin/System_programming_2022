@@ -17,20 +17,21 @@ https://github.com/EladVaknin/CPP-*/
 
 using ariel::Direction;
 using namespace std;
-
+constexpr int MAX_LEN = 100;
 namespace ariel {
+    
 //cons
-   Notebook::Notebook(){} 
+//    Notebook::Notebook(){} 
 
 // inizalize the notebook
     Notebook::Notebook(int page,int row,int colum){
-        page = page;
-        row = row;
-        colum = colum;
+       this -> page = page;
+       this -> row = row;
+       this -> colum = colum;
         char line = '_';
-        for (int i =0 ;i<page;i++){
-            for (int j=0;j<row;j++){
-                for (int k=0;k<colum;k++){
+        for (size_t i =0 ;i<page;i++){
+            for (size_t j=0;j<row;j++){
+                for (size_t k=0;k<colum;k++){
                     map_notebbok[make_tuple(page,row,colum)] = line;
                 }
             }
@@ -40,14 +41,13 @@ namespace ariel {
 
 
 // check input functions - The functions are similar but the arguments are different.
-   void check_inputs(int page, int row, int colum,string input){  // to write func
-       int max = 100;
-       unsigned long max_row = row+input.length();
+   void check_inputs(int page, int row, int colum,string const & input){  // to write func
+       unsigned long max_row = size_t(row)+input.length();
      if (page < 0 || row < 0 || colum < 0){
          throw invalid_argument( "The input should be minimum zero");
-     }if((max_row)>max){
+     }if((max_row)>MAX_LEN){
         throw invalid_argument("The length of the row + data should be smaller from 100");
-     }if(input.length()>max){
+     }if(input.length()>MAX_LEN){
         throw invalid_argument("The length should be smaller from 100");
     }if (input == "~"){
         throw invalid_argument("Invaild input");
@@ -55,12 +55,12 @@ namespace ariel {
    }
 
    void check_inputs2(int page, int row, int colum,int len){  // to the other functions
-     int max = 100;
+    //  int max = 100;
      if (page < 0 || row < 0 || colum < 0){
          throw invalid_argument( "The input should be minimum zero");
-    }if (len >= max ){
+    }if (len >= MAX_LEN ){
         throw invalid_argument("The length should be smaller from 100");
-    }if((row+len)>max){
+    }if((row+len)>MAX_LEN){
         throw invalid_argument("The length of the row + data should be smaller from 100");
     }
    }
@@ -76,13 +76,12 @@ namespace ariel {
 //             }
 //    }
 
-
 // notebook functions
     void Notebook::write (int page, int row, int colum,Direction direction,string input){
         check_inputs  (page,row, colum,input);
         char line = '_';
         if(map_notebbok[make_tuple(page,row,colum)] == line ){         // check if the page is empty
-        for (int i=0;i<input.length();i++){
+        for (size_t i=0;i<input.length();i++){
             map_notebbok[make_tuple(page,row,colum)]=input.at(i);
             // the_next_data (row,colum,direction);
             if (Direction::Vertical == direction){
@@ -104,7 +103,7 @@ namespace ariel {
         check_inputs2 (page,row,colum,length);
         string result ;
         char line = '_';
-        for (int i =0;i<length; i++){
+        for (size_t i =0;i<length; i++){
             if (map_notebbok[make_tuple(page,row,colum)] > 0 ){
                 line = map_notebbok[make_tuple(page,row,colum)];
             }else{
@@ -128,7 +127,7 @@ namespace ariel {
          if(map_notebbok[make_tuple(page,row,colum)] == '~' ){
              throw invalid_argument("The place in the notebook has already been deleted");
          }
-             for (int i =0 ;i <length_char;i++){
+             for (size_t i =0 ;i <length_char;i++){
                  map_notebbok[make_tuple(page,row,colum)] = '~';
                 //  the_next_data (row,colum,direction);
              if (Direction::Vertical == direction){
@@ -147,8 +146,8 @@ namespace ariel {
             throw invalid_argument("The input page should be 0 or bigger - page not found");
         }
         string from_read;
-        for (int i = 0;i<row;i++){
-            for (int j =0 ;j<colum;j++){
+        for (size_t i = 0;i<row;i++){
+            for (size_t j =0 ;j<colum;j++){
                 from_read += read(page,row,colum,Direction::Horizontal,row);
                 cout<<from_read<<endl;
             }
