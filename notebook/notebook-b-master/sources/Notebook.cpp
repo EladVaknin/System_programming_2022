@@ -21,7 +21,7 @@ constexpr int MAX_LEN = 100;
 namespace ariel {
     
 //cons
-//    Notebook::Notebook(){} 
+   Notebook::Notebook(){} 
 
 // inizalize the notebook
     Notebook::Notebook(int page,int row,int colum){
@@ -32,7 +32,7 @@ namespace ariel {
         for (size_t i =0 ;i<page;i++){
             for (size_t j=0;j<row;j++){
                 for (size_t k=0;k<colum;k++){
-                    map_notebbok[make_tuple(page,row,colum)] = line;
+                    map_notebbok[make_tuple(i,j,k)] = line;
                 }
             }
         }
@@ -43,14 +43,19 @@ namespace ariel {
 // check input functions - The functions are similar but the arguments are different.
    void check_inputs(int page, int row, int colum,string const & input){  // to write func
        unsigned long max_row = size_t(row)+input.length();
+       unsigned long max_colum = size_t(colum)+input.length();
      if (page < 0 || row < 0 || colum < 0){
          throw invalid_argument( "The input should be minimum zero");
-     }if((max_row)>MAX_LEN){
+     }if((max_row)>= MAX_LEN){
         throw invalid_argument("The length of the row + data should be smaller from 100");
-     }if(input.length()>MAX_LEN){
+     }if(input.length()>= MAX_LEN){
         throw invalid_argument("The length should be smaller from 100");
     }if (input == "~"){
         throw invalid_argument("Invaild input");
+    }if(colum >= MAX_LEN){
+        throw invalid_argument("The colum should be smaller from 100");
+    }if((max_colum)>= MAX_LEN){
+        throw invalid_argument("The length of the colum + data should be smaller from 100");
     }
    }
 
@@ -60,27 +65,26 @@ namespace ariel {
          throw invalid_argument( "The input should be minimum zero");
     }if (len >= MAX_LEN ){
         throw invalid_argument("The length should be smaller from 100");
-    }if((row+len)>MAX_LEN){
+    }if((row+len)>= MAX_LEN){
         throw invalid_argument("The length of the row + data should be smaller from 100");
+    }if(colum >=MAX_LEN){
+        throw invalid_argument("The colum should be smaller from 100");
+    }if((colum+len)>= MAX_LEN){
+        throw invalid_argument("The length of the colum + data should be smaller from 100");
     }
    }
 
-   // maybe its  not usable - need tests
-//    int the_next_data(int row,int colum ,Direction direction){
-//         if (Direction::Vertical == direction){
-//                 row ++;
-//                 return row;
-//         }else{
-//                 colum++;
-//                 return colum;
-//             }
-//    }
+
 
 // notebook functions
     void Notebook::write (int page, int row, int colum,Direction direction,string input){
         check_inputs  (page,row, colum,input);
         char line = '_';
-        if(map_notebbok[make_tuple(page,row,colum)] == line ){         // check if the page is empty
+        cout<<"tmppppppppp"<<endl;
+         if(map_notebbok[make_tuple(page,row,colum)] != line){          //check if the exact location not erased or wirted
+                throw invalid_argument("The place in the notebook has been deleted or used");
+            }
+        // if(map_notebbok[make_tuple(page,row,colum)] == line ){         // check if the page is empty
         for (size_t i=0;i<input.length();i++){
             map_notebbok[make_tuple(page,row,colum)]=input.at(i);
             // the_next_data (row,colum,direction);
@@ -88,14 +92,14 @@ namespace ariel {
                 row ++;
             }else{
                 colum++;
+            }if ( map_notebbok[make_tuple(page,row,colum)]=='~'){
+                throw invalid_argument("The palce are deleted");
             }
-            //check if the exact location not erased or wirted
-            }if(map_notebbok[make_tuple(page,row,colum)]== '~'){
-                throw invalid_argument("The place in the notebook has been deleted");
-            }
-          }else{
-                throw invalid_argument("The page is busy");
         }
+        //   }else{
+        //         throw invalid_argument("The page is busy");
+        // }
+        cout<<"finish writing"<<endl;
     }
 
 
@@ -110,7 +114,6 @@ namespace ariel {
                 line = '_';
             }
             result += line;
-            // the_next_data (row,colum,direction);
              if (Direction::Vertical == direction){
                 row ++;
             }else{
@@ -146,13 +149,37 @@ namespace ariel {
             throw invalid_argument("The input page should be 0 or bigger - page not found");
         }
         string from_read;
+        for(size_t k =0 ;k<page;k++){
         for (size_t i = 0;i<row;i++){
             for (size_t j =0 ;j<colum;j++){
-                from_read += read(page,row,colum,Direction::Horizontal,row);
+                from_read = read(k,i,j,Direction::Horizontal,row);
                 cout<<from_read<<endl;
             }
-            from_read += '\n';
+            // from_read += '\n';
         }
+        }
+            cout<<"Show is finshed"<<endl;
     }
 
+
 };
+
+
+
+
+
+
+
+
+
+
+   // maybe its  not usable - need tests
+//    int the_next_data(int row,int colum ,Direction direction){
+//         if (Direction::Vertical == direction){
+//                 row ++;
+//                 return row;
+//         }else{
+//                 colum++;
+//                 return colum;
+//             }
+//    }
