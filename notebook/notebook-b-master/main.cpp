@@ -33,11 +33,14 @@ using namespace ariel;
         int y = 3;
         int z = 4;
         string input = "elad";
-        notebook.show(1);    // work
 
         // notebook.write (x,y,z,Direction::Horizontal,input);   // work
-        // notebook.write(1,0,0,Direction::Vertical,"asadaasfaf");
-        // cout<<  notebook.read(1,0,0,Direction::Vertical,10)<<endl; //work
+        notebook.write(0,0,0,Direction::Vertical,"eladgamal");
+        cout<<"finis write"<<endl;
+        cout<<  notebook.read(0,0,0,Direction::Vertical,9)<<endl; //work
+        cout<<"start show"<<endl;
+        notebook.show(0);    // work
+
         
         // cout<<"agik "<<endl;
         // cout<<  notebook.read(x,y,z,Direction::Horizontal,input.length())<<endl; //work

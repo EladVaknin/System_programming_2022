@@ -17,7 +17,7 @@ namespace ariel {
      private:
         typedef tuple < int,int, int> place_notebook;
         map < place_notebook, char> map_notebbok; 
-        int page,row,colum;
+        int p,r,c;
     public: 
        Notebook ();  // constructor
        Notebook (int page ,int row ,int colum);
