@@ -14,9 +14,9 @@ https://github.com/EladVaknin/CPP-*/
 #include "Direction.hpp"
 #include <iostream>
 #include <stdexcept>
-
 using ariel::Direction;
 using namespace std;
+#define MAXIMUM = 100;
 constexpr int MAX_LEN = 100;
 
 namespace ariel {

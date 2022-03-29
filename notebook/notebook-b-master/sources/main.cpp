@@ -5,6 +5,8 @@
 #include <exception>
 #include <algorithm>
 #include "Notebook.cpp"
+// #include "doctest.h"
+
 // #include "sources/Notebook.hpp"
 // #include "sources/Direction.hpp"
 
@@ -35,12 +37,18 @@ using namespace ariel;
         string input = "elad";
 
         // notebook.write (x,y,z,Direction::Horizontal,input);   // work
-        notebook.write(0,0,0,Direction::Vertical,"eladgamal");
-        cout<<"finis write"<<endl;
-        cout<<  notebook.read(0,0,0,Direction::Vertical,9)<<endl; //work
-        cout<<"start show"<<endl;
-        notebook.show(0);    // work
+        // notebook.write(1,0,0,Direction::Vertical,"eladgamal");
+        // cout<<"finis write"<<endl;
+        // cout<<  notebook.read(1,0,0,Direction::Vertical,9)<<endl; //work
+        // cout<<"start show"<<endl;
+        // notebook.show(1);    // work
 
+       for ( int i=100; i<200;i++){
+        Notebook note;
+            note.write(1,i-100,0,Direction::Vertical,"Look at me");
+            note.write(1,i-100,2,Direction::Horizontal,"I'm Mr. meeseeks");
+            cout<<"1"<<endl;
+    }
         
         // cout<<"agik "<<endl;
         // cout<<  notebook.read(x,y,z,Direction::Horizontal,input.length())<<endl; //work
