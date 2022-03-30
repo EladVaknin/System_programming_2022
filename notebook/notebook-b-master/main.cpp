@@ -36,7 +36,7 @@ using namespace ariel;
         int z = 4;
         string input = "elad";
 
-        // notebook.write (x,y,z,Direction::Horizontal,input);   // work
+      //  notebook.write (x,y,z,Direction::Horizontal,input);   // work
         // notebook.write(1,0,0,Direction::Vertical,"eladgamal");
         // cout<<"finis write"<<endl;
         // cout<<  notebook.read(1,0,0,Direction::Vertical,9)<<endl; //work
@@ -47,7 +47,7 @@ using namespace ariel;
         Notebook note;
             note.write(1,i-100,0,Direction::Vertical,"Look at me");
             note.write(1,i-100,2,Direction::Horizontal,"I'm Mr. meeseeks");
-            cout<<"1"<<endl;
+            cout<<i<<endl;
     }
         
         // cout<<"agik "<<endl;

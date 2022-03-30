@@ -16,14 +16,14 @@ https://github.com/EladVaknin/CPP-*/
 #include <stdexcept>
 using ariel::Direction;
 using namespace std;
-#define MAXIMUM = 100;
+// #define MAXIMUM = 100;
 constexpr int MAX_LEN = 100;
 
 namespace ariel {
     
 //cons
    Notebook::Notebook(){
-       this -> p = MAX_LEN;
+       this -> p = 10;
        this -> r = MAX_LEN;
        this -> c = MAX_LEN; 
        this ->map_notebbok = map <place_notebook,char>(); 
@@ -111,8 +111,6 @@ namespace ariel {
             if (map_notebbok[make_tuple(page,row,colum)] > 0 ){
                 result += map_notebbok[make_tuple(page,row,colum)];
                 // cout<<"in for"<<endl;
-            }else{
-                line = '_';
             }
             //result += line;
              if (Direction::Vertical == direction){

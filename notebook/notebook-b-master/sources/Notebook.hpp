@@ -20,11 +20,13 @@ namespace ariel {
         int p,r,c;
     public: 
        Notebook ();  // constructor
-       Notebook (int page ,int row ,int colum);
+    //   Notebook (int page ,int row ,int colum);
         // functions
         void write( int page, int row, int colum,Direction direction,string input);
         string read( int page, int row, int colum,Direction direction, int len);
         void erase( int page, int row, int colum,Direction direction,int len);
         void show ( int page);
+        // void check_inputs(int page, int row, int colum,string const & input);
+        // void check_inputs2(int page, int row, int colum,int len);
     };
 }
