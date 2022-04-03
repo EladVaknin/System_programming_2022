@@ -37,7 +37,7 @@ namespace zich {
         Matrix operator* (double factor);
         friend Matrix operator* (double factor, const Matrix);
         Matrix& operator *= (const Matrix &num);
-
+        Matrix& operator *= (const double &num);
         // < > = 
         bool operator> (const Matrix &other_num) const;
         bool operator< (const Matrix &other_num) const;
