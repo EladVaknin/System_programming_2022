@@ -1,7 +1,7 @@
 /**
  * AUTHORS: <Elad Vaknin>
  * 
- * Date: 2022-03
+ * Date: 2022-04
  */
 #include<vector>
 #include <map>
@@ -22,31 +22,50 @@ namespace zich {
      int colum;
 
     public: 
+
         Matrix (vector<double>,int r,int c);  // constructor
-        Matrix operator+ () const; 
-        Matrix & operator++ ();
-        Matrix operator++ (int);
-        Matrix operator+ (Matrix &other_num);
-        Matrix operator- (Matrix &other_num);
-        Matrix & operator-- ();
-        Matrix operator-- (int);
-        Matrix operator- () const;
-        Matrix& operator+= (const Matrix &num);
-        Matrix& operator-= (const Matrix &num);
+
+        // operators:
+        //+
+        friend Matrix & operator++ (Matrix &mat);
+        // Matrix operator++ (int);
+        friend Matrix operator+ (Matrix &mat) ; 
+        friend Matrix operator+ (Matrix &mat ,const Matrix &other_mat);
+        friend Matrix operator+ (Matrix &mat ,double num);
+        friend Matrix operator+ (double num,Matrix &mat);  
+
+        // -
+        friend Matrix & operator -- (Matrix &mat);
+        // Matrix operator-- (int);
+        friend Matrix operator- (Matrix &mat ,const Matrix &other_mat);
+        friend Matrix operator- (Matrix &mat) ; 
+        friend Matrix operator- (const Matrix &mat ,double num);
+        friend Matrix operator- (double num,const Matrix &mat);  
+  
+        //+=
+        friend Matrix& operator+= (const Matrix &mat,const Matrix &other_mat);
+        friend Matrix& operator-= (const Matrix &mat,const Matrix &other_mat);
+        friend Matrix& operator-= (double num ,const Matrix &mat);
+
+
         // *
-        Matrix operator* (double factor);
-        friend Matrix operator* (double factor, const Matrix);
-        Matrix& operator *= (const Matrix &num);
-        Matrix& operator *= (const double &num);
+        friend Matrix operator* (const Matrix &mat,double skalar);
+        friend Matrix operator* (double skalar, const Matrix &mat);
+        friend Matrix& operator *= (const Matrix &mat,const Matrix &other_mat);
+        friend Matrix& operator *= (const Matrix &mat,double skalar);
+        friend Matrix& operator *= (double skalar,const Matrix &mat);
+        friend Matrix& operator *= (const double &mat,const Matrix &other_mat);
+
         // < > = 
-        bool operator> (const Matrix &other_num) const;
-        bool operator< (const Matrix &other_num) const;
-        bool operator== (const Matrix &other_num) const;
-        bool operator<= (const Matrix &other_num) const;
-        bool operator>= (const Matrix &other_num) const;
-        bool operator!= (const  Matrix &other_num) const;
+        friend bool operator> (const Matrix &mat,const Matrix &other_mat) ;
+        friend bool operator< (const Matrix &mat,const Matrix &other_mat) ;
+        friend bool operator == (const Matrix &mat,const Matrix &other_mat);
+        friend bool operator<= (const Matrix &mat,const Matrix &other_mat) ;
+        friend bool operator>= (const Matrix &mat,const Matrix &other_mat) ;
+        friend bool operator!= (const Matrix &mat,const  Matrix &other_mat) ;
+
         // << >> 
-        friend ostream& operator<< (ostream& stream, const Matrix& num);
-        friend istream& operator>> (istream& stream, const Matrix& num);
+        friend ostream& operator<< (ostream& stream, const Matrix& mat);
+        friend istream& operator>> (istream& stream, const Matrix& mat);
         };
 }
