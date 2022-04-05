@@ -16,10 +16,10 @@ namespace zich{
 
     //cos 
     Matrix::Matrix(vector<double>,int row,int col){
-        this -> row;
-        this ->colum;
-        vector<double> tmp (row*colum,0); // inizalize the matrix to 0
-        this ->  tmpMatrix = tmp;
+        // this -> row;
+        // this ->colum;
+        // vector<double> tmp (row*colum,0); // inizalize the matrix to 0
+        // this ->  tmpMatrix = tmp;
     }
 
     void chek_inputs(vector<double>,int row,int col){
@@ -28,17 +28,16 @@ namespace zich{
     
     // operators:
     //+
-    Matrix & operator++ (Matrix &mat){
-        return mat;
+    void operator++ (const Matrix &mat){
     }
     //Matrix operator++ (int);
-    Matrix operator+ (Matrix &mat ) {
+    Matrix operator+ (const Matrix &mat ) {
         return mat;
     }
-    Matrix operator+ (Matrix &mat ,const Matrix &other_mat){
+    Matrix operator+ (const Matrix &mat ,const Matrix &other_mat){
         return mat;
     }
-    Matrix operator+ (Matrix &mat ,double num){
+    Matrix operator+ (const Matrix &mat ,double num){
         return mat;
     }
     Matrix operator+ (double num,Matrix &mat){
@@ -46,32 +45,39 @@ namespace zich{
     }  
 
     // -
-    Matrix & operator -- (Matrix &mat){
+    void operator -- (const Matrix &mat){
+   
+    }
+    // Matrix operator-- (int);
+    Matrix operator- (const Matrix &mat ,const Matrix &other_mat){
         return mat;
     }
-    //Matrix operator-- (int);
-    Matrix operator- (Matrix &mat ,const Matrix &other_mat){
+    Matrix operator- (const Matrix &mat) {
         return mat;
     }
-    Matrix operator- (Matrix &mat){
+    Matrix operator- (const Matrix &mat ,double num){
         return mat;
-    }  
-    Matrix operator- (Matrix &mat ,double num){
+
+    }
+    Matrix operator- (double num,const Matrix &mat){
         return mat;
     }
-    Matrix operator- (double num,Matrix &mat){
-        return mat;
-    }  
 
     //+=-
-    Matrix& operator+= (const Matrix &mat,const Matrix &other_mat){
-        return;
+    // Matrix& operator+= (const Matrix &mat,const Matrix &other_mat){
+    //     return mat;
+    // }
+    void operator+= (const Matrix &mat,double num){
+
     }
-    Matrix& operator-= (const Matrix &mat,const Matrix &other_mat){
-        return;
+    void operator-= (const Matrix &mat,double num){
+
     }
-    Matrix& operator-= (double num ,const Matrix &mat){
-        return;
+    // Matrix& operator-= (const Matrix &mat,const Matrix &other_mat){
+    //     return mat;
+    // }
+    void operator-= (double num ,const Matrix &mat){
+
     }
 
 
@@ -82,12 +88,19 @@ namespace zich{
     Matrix operator* (double skalar, const Matrix &mat){
         return mat;
     }
-    Matrix& operator *= (const Matrix &mat,const Matrix &other_mat){
-        return ;
+    void operator *= (const Matrix &mat,const Matrix &other_mat){
+
     }
-    Matrix& operator *= (const double &mat,const Matrix &other_mat){
-        return ;
+    void operator *= (const Matrix &mat,double skalar){
+
     }
+    void operator *= (double skalar,const Matrix &mat){
+
+    }
+    void operator *= (const double &mat,const Matrix &other_mat){
+
+    }
+
 
     // < > = 
     bool operator> (const Matrix &mat,const Matrix &other_mat) {
