@@ -6,7 +6,8 @@
 /* To see the whole process and the committees -
 https://github.com/EladVaknin/System_programming_2022 
 and becuse its my second time that i made the course i base on my last year implem 
-https://github.com/EladVaknin/CPP-/tree/master/number%20with%20units */
+https://github.com/EladVaknin/CPP-/tree/master/number%20with%20units 
+https://en.wikipedia.org/wiki/Matrix_(mathematics) */
 
 
 #include <iostream>
@@ -62,6 +63,12 @@ namespace zich{
     // operators:
     //+
     Matrix& Matrix::operator++ (){
+        for (int i =0 ;i<this->tmpMatrix.size();i++){
+            for(int j =0;this->tmpMatrix[0].size();j++){
+                this ->tmpMatrix.at(i).at(j)+1;
+            }
+        }
+        return *this;
     }
     Matrix Matrix::operator ++ (int skalar){
         Matrix ans = *this;
@@ -69,19 +76,60 @@ namespace zich{
         return ans;
     }
     Matrix Matrix::operator+ (const Matrix &other_mat)const {
-
+        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
+            throw invalid_argument ("invaild input - the size should be match");
+        }
+        // Matrix ans;
+        vector <double> tmp;
+        int row = tmpMatrix.size();
+        int col = tmpMatrix[0].size();
+         for (int i =0 ;i<row;i++){
+            for(int j =0;j<col;j++){
+                tmp.push_back(this->tmpMatrix.at(i).at(j)+other_mat.tmpMatrix.at(i).at(j));
+            }
+        }
+        Matrix ans (tmp,row,col);
+        return ans;
     } 
     Matrix Matrix::operator+ (){
-
+        // Matrix ans;
+        vector <double> tmp;
+        int row = tmpMatrix.size();
+        int col = tmpMatrix[0].size();
+         for (int i =0 ;i<row;i++){
+            for(int j =0;j<col;j++){
+                tmp.push_back(this->tmpMatrix.at(i).at(j));
+            }
+        }
+        Matrix ans (tmp,row,col);
+        return ans;
     }
+    //+=
     Matrix& Matrix::operator+= (const Matrix &other_mat){
-
+        // Matrix ans;
+        vector <double> tmp;
+        int row = tmpMatrix.size();
+        int col = tmpMatrix[0].size();
+         for (int i =0 ;i<row;i++){
+            for(int j =0;j<col;j++){
+             this->tmpMatrix.at(i).at(j)+= other_mat.tmpMatrix.at(i).at(j);
+            }
+        }
+        Matrix ans (tmp,row,col);
+        return ans;
     }
+
+
 
 
     // -
     Matrix& Matrix::operator -- (){
-
+        for (int i =0 ;i<this->tmpMatrix.size();i++){
+            for(int j =0;this->tmpMatrix[0].size();j++){
+                this ->tmpMatrix.at(i).at(j)-1;
+            }
+        }
+        return *this;
     }
     Matrix Matrix::operator -- (int skalar){
         Matrix ans = *this;
@@ -89,30 +137,90 @@ namespace zich{
         return ans;
     }
     Matrix Matrix::operator- () const {
+        // Matrix ans;
+        vector <double> tmp;
+        int row = tmpMatrix.size();
+        int col = tmpMatrix[0].size();
+         for (int i =0 ;i<row;i++){
+            for(int j =0;j<col;j++){
+                tmp.push_back((-1)*this->tmpMatrix.at(i).at(j));
+            }
+        }
+        Matrix ans (tmp,row,col);
+        return ans;
+
 
     }
     Matrix Matrix::operator- (const Matrix &other_mat) {
-
+        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
+            throw invalid_argument ("invaild input - the size should be match");
+        }
+        // Matrix ans;
+        vector <double> tmp;
+        int row = tmpMatrix.size();
+        int col = tmpMatrix[0].size();
+         for (int i =0 ;i<row;i++){
+            for(int j =0;j<col;j++){
+                tmp.push_back(this->tmpMatrix.at(i).at(j)-other_mat.tmpMatrix.at(i).at(j));
+            }
+        }
+        Matrix ans (tmp,row,col);
+        return ans;
     }
+    //-=
     Matrix& Matrix::operator-= (const Matrix &mat){
-
+        // Matrix ans;
+        vector <double> tmp;
+        int row = tmpMatrix.size();
+        int col = tmpMatrix[0].size();
+         for (int i =0 ;i<row;i++){
+            for(int j =0;j<col;j++){
+             this->tmpMatrix.at(i).at(j)-= mat.tmpMatrix.at(i).at(j);
+            }
+        }
+        Matrix ans (tmp,row,col);
+        return ans;
     }
 
 
     //+=   /-=
 
-    // *
+    // *   -  condi - col of matrix a should be eq to row of matrix b 
     Matrix Matrix::operator* (const Matrix &other_mat)const{
-
+        if (this->tmpMatrix[0].size() != other_mat.tmpMatrix.size()){
+            throw invalid_argument ("Num of cols in matrix A should be equal to rows of Matrix B");
+        }
+        // Matrix A = n*m , Matrix B = m*p , Matrix c = n*p.
+        int n = this->tmpMatrix[0].size();   
+        int p = other_mat.tmpMatrix.size();
+        vector <double> tmp;
+        for (int i =0 ;i<n;i++){
+            for(int j =0;j<p;j++){
+                // need to iplem
+            }
+        }
+        Matrix ans (tmp,n,p);
+        return ans;
     }
-    Matrix Matrix::operator* (double skalar, const Matrix &mat){
+    Matrix Matrix::operator* (double skalar, const Matrix &other_mat){
+        
 
     }
     Matrix Matrix::operator* (double skalar)const{
-
+        return skalar*(*this);
     }
-    Matrix Matrix::operator *= (double skalar){
 
+    Matrix Matrix::operator *= (double skalar){
+        vector <double> tmp;
+        int row = tmpMatrix.size();
+        int col = tmpMatrix[0].size();
+         for (int i =0 ;i<row;i++){
+            for(int j =0;j<col;j++){
+             this->tmpMatrix.at(i).at(j)*= skalar;
+            }
+        }
+        Matrix ans (tmp,row,col);
+        return ans;
     }
 
 
@@ -203,27 +311,27 @@ namespace zich{
 
 
     // << >> 
-        ostream& operator<< (ostream& out, const Matrix& mat){
-            for (int i =0 ; i< mat.row;i++){
-                for (int j=0;j<mat.colum;j++){
-                    out<<mat.tmpMatrix.at(i).at(j);
-                }
-                out<<endl;
+    ostream& operator<< (ostream& out, const Matrix& mat){
+        for (int i =0 ; i< mat.tmpMatrix.size();i++){
+            for (int j=0;j<mat.tmpMatrix[0].size();j++){
+                out<<mat.tmpMatrix.at(i).at(j);
             }
-        return out;
-
-    }
-        istream& operator>> (istream& in, const Matrix& mat){
-            for (int i =0 ; i< mat.row;i++){
-                for (int j=0;j<mat.colum;j++){
-                in>>mat.tmpMatrix.at(i).at(j);
-            }
-            // in >>endl;
+            out<<endl;
         }
-        return in;
+    return out;
 
-
+}
+    istream& operator>> (istream& in, const Matrix& mat){
+        for (int i =0 ; i< mat.tmpMatrix.size();i++){
+            for (int j=0;j<mat.tmpMatrix[0].size();j++){
+            in>>mat.tmpMatrix.at(i).at(j);
+        }
+        // in >>endl;
     }
+    return in;
+
+
+}
 
 
 
