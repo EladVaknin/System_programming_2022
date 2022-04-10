@@ -14,7 +14,7 @@ using namespace zich;
         int col =2;
         string result;
         vector <double> tmpMatrix = {2,2,2,2};
-        Matrix::Matrix mat (tmpMatrix,row,col);
+        // Matrix::Matrix mat (tmpMatrix,row,col);
         for (int i =0 ; i<row; i++){
                 for (int j=0 ;j <col ;j++){
                     // cout<< result <<tmpMatrix[i][j];

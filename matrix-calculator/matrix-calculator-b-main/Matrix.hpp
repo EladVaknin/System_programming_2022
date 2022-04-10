@@ -22,57 +22,48 @@ namespace zich {
 
     public: 
 
-        Matrix(vector<vector<double>> mat,int rows,int cols);  // constructor
+        Matrix(vector<double> mat,int rows,int cols);  // constructor
         Matrix (int row , int colum);
-        Matrix(const Matrix& other_mat);
+        Matrix(const Matrix& other_mat);   // copy constructor
         ~Matrix();   // distructors 
 
         // operators:
         //+
-        friend void operator++ (const Matrix &mat);
-        // Matrix operator++ (int);
-        friend Matrix operator+ (const Matrix &mat) ; 
-        friend Matrix operator+ (const Matrix &mat ,const Matrix &other_mat);
-        friend Matrix operator+ (const Matrix &mat ,double num);
-        friend Matrix operator+ (double num,Matrix &mat);  
+        Matrix& operator++ ();  // pre
+        Matrix operator ++ (int skalar); // post
+        Matrix operator+ (const Matrix &other_mat) const ; 
+        Matrix operator+ ();
+        Matrix& operator+= (const Matrix &other_mat);
+  
 
         // -
-        friend void operator -- (const Matrix &mat);
-        // Matrix operator-- (int);
-        friend Matrix operator- (const Matrix &mat ,const Matrix &other_mat);
-        friend Matrix operator- (const Matrix &mat) ; 
-        friend Matrix operator- (const Matrix &mat ,double num);
-        friend Matrix operator- (double num,const Matrix &mat);  
+        Matrix& operator -- ();
+        Matrix operator -- (int skalar);
+        Matrix operator- () const ;
+        Matrix operator- (const Matrix &other_mat) ;
+        Matrix& operator-= (const Matrix &mat);
+ 
   
-        //+=/-=
-        // friend Matrix& operator+= (const Matrix &mat,const Matrix &other_mat);
-        friend void operator+= (const Matrix &mat,double num);
-        friend void operator-= (const Matrix &mat,double num);
-        // friend Matrix& operator-= (const Matrix &mat,const Matrix &other_mat);
-        friend void operator-= (double num ,const Matrix &mat);
-
+        //+=   /-=
 
         // *
-        friend Matrix operator* (const Matrix &mat,double skalar);
+        Matrix operator* (const Matrix &other_mat)const;
         friend Matrix operator* (double skalar, const Matrix &mat);
-        friend void operator *= (const Matrix &mat,const Matrix &other_mat);
-        friend void operator *= (const Matrix &mat,double skalar);
-        friend void operator *= (double skalar,const Matrix &mat); // 
-        friend void operator *= (const double &mat,const Matrix &other_mat);
+        Matrix operator* (double skalar)const;
+        Matrix operator *= (double skalar);
+
 
         // < > = 
-        friend bool operator> (const Matrix &mat,const Matrix &other_mat) ;
-        friend bool operator< (const Matrix &mat,const Matrix &other_mat) ;
-        friend bool operator == (const Matrix &mat,const Matrix &other_mat);
-        friend bool operator<= (const Matrix &mat,const Matrix &other_mat) ;
-        friend bool operator>= (const Matrix &mat,const Matrix &other_mat) ;
-        friend bool operator!= (const Matrix &mat,const  Matrix &other_mat) ;
+        bool operator> (const Matrix &other_mat) const ;
+        bool operator< (const Matrix &other_mat) const;
+        bool operator == (const Matrix &other_mat) const;
+        bool operator<= (const Matrix &other_mat) const;
+        bool operator>= (const Matrix &other_mat) const;
+        bool operator!= (const  Matrix &other_mat) const;
 
         // << >> 
         friend ostream& operator<< (ostream& out, const Matrix& mat);
         friend istream& operator>> (istream& in, const Matrix& mat);
         };
         
-        // Matrix operator*(const double value, Matrix& other);
-
 }

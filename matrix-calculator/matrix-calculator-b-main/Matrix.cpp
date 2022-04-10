@@ -15,22 +15,20 @@ using namespace std;
 namespace zich{
 
     //cos 
-    Matrix::Matrix(vector<vector<double>> mat,int rows,int cols){
-        // check_inputs (mat,rows,cols);
-        // vector<vector<double>> ans; // [][]
-        // vector<double> rowsss;  // []
-        // for (int i = 0;i<row;i++){
-        //     for (int j =0 ;colum;j++){
-        //         rowsss.push_back(mat.at(i*colum +j));
-               
-        //     }
-        //     ans.push_back(rowsss);
-        // }
-        // this ->tmpMatrix=ans;
+    Matrix::Matrix(vector<double> mat,int rows,int cols){
+        check_inputs (mat,rows,cols);
+        vector<double> ans;
+        for (int i = 0; i < rows; ++i) {
+             tmpMatrix.push_back(ans);
+          for (int j = 0; j < colum; ++j) {
+            int tmp = (i*colum) + j;
+            tmpMatrix.at(i).push_back(mat.at(tmp));
+            }
+        }
     }
 
     Matrix::Matrix (int rows,int cols){
-         vector< vector<double>> tmp; // inizalize the matrix to 0
+        vector< vector<double>> tmp; // inizalize the matrix to 0
         this ->  tmpMatrix = tmp;
         this -> row=rows;
         this ->colum = cols;
@@ -50,7 +48,7 @@ namespace zich{
 
 
 
-    void check_inputs(vector<vector<double>> mat, int row,int col){
+    void check_inputs(vector<double> mat, int row,int col){
         if (mat.size() != (row*col)){
             throw invalid_argument ("invaild input - the size should be match");
         }if(row <=0 || col <=0){
@@ -62,203 +60,104 @@ namespace zich{
     //         throw invalid_argument ("invaild input - the size should be match");
     //     }
     // }
-    
+
 
 
     // operators:
     //+
-    void operator++ (const Matrix &mat){
-        
+    Matrix& Matrix::operator++ (){
     }
-    Matrix operator+ (const Matrix &mat ) {
-        Matrix ans (mat);
-        for (int i = 0;i<mat.row;i++){
-            for (int j =0 ;mat.colum;j++){
-                ans.tmpMatrix.at(i).at(j) += this -> tmpMatrix.at(i).at(j) ;   // not full;
-            }
-        }
-        return ans;
+    Matrix Matrix::operator ++ (int skalar){
+
     }
-    Matrix operator+ (const Matrix &mat ,const Matrix &other_mat){
-        return mat;
+    Matrix Matrix::operator+ (const Matrix &other_mat) {
+
+    } 
+    Matrix Matrix::operator+ (){
+
     }
-    Matrix operator+ (const Matrix &mat ,double num){
-        return mat;
+    Matrix& Matrix::operator+= (const Matrix &other_mat){
+
     }
-    Matrix operator+ (double num,Matrix &mat){
-        return mat;
-    }  
+
 
     // -
-    void operator -- (const Matrix &mat){
-   
-    }
-    // Matrix operator-- (int);
-    Matrix operator- (const Matrix &mat ,const Matrix &other_mat){
-        return mat;
-    }
-    Matrix operator- (const Matrix &mat) {
-        return mat;
-    }
-    Matrix operator- (const Matrix &mat ,double num){
-        return mat;
+    Matrix& Matrix::operator -- (){
 
     }
-    Matrix operator- (double num,const Matrix &mat){
-        return mat;
-    }
-
-    //+=-
-    // Matrix& operator+= (const Matrix &mat,const Matrix &other_mat){
-    //     return mat;
-    // }
-    void operator+= (const Matrix &mat,double num){
+    Matrix Matrix::operator -- (int skalar){
 
     }
-    void operator-= (const Matrix &mat,double num){
+    Matrix Matrix::operator- () const {
 
     }
-    // Matrix& operator-= (const Matrix &mat,const Matrix &other_mat){
-    //     return mat;
-    // }
-    void operator-= (double num ,const Matrix &mat){
+    Matrix Matrix::operator- (const Matrix &other_mat) {
+
+    }
+    Matrix& Matrix::operator-= (const Matrix &mat){
 
     }
 
+
+    //+=   /-=
 
     // *
-    Matrix operator* (const Matrix &mat,double skalar){
-        return mat;
-    }
-    Matrix operator* (double skalar, const Matrix &mat){
-        return mat;
-    }
-    void operator *= (const Matrix &mat,const Matrix &other_mat){
+    Matrix Matrix::operator* (const Matrix &other_mat){
 
     }
-    void operator *= (const Matrix &mat,double skalar){
+    Matrix Matrix::operator* (double skalar, const Matrix &mat){
 
     }
-    void operator *= (double skalar,const Matrix &mat){
+    Matrix Matrix::operator* (double skalar){
 
     }
-    void operator *= (const double &mat,const Matrix &other_mat){
+    Matrix Matrix::operator *= (double skalar){
 
     }
 
 
     // < > = 
-    bool operator> (const Matrix &mat,const Matrix &other_mat) {
-        if (mat.tmpMatrix.size() != other_mat.tmpMatrix.size()){
+    bool Matrix::operator> (const Matrix &other_mat) {
+        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
             throw invalid_argument ("invaild input - the size should be match");
         }
-        double sum1 = 0;
-        double sum2 =0;
-        for (int i =0 ; i< mat.row;i++){
-            for (int j=0;j<mat.colum;j++){
-                sum1 += mat.tmpMatrix.at(i).at(j);
-            }
-        }
-        for (int i =0 ; i< other_mat.row;i++){
-            for (int j=0;j<other_mat.colum;j++){
-                sum2 += other_mat.tmpMatrix.at(i).at(j);
-            }
-        }
-        if (sum1 > sum2){
-            return true;
-        }else{
-            return false;
-        }
+        
+
     }
-    bool operator< (const Matrix &mat,const Matrix &other_mat) {
-        if (mat.tmpMatrix.size() != other_mat.tmpMatrix.size()){
+    bool Matrix::operator< (const Matrix &other_mat) {
+        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
             throw invalid_argument ("invaild input - the size should be match");
         }
-        double sum1 = 0;
-        double sum2 =0;
-        for (int i =0 ; i< mat.row;i++){
-            for (int j=0;j<mat.colum;j++){
-                sum1 += mat.tmpMatrix.at(i).at(j);
-            }
-        }
-        for (int i =0 ;i< other_mat.row;i++){
-            for (int j=0;j<other_mat.colum;j++){
-                sum2 += other_mat.tmpMatrix.at(i).at(j);
-            }
-        }
-        if (sum1 < sum2){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    bool operator == (const Matrix &mat,const Matrix &other_mat){
-        for (int i =0 ; i< mat.row;i++){
-            for (int j=0;j<mat.colum;j++){
-                if (mat.tmpMatrix.at(i).at(j) != other_mat.tmpMatrix.at(i).at(j)){
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    bool operator<= (const Matrix &mat,const Matrix &other_mat) {
-        if (mat.tmpMatrix.size() != other_mat.tmpMatrix.size()){
-          throw invalid_argument ("invaild input - the size should be match");
-        }
-        double sum1 = 0;
-        double sum2 =0;
-        for (int i =0 ; i< mat.row;i++){
-            for (int j=0;j<mat.colum;j++){
-                sum1 += mat.tmpMatrix.at(i).at(j);
-            }
-        }
-        for (int i =0 ;i< other_mat.row;i++){
-            for (int j=0;j<other_mat.colum;j++){
-                sum2 += other_mat.tmpMatrix.at(i).at(j);
-            }
-        }
-        if (sum1 <= sum2){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
-    bool operator>= (const Matrix &mat,const Matrix &other_mat) {
-        if (mat.tmpMatrix.size() != other_mat.tmpMatrix.size()){
+    }
+    bool Matrix::operator == (const Matrix &other_mat) {
+        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
             throw invalid_argument ("invaild input - the size should be match");
         }
-        double sum1 = 0;
-        double sum2 =0;
-        for (int i =0 ; i< mat.row;i++){
-            for (int j=0;j<mat.colum;j++){
-                sum1 += mat.tmpMatrix.at(i).at(j);
-            }
+
+    }
+    bool Matrix::operator<= (const Matrix &other_mat) {
+        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
+            throw invalid_argument ("invaild input - the size should be match");
         }
-        for (int i =0 ;i< other_mat.tmpMatrix.size();i++){
-            for (int j=0;j<other_mat.tmpMatrix[0].size();j++){
-                sum2 += other_mat.tmpMatrix.at(i).at(j);
-            }
+
+    }
+    bool Matrix::operator>= (const Matrix &other_mat) {
+        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
+            throw invalid_argument ("invaild input - the size should be match");
         }
-        if (sum1 >= sum2){
-            return true;
-        }else{
-            return false;
+
+    }
+    bool Matrix::operator!= (const  Matrix &other_mat) {
+        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
+            throw invalid_argument ("invaild input - the size should be match");
         }
+
     }
 
-    bool operator!= (const Matrix &mat,const  Matrix &other_mat) {
-        for (int i =0 ; i< mat.row;i++){
-            for (int j=0;j<mat.colum;j++){
-                if (mat.tmpMatrix.at(i).at(j) == other_mat.tmpMatrix.at(i).at(j)){
-                    return false;
-                }
-            }
-        }
-        return true; 
-    }
 
+
+   
 
 
     // << >> 
@@ -287,3 +186,200 @@ namespace zich{
 
 
 }
+
+
+
+
+//  // operators:
+//     //+
+//     void operator++ (const Matrix &mat){
+        
+//     }
+//     Matrix operator+ (const Matrix &mat ) {
+//         Matrix ans (mat);
+//         for (int i = 0;i<mat.row;i++){
+//             for (int j =0 ;mat.colum;j++){
+//                 ans.tmpMatrix.at(i).at(j) +=  tmpMatrix.at(i).at(j) ;   // not full;
+//             }
+//         }
+//         return ans;
+//     }
+//     Matrix operator+ (const Matrix &mat ,const Matrix &other_mat){
+//         return mat;
+//     }
+//     Matrix operator+ (const Matrix &mat ,double num){
+//         return mat;
+//     }
+//     Matrix operator+ (double num,Matrix &mat){
+//         return mat;
+//     }  
+
+//     // -
+//     void operator -- (const Matrix &mat){
+   
+//     }
+//     // Matrix operator-- (int);
+//     Matrix operator- (const Matrix &mat ,const Matrix &other_mat){
+//         return mat;
+//     }
+//     Matrix operator- (const Matrix &mat) {
+//         return mat;
+//     }
+//     Matrix operator- (const Matrix &mat ,double num){
+//         return mat;
+
+//     }
+//     Matrix operator- (double num,const Matrix &mat){
+//         return mat;
+//     }
+
+//     //+=-
+//     // Matrix& operator+= (const Matrix &mat,const Matrix &other_mat){
+//     //     return mat;
+//     // }
+//     void operator+= (const Matrix &mat,double num){
+
+//     }
+//     void operator-= (const Matrix &mat,double num){
+
+//     }
+//     // Matrix& operator-= (const Matrix &mat,const Matrix &other_mat){
+//     //     return mat;
+//     // }
+//     void operator-= (double num ,const Matrix &mat){
+
+//     }
+
+
+//     // *
+//     Matrix operator* (const Matrix &mat,double skalar){
+//         return mat;
+//     }
+//     Matrix operator* (double skalar, const Matrix &mat){
+//         return mat;
+//     }
+//     void operator *= (const Matrix &mat,const Matrix &other_mat){
+
+//     }
+//     void operator *= (const Matrix &mat,double skalar){
+
+//     }
+//     void operator *= (double skalar,const Matrix &mat){
+
+//     }
+//     void operator *= (const double &mat,const Matrix &other_mat){
+
+//     }
+
+
+//     // < > = 
+//     bool operator> (const Matrix &mat,const Matrix &other_mat) {
+//         if (mat.tmpMatrix.size() != other_mat.tmpMatrix.size()){
+//             throw invalid_argument ("invaild input - the size should be match");
+//         }
+//         double sum1 = 0;
+//         double sum2 =0;
+//         for (int i =0 ; i< mat.row;i++){
+//             for (int j=0;j<mat.colum;j++){
+//                 sum1 += mat.tmpMatrix.at(i).at(j);
+//             }
+//         }
+//         for (int i =0 ; i< other_mat.row;i++){
+//             for (int j=0;j<other_mat.colum;j++){
+//                 sum2 += other_mat.tmpMatrix.at(i).at(j);
+//             }
+//         }
+//         if (sum1 > sum2){
+//             return true;
+//         }else{
+//             return false;
+//         }
+//     }
+//     bool operator< (const Matrix &mat,const Matrix &other_mat) {
+//         if (mat.tmpMatrix.size() != other_mat.tmpMatrix.size()){
+//             throw invalid_argument ("invaild input - the size should be match");
+//         }
+//         double sum1 = 0;
+//         double sum2 =0;
+//         for (int i =0 ; i< mat.row;i++){
+//             for (int j=0;j<mat.colum;j++){
+//                 sum1 += mat.tmpMatrix.at(i).at(j);
+//             }
+//         }
+//         for (int i =0 ;i< other_mat.row;i++){
+//             for (int j=0;j<other_mat.colum;j++){
+//                 sum2 += other_mat.tmpMatrix.at(i).at(j);
+//             }
+//         }
+//         if (sum1 < sum2){
+//             return true;
+//         }else{
+//             return false;
+//         }
+//     }
+//     bool operator == (const Matrix &mat,const Matrix &other_mat){
+//         for (int i =0 ; i< mat.row;i++){
+//             for (int j=0;j<mat.colum;j++){
+//                 if (mat.tmpMatrix.at(i).at(j) != other_mat.tmpMatrix.at(i).at(j)){
+//                     return false;
+//                 }
+//             }
+//         }
+//         return true;
+//     }
+//     bool operator<= (const Matrix &mat,const Matrix &other_mat) {
+//         if (mat.tmpMatrix.size() != other_mat.tmpMatrix.size()){
+//           throw invalid_argument ("invaild input - the size should be match");
+//         }
+//         double sum1 = 0;
+//         double sum2 =0;
+//         for (int i =0 ; i< mat.row;i++){
+//             for (int j=0;j<mat.colum;j++){
+//                 sum1 += mat.tmpMatrix.at(i).at(j);
+//             }
+//         }
+//         for (int i =0 ;i< other_mat.row;i++){
+//             for (int j=0;j<other_mat.colum;j++){
+//                 sum2 += other_mat.tmpMatrix.at(i).at(j);
+//             }
+//         }
+//         if (sum1 <= sum2){
+//             return true;
+//         }else{
+//             return false;
+//         }
+//     }
+
+//     bool operator>= (const Matrix &mat,const Matrix &other_mat) {
+//         if (mat.tmpMatrix.size() != other_mat.tmpMatrix.size()){
+//             throw invalid_argument ("invaild input - the size should be match");
+//         }
+//         double sum1 = 0;
+//         double sum2 =0;
+//         for (int i =0 ; i< mat.row;i++){
+//             for (int j=0;j<mat.colum;j++){
+//                 sum1 += mat.tmpMatrix.at(i).at(j);
+//             }
+//         }
+//         for (int i =0 ;i< other_mat.tmpMatrix.size();i++){
+//             for (int j=0;j<other_mat.tmpMatrix[0].size();j++){
+//                 sum2 += other_mat.tmpMatrix.at(i).at(j);
+//             }
+//         }
+//         if (sum1 >= sum2){
+//             return true;
+//         }else{
+//             return false;
+//         }
+//     }
+
+//     bool operator!= (const Matrix &mat,const  Matrix &other_mat) {
+//         for (int i =0 ; i< mat.row;i++){
+//             for (int j=0;j<mat.colum;j++){
+//                 if (mat.tmpMatrix.at(i).at(j) == other_mat.tmpMatrix.at(i).at(j)){
+//                     return false;
+//                 }
+//             }
+//         }
+//         return true; 
+//     }
