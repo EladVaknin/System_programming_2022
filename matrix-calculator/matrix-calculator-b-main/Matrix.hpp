@@ -16,15 +16,15 @@ namespace zich {
 
      private:
      
-     vector <double> tmpMatrix;
+     vector <vector <double>> tmpMatrix; // [][]
      int row;
      int colum;
-     double **pointer;  //pointer to pointer
 
     public: 
 
-        Matrix (vector<double>,int r,int c);  // constructor
+        Matrix(vector<vector<double>> mat,int rows,int cols);  // constructor
         Matrix (int row , int colum);
+        Matrix(const Matrix& other_mat);
         ~Matrix();   // distructors 
 
         // operators:
@@ -72,4 +72,7 @@ namespace zich {
         friend ostream& operator<< (ostream& out, const Matrix& mat);
         friend istream& operator>> (istream& in, const Matrix& mat);
         };
+        
+        // Matrix operator*(const double value, Matrix& other);
+
 }
