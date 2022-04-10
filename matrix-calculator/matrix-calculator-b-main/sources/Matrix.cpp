@@ -31,27 +31,27 @@ namespace zich{
         }
     }
 
-    Matrix::Matrix (int rows,int cols){
-        vector< vector<double>> tmp; // inizalize the matrix to 0
-        this ->  tmpMatrix = tmp;
-        this -> row=rows;
-        this ->colum = cols;
-    }
+    // Matrix::Matrix (int rows,int cols){
+    //     vector< vector<double>> tmp; // inizalize the matrix to 0
+    //     this ->  tmpMatrix = tmp;
+    //     this -> row=rows;
+    //     this ->colum = cols;
+    // }
 
-    Matrix::Matrix(const Matrix& other_mat){
-        vector<vector<double>> mat;
-        for (int i = 0; i < other_mat.tmpMatrix.size(); i++){
-            vector<double> row_iterator;
-            for (int j = 0; j < other_mat.tmpMatrix[0].size(); j++){
-                row_iterator.push_back(other_mat.tmpMatrix.at(i).at(j));
-            }
-            mat.push_back(row_iterator);
-        }
-        this->tmpMatrix = mat;
-    }
+    // Matrix::Matrix(const Matrix& other_mat){
+    //     vector<vector<double>> mat;
+    //     for (int i = 0; i < other_mat.tmpMatrix.size(); i++){
+    //         vector<double> row_iterator;
+    //         for (int j = 0; j < other_mat.tmpMatrix[0].size(); j++){
+    //             row_iterator.push_back(other_mat.tmpMatrix.at(i).at(j));
+    //         }
+    //         mat.push_back(row_iterator);
+    //     }
+    //     this->tmpMatrix = mat;
+    // }
 
 
-    void check_inputs(vector<double> mat, int row,int col){
+    void check_inputs(vector<double> const&mat, int row,int col){
         if (mat.size() != (row*col)){
             throw invalid_argument ("invaild input - the size should be match");
         }if(row <=0 || col <=0){
@@ -239,9 +239,15 @@ namespace zich{
                 }
             }
         }
-        // Matrix ans (tmp,row,col);
-        return *this;
+        Matrix ans (tmp,row,col);
+        return ans;
     }
+    Matrix& Matrix::operator *= (const Matrix &other_mat){
+         Matrix ans (*this);
+        ans = ans*other_mat;
+        return ans;
+    }
+
 
 
     // < > = 

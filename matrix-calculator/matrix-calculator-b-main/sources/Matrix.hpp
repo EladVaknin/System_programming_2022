@@ -51,6 +51,8 @@ namespace zich {
         friend Matrix operator* (double skalar, const Matrix &other_mat);
         Matrix operator* (double skalar)const;
         Matrix operator *= (double skalar);
+        Matrix& operator *= (const Matrix &other_mat);
+
 
 
         // < > = 
@@ -63,7 +65,7 @@ namespace zich {
 
         // << >> 
         friend ostream& operator<< (ostream& out, const Matrix& mat);
-        friend istream& operator>> (istream& in, const Matrix& mat);
+        friend istream& operator>> (istream& in, Matrix& mat);
         };
         
 }
