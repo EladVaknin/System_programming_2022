@@ -4,7 +4,10 @@
  * Date: 2022-04
  */
 /* To see the whole process and the committees -
-https://github.com/EladVaknin/System_programming_2022 */
+https://github.com/EladVaknin/System_programming_2022 
+and becuse its my second time that i made the course i base on my last year implem 
+https://github.com/EladVaknin/CPP-/tree/master/number%20with%20units */
+
 
 #include <iostream>
 #include "Matrix.hpp"
@@ -47,7 +50,6 @@ namespace zich{
     }
 
 
-
     void check_inputs(vector<double> mat, int row,int col){
         if (mat.size() != (row*col)){
             throw invalid_argument ("invaild input - the size should be match");
@@ -55,22 +57,18 @@ namespace zich{
             throw invalid_argument ("invaild input - row or col should be bigger from zero");
         }
     }
-    // void check_size (const Matrix &mat,const Matrix &other_mat){
-    //     if (mat.size()!= other_mat.tmpMatrix.size()){
-    //         throw invalid_argument ("invaild input - the size should be match");
-    //     }
-    // }
-
-
+  
 
     // operators:
     //+
     Matrix& Matrix::operator++ (){
     }
     Matrix Matrix::operator ++ (int skalar){
-
+        Matrix ans = *this;
+        ++(*this);
+        return ans;
     }
-    Matrix Matrix::operator+ (const Matrix &other_mat) {
+    Matrix Matrix::operator+ (const Matrix &other_mat)const {
 
     } 
     Matrix Matrix::operator+ (){
@@ -86,7 +84,9 @@ namespace zich{
 
     }
     Matrix Matrix::operator -- (int skalar){
-
+        Matrix ans = *this;
+        --(*this);
+        return ans;
     }
     Matrix Matrix::operator- () const {
 
@@ -102,13 +102,13 @@ namespace zich{
     //+=   /-=
 
     // *
-    Matrix Matrix::operator* (const Matrix &other_mat){
+    Matrix Matrix::operator* (const Matrix &other_mat)const{
 
     }
     Matrix Matrix::operator* (double skalar, const Matrix &mat){
 
     }
-    Matrix Matrix::operator* (double skalar){
+    Matrix Matrix::operator* (double skalar)const{
 
     }
     Matrix Matrix::operator *= (double skalar){
@@ -117,42 +117,84 @@ namespace zich{
 
 
     // < > = 
-    bool Matrix::operator> (const Matrix &other_mat) {
+    bool Matrix::operator> (const Matrix &other_mat) const{
         if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
             throw invalid_argument ("invaild input - the size should be match");
         }
-        
-
-    }
-    bool Matrix::operator< (const Matrix &other_mat) {
-        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
-            throw invalid_argument ("invaild input - the size should be match");
+        double sum1 = 0;
+        double sum2 = 0 ;
+        for (int i =0 ;i<this->tmpMatrix.size();i++){
+            for(int j =0;this->tmpMatrix[0].size();j++){
+                sum1 += this ->tmpMatrix.at(i).at(j);
+                sum2 += other_mat.tmpMatrix.at(i).at(j);
+            }
         }
-
-    }
-    bool Matrix::operator == (const Matrix &other_mat) {
-        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
-            throw invalid_argument ("invaild input - the size should be match");
-        }
-
-    }
-    bool Matrix::operator<= (const Matrix &other_mat) {
-        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
-            throw invalid_argument ("invaild input - the size should be match");
+        if (sum1 > sum2){
+            return true;
+        }else{
+            return false;
         }
 
     }
-    bool Matrix::operator>= (const Matrix &other_mat) {
+
+    bool Matrix::operator< (const Matrix &other_mat) const {
         if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
             throw invalid_argument ("invaild input - the size should be match");
+        }
+        double sum1 = 0;
+        double sum2 = 0 ;
+        for (int i =0 ;i<this->tmpMatrix.size();i++){
+            for(int j =0;this->tmpMatrix[0].size();j++){
+                sum1 += this ->tmpMatrix.at(i).at(j);
+                sum2 += other_mat.tmpMatrix.at(i).at(j);
+            }
+        }
+        if (sum1 < sum2){
+            return true;
+        }else{
+            return false;
         }
 
     }
-    bool Matrix::operator!= (const  Matrix &other_mat) {
+    bool Matrix::operator == (const Matrix &other_mat) const {
         if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
             throw invalid_argument ("invaild input - the size should be match");
         }
+        for (int i =0 ;i<this->tmpMatrix.size();i++){
+            for(int j =0;this->tmpMatrix[0].size();j++){
+                if (this->tmpMatrix.at(i).at(j) != other_mat.tmpMatrix.at(i).at(j)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    bool Matrix::operator<= (const Matrix &other_mat) const {
+        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
+            throw invalid_argument ("invaild input - the size should be match");
+        }
+        return !(*this>other_mat);
 
+    }
+    bool Matrix::operator>= (const Matrix &other_mat) const {
+        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
+            throw invalid_argument ("invaild input - the size should be match");
+        }
+        return !(*this<other_mat);
+
+    }
+    bool Matrix::operator!= (const  Matrix &other_mat) const {
+        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
+            throw invalid_argument ("invaild input - the size should be match");
+        }
+        // for (int i =0 ;i<this->tmpMatrix.size();i++){
+        //     for(int j =0;this->tmpMatrix[0].size();j++){
+        //         if (this->tmpMatrix.at(i).at(j) == other_mat.tmpMatrix.at(i).at(j)){
+        //             return false;
+        //         }
+        //     }
+        // }
+        return !(*this == other_mat);
     }
 
 
@@ -188,7 +230,11 @@ namespace zich{
 }
 
 
-
+  // void check_size (const Matrix &mat,const Matrix &other_mat){
+    //     if (mat.size()!= other_mat.tmpMatrix.size()){
+    //         throw invalid_argument ("invaild input - the size should be match");
+    //     }
+    // }
 
 //  // operators:
 //     //+
