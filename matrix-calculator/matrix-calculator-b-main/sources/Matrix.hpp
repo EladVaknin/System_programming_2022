@@ -16,15 +16,15 @@ namespace zich {
 
      private:
      
-     vector <vector <double>> tmpMatrix; // [][]
      int row;
      int colum;
 
     public: 
-
-        Matrix(vector<double> mat,int rows,int cols);  // constructor
-        Matrix (int row , int colum);
+        vector <vector <double>> tmpMatrix; // [][]
+        Matrix(const vector<double> &mat,const int rows,const int cols);  // constructor
+        Matrix (int row , int cols);
         Matrix(const Matrix& other_mat);   // copy constructor
+        Matrix();
         ~Matrix();   // distructors 
 
         // operators:

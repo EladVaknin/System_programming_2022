@@ -19,16 +19,15 @@ using namespace std;
 namespace zich{
 
     //cos 
-    Matrix::Matrix(vector<double> mat,int rows,int cols){
+    Matrix::Matrix(const vector<double> &mat,const int rows,const int cols){
         check_inputs (mat,rows,cols);
-        vector<double> ans;
         this->row = rows;
         this->colum=cols;
-        for (size_t i = 0; i < rows; ++i) {
-             tmpMatrix.push_back(ans);
-          for (size_t j = 0; j < cols; ++j) {
-            unsigned long tmp = ((unsigned long)i*cols) + j;
-            tmpMatrix.at(i).push_back(mat.at((unsigned long)tmp));
+        this->tmpMatrix.resize((unsigned int)rows);
+        for ( unsigned int i = 0; i < rows; i++) {
+          for (unsigned int j = 0; j < cols; j++) {
+            int tmp = i*cols + j;
+            this-> tmpMatrix.at(static_cast<unsigned long>(i)).push_back(mat.at(static_cast<unsigned long>(tmp)));
             }
         }
     }
@@ -37,27 +36,21 @@ namespace zich{
 
     }
 
-    
-
-
-
     // Matrix::Matrix (int rows,int cols){
-    //     vector< vector<double>> tmp; // inizalize the matrix to 0
-    //     this ->  tmpMatrix = tmp;
     //     this -> row=rows;
     //     this ->colum = cols;
+    //     this->tmpMatrix.resize(rows,vector<double>(cols));
     // }
 
     // Matrix::Matrix(const Matrix& other_mat){
-    //     vector<vector<double>> mat;
-    //     for (int i = 0; i < other_mat.tmpMatrix.size(); i++){
-    //         vector<double> row_iterator;
-    //         for (int j = 0; j < other_mat.tmpMatrix[0].size(); j++){
-    //             row_iterator.push_back(other_mat.tmpMatrix.at(i).at(j));
+    //     this->row=other_mat.row;
+    //     this->colum=other_mat.colum;
+    //     this->tmpMatrix.resize(other_mat.row);
+    //     for (int i = 0; i < other_mat.row; i++){
+    //         for (int j = 0; j < other_mat.colum; j++){
+    //             this->tmpMatrix.at(i).push_back(other_mat.tmpMatrix.at(i).at(j));
     //         }
-    //         mat.push_back(row_iterator);
     //     }
-    //     this->tmpMatrix = mat;
     // }
 
 
