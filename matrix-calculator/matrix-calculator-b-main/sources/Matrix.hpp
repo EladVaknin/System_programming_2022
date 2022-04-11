@@ -23,8 +23,8 @@ namespace zich {
         vector <vector <double>> tmpMatrix; // [][]
         Matrix(const vector<double> &mat,const int rows,const int cols);  // constructor
         Matrix (int row , int cols);
-        Matrix(const Matrix& other_mat);   // copy constructor
-        Matrix();
+        // Matrix(const Matrix& other_mat);   // copy constructor
+        // Matrix();
         ~Matrix();   // distructors 
 
         // operators:

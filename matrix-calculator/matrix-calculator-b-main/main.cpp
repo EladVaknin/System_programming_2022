@@ -24,41 +24,22 @@ using namespace zich;
         //         result += '\n';
         //         cout<<result<<endl;
         //     }
+    vector<double> identity = {1, 1, 1, 1, 1, 1, 1 ,1 ,1};
+    vector<double> arr_c = {1, 0, 0, 0, 1, 0, 0, 0, 1};
+    // vector<double> arr_d= {4, 0, 0, 0, 4, 0, 0, 0, 4};
+    // vector<double> arr_f= {5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0};
+    // vector<double> arr_h= {9, 0, 0, 0, 9, 0, 0, 0, 9, 0, 0, 0};
 
+    // Matrix mat5{arr_e,4,3};
+    Matrix mat1{identity,3,3};
+    Matrix mat3{arr_c,3,3};
+    // Matrix mat4{arr_d,3,3};
+    // Matrix mat6{arr_f,4,3};
+    // Matrix mat7{arr_h,4,3};
+    
+    // cout << (mat1)  << endl;
+    // cout << (mat3)  << endl;
+    cout << (mat1*mat3 == mat1)  << endl;
 
-
-
-    // vector<vector<int>> matrix1;
-    // vector<vector<int>> matrix2;
-    // vector<vector<int>> matrix3;
-    // vector<double> arr;
-    // arr = {1,1,1,1,1,1,1,1,1};
-    // Matrix(arr, 3, 3);
-    // matrix1 = {{1,1,1},{1,1,1},{1,1,1}};
-    // matrix2 = {{2,2,2},{2,2,2},{2,2,2}};
-    // matrix3 = {{1,1},{1,1},{1,1}};
-    cout << "****operator '++'" << endl;
-    vector<double> arra;
-    vector<double> arrb;
-    vector<double> arrc;
-    int a = 5;
-    arra = {1,1,1,1,1,1,1,1,1};
-    arrb = {1,1,1,1,1,1,1,1,2};
-    arrc = {1,1,1,1,1,1,1,1,1};
-    zich::Matrix a_{arra,3,3};
-    zich::Matrix b_{arrb,3,3};
-    zich::Matrix c_{arrc,3,3};
-    cout << (a_ * b_)  << endl;
-    cout << (a_ * a)  << endl;
-    cout << (a * a_)  << endl;
-    cout << (a_ = b_)  << endl;
-    cout << (a_ + b_) << endl;
-    cout << (a_ - b_) << endl;
-    cout << (b_ - a_) << endl;
-    cout << a_ << endl;
-    cout << (a_ > b_)  << endl;
-    cout << (a_ < b_)  << endl;
-    cout << (a_ >= b_)  << endl;
-    //cout
 
     }

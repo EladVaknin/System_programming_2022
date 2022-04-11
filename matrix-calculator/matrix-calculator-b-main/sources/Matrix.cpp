@@ -42,20 +42,20 @@ namespace zich{
         this->tmpMatrix.resize((unsigned int)rows,vector<double>((unsigned int)cols));
     }
 
-    Matrix::Matrix(const Matrix& other_mat){
-        this->row=other_mat.row;
-        this->colum=other_mat.colum;
-        this->tmpMatrix.resize((unsigned int)other_mat.row);
-        for (size_t i = 0; i < other_mat.row; i++){
-            for (size_t j = 0; j < other_mat.colum; j++){
-                this->tmpMatrix.at(i).push_back(other_mat.tmpMatrix.at(i).at(j));
-            }
-        }
-    }
-    Matrix::Matrix(){
-        this->row=0;
-        this->colum=0;
-    }
+    // Matrix::Matrix(const Matrix& other_mat){
+    //     this->row=other_mat.row;
+    //     this->colum=other_mat.colum;
+    //     this->tmpMatrix.resize((unsigned int)other_mat.row);
+    //     for (size_t i = 0; i < other_mat.row; i++){
+    //         for (size_t j = 0; j < other_mat.colum; j++){
+    //             this->tmpMatrix.at(i).push_back(other_mat.tmpMatrix.at(i).at(j));
+    //         }
+    //     }
+    // }
+    // Matrix::Matrix(){
+    //     this->row=0;
+    //     this->colum=0;
+    // }
 
 
     void check_inputs(vector<double> const&mat, int row,int col){
@@ -192,21 +192,24 @@ namespace zich{
 
     // *     conditions - col of matrix a should be eq to row of matrix b 
     Matrix Matrix::operator* (const Matrix &other_mat)const{
-        if (this->tmpMatrix[0].size() != other_mat.tmpMatrix.size()){
+        if (this->tmpMatrix[0].size()!= other_mat.tmpMatrix.size() ){
             throw invalid_argument ("Num of cols in matrix A should be equal to rows of Matrix B");
         }
         // size of Matrix A = n*m , size of Matrix B = m*p , size of Matrix c = n*p.
-        int n = this->tmpMatrix[0].size();   
-        int p = other_mat.tmpMatrix.size();
-        int k = other_mat.tmpMatrix.size();  //represent the num of row in Matrix b.
-        vector <double> tmp;
-        Matrix ans (tmp,n,p);
+        int n = this->tmpMatrix.size();   
+        int p = other_mat.tmpMatrix[0].size();
+        int k = this->tmpMatrix[0].size(); 
+        // vector <double> tmp;
+        double tmpSum=0;
+        Matrix ans (n,p);
         // formula of Matrix multiplication - sigma# Aik*Bkj
         for (size_t i =0 ;i<n;i++){
             for(size_t j =0;j<p;j++){
+                tmpSum =0;
                 for(size_t x =0 ;x<k;k++){
-                  ans.tmpMatrix.at(i).at(j) += this->tmpMatrix.at(i).at((unsigned long)k)*other_mat.tmpMatrix.at((unsigned long)k).at((unsigned long)j);
+                  tmpSum += this->tmpMatrix.at(i).at((unsigned long)k)*other_mat.tmpMatrix.at((unsigned long)k).at((unsigned long)j);
                 }
+                ans.tmpMatrix.at((unsigned long)i).at((unsigned long)j) = tmpSum;
             }
         }       
         return ans;
@@ -297,7 +300,7 @@ namespace zich{
         return sum1<sum2;
     }
     bool Matrix::operator == (const Matrix &other_mat) const {
-        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
+        if (this->tmpMatrix.size() != other_mat.tmpMatrix.size() || this->tmpMatrix[0].size() != other_mat.tmpMatrix[0].size() ){
             throw invalid_argument ("invaild input - the size should be match");
         }
         for (size_t i =0 ;i<this->tmpMatrix.size();i++){
@@ -324,7 +327,7 @@ namespace zich{
 
     }
     bool Matrix::operator!= (const  Matrix &other_mat) const {
-        if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
+        if (this->tmpMatrix.size() != other_mat.tmpMatrix.size() || this->tmpMatrix[0].size() != other_mat.tmpMatrix[0].size() ){
             throw invalid_argument ("invaild input - the size should be match");
         }
         // for (int i =0 ;i<this->tmpMatrix.size();i++){
@@ -339,14 +342,24 @@ namespace zich{
 
     // << >> 
     ostream& operator<< (ostream& out, const Matrix& mat){
-        for (size_t i =0 ; i< mat.tmpMatrix.size();i++){
-            for (size_t j=0;j<mat.tmpMatrix[0].size();j++){
+        int row = mat.tmpMatrix.size();
+        int col = mat.tmpMatrix[0].size();
+        for (size_t i =0 ; i< row;i++){
+            out<<"[";
+            for (size_t j=0;j<col;j++){
+                if (j == col-1 ){
                 out<<mat.tmpMatrix.at(i).at(j);
+                }else{
+                out<<mat.tmpMatrix.at(i).at(j)<<" ";
+                }
             }
-            out<<endl;
+            if(i==row-1){
+                out<<"]";
+            }else{
+                out<<"]\n"; 
+            }
         }
-    return out;
-
+        return out;
     }
     istream& operator>> (istream& in,Matrix& mat){
         for (size_t i =0 ; i< mat.tmpMatrix.size();i++){
@@ -354,7 +367,7 @@ namespace zich{
             in >> mat.tmpMatrix.at(i).at(j);
               }
             }
-          return in;
+        return in;
     }
 
 // istream& operator>>(istream & in, Matrix &a){
