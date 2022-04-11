@@ -167,8 +167,10 @@ namespace zich{
         vector <double> tmp;
         int row = tmpMatrix.size();
         int col = tmpMatrix[0].size();
+        // cout<<"1111111"<<endl;
          for (size_t i =0 ;i<row;i++){
             for(size_t j =0;j<col;j++){
+                // cout<<"222222"<<endl;
                 tmp.push_back(this->tmpMatrix.at((unsigned long)i).at((unsigned long)j)-other_mat.tmpMatrix.at((unsigned long)i).at((unsigned long)j));
             }
         }
@@ -197,21 +199,27 @@ namespace zich{
         if (this->tmpMatrix[0].size()!= other_mat.tmpMatrix.size() ){
             throw invalid_argument ("Num of cols in matrix A should be equal to rows of Matrix B");
         }
+        // cout<<"11111"<<endl;
         // size of Matrix A = n*m , size of Matrix B = m*p , size of Matrix c = n*p.
-        int n = this->tmpMatrix[0].size();   // cols of A    
-        int p = other_mat.tmpMatrix.size(); // row of B   
-        int k = other_mat.tmpMatrix.size(); 
+        int n = this->tmpMatrix.size();      // row of matrix A
+        int p = other_mat.tmpMatrix[0].size();  // col of Matrix B
+        int k = other_mat.tmpMatrix[0].size(); 
         // vector <double> tmp;
         double tmpSum=0;
         Matrix ans (n,p);
+        // cout<<"222222"<<endl;
         // formula of Matrix multiplication - sigma# Aik*Bkj
         for (size_t i =0 ;i<n;i++){
             for(size_t j =0;j<p;j++){
+                // cout<<"333333"<<endl;
                 tmpSum =0;
                 for(size_t x =0 ;x<k;x++){
+                //   cout<<"444444"<<endl;
                   tmpSum += this->tmpMatrix.at(i).at(x)*other_mat.tmpMatrix.at(x).at(j);
                 }
                 ans.tmpMatrix.at((unsigned long)i).at((unsigned long)j) = tmpSum;
+                        // cout<<"5555555"<<endl;
+
             }
         }       
         return ans;

@@ -47,25 +47,97 @@ using namespace zich;
 
 
 
-    /////// student 1 :
-    cout<<"st 1 run"<<endl;
-    vector<double> identity_3 = {1,0,0,0,1,0,0,0,1};//3x3
-    Matrix mat_identity_3(identity_3,3,3);
-    cout<<"start to build"<<endl;
-    vector<double> vec1 = {1,1,1,1,1,1,1,1,1};//3x3
-    vector<double> arr = {2,1,1,1,2,1,1,1,2};//3x3   arr = identity_3 + vec1
-    vector<double> vec2 = {1,0,0,0,0,1,0,0,0,0,1,0};//3x4
-    vector<double> identity_4 = {1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};//4x4
-    vector<double> _vec_ = {1,1,1,1,1,1,1,1,1,1,1,1};//4x3
-    Matrix _mat_(_vec_, 4, 3);
-    Matrix mat1(vec1, 3,3);
-    Matrix mat_arr(arr,3,3);
-    Matrix mat2(vec2,3,4);
-    Matrix mat_identity_4(identity_4,4,4);
-    cout<<mat1<<endl;
-    cout<<mat_identity_3<<endl;
+    /////// student 1  - passed !! :
 
-    cout<<mat1*mat_identity_3<<endl;
+    // vector<double> identity_3 = {1,0,0,0,1,0,0,0,1};//3x3
+    // Matrix mat_identity_3(identity_3,3,3);
+    // vector<double> vec1 = {1,1,1,1,1,1,1,1,1};//3x3
+    // vector<double> arr = {2,1,1,1,2,1,1,1,2};//3x3   arr = identity_3 + vec1
+    // vector<double> vec2 = {1,0,0,0,0,1,0,0,0,0,1,0};//3x4
+    // vector<double> identity_4 = {1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};//4x4
+    // vector<double> _vec_ = {1,1,1,1,1,1,1,1,1,1,1,1};//4x3
+    // Matrix _mat_(_vec_, 4, 3);
+    // Matrix mat1(vec1, 3,3);
+    // Matrix mat_arr(arr,3,3);
+    // Matrix mat2(vec2,3,4);
+    // Matrix mat_identity_4(identity_4,4,4);
+    // cout<<mat1<<endl;
+    // cout<<mat_identity_3<<endl;
+
+    // cout<<mat1*mat_identity_3<<endl;
+
+    // cout<<mat2<<endl;
+    // cout<<"<"<<endl;
+    // cout<<mat_identity_4<<endl;
+    // cout<<"<"<<endl;
+    // cout<<mat2*mat_identity_4<<endl;
+
+    // mat2*_mat_ == mat1;
+    // cout<<mat2<<endl;
+    // cout<<" "<<endl;
+    // cout<<_mat_<<endl;
+    // cout<<" "<<endl;
+    // cout<<mat1<<endl;
+    // cout<<" "<<endl;
+    // cout<<mat2*_mat_<<endl;
+
+
+
+    /////// student 2 :
+std::vector<double> arr1 = {-1, 0, 0, 0, -1, 0, 0, 0, -1};
+std::vector<double> unit_matrix = {1, 0, 0, 0, 1, 0, 0, 0, 1};
+std::vector<double> arr_b = {3, 0, 0, 0, 3, 0, 0, 0, 3};
+std::vector<double> arr_c = {2, 0, 0, 0, 2, 0, 0, 0, 2};
+std::vector<double> arr_d= {4, 0, 0, 0, 4, 0, 0, 0, 4};
+std::vector<double> arr_e= {4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0};
+std::vector<double> arr_f= {5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0};
+std::vector<double> arr_h= {9, 0, 0, 0, 9, 0, 0, 0, 9, 0, 0, 0};
+
+std::vector<double> arr1_1 = {0, 1, 1, 1, 0, 1, 1, 1,0};
+std::vector<double> unit_matrix_1 = {2, 1, 1, 1, 2, 1, 1, 1, 2};
+std::vector<double> arr_b_1 = {4, 1, 1, 1, 4, 1, 1, 1, 4};
+std::vector<double> arr_c_1 = {3, 1, 1, 1, 3, 1, 1, 1, 3};
+std::vector<double> arr_d_1= {5, 1, 1, 1, 5, 1, 1, 1, 5};
+std::vector<double> arr_e_1= {5, 1, 1, 1, 5, 1, 1, 1, 5, 1, 1, 1};
+std::vector<double> arr_f_1= {6, 1, 1, 1, 6, 1, 1, 1, 6, 1, 1, 1};
+std::vector<double> arr_h_1= {10, 1, 1,1, 10, 1, 1, 1, 10, 1, 1, 1};
+
+Matrix mat_un{arr1,3,3};
+Matrix mat1{unit_matrix,3,3};
+Matrix mat2{arr_b,3,3};
+Matrix mat3{arr_c,3,3};
+Matrix mat4{arr_d,3,3};
+Matrix mat5{arr_e,4,3};
+Matrix mat6{arr_f,4,3};
+Matrix mat7{arr_h,4,3};
+
+Matrix mat_un_1{arr1_1,3,3};
+Matrix mat1_1{unit_matrix_1,3,3};
+Matrix mat2_2{arr_b_1,3,3};
+Matrix mat3_3{arr_c_1,3,3};
+Matrix mat4_4{arr_d_1,3,3};
+Matrix mat5_5{arr_e_1,4,3};
+Matrix mat6_6{arr_f_1,4,3};
+Matrix mat7_7{arr_h_1,4,3};
+
+std::vector<double> arr_cin = {1, 1, 1, 1, 1, 1, 1, 1, 1,1,1,1};
+Matrix mat_cin{arr_cin,3,4};
+
+bool equalto = false;
+
+// (mat5-mat6,mat7-mat6)
+cout<<mat5<<endl;
+cout<<"^5^"<<endl;
+cout<<mat6<<endl;
+cout<<"^6^"<<endl;
+cout<<mat5-mat6<<endl;
+cout<<"^5-6^"<<endl;
+cout<<mat7<<endl;
+cout<<"^7^"<<endl;
+cout<<mat6<<endl;
+cout<<"^6^"<<endl;
+cout<<mat7-mat6<<endl;
+cout<<"^7-6^"<<endl;
 
 
 
