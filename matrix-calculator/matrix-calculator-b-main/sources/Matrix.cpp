@@ -26,8 +26,8 @@ namespace zich{
         this->tmpMatrix.resize((unsigned int)rows);
         for ( unsigned int i = 0; i < rows; i++) {
           for (unsigned int j = 0; j < cols; j++) {
-            int tmp = i*cols + j;
-            this-> tmpMatrix.at(static_cast<unsigned long>(i)).push_back(mat.at(static_cast<unsigned long>(tmp)));
+            // long tmp = i*cols + j;
+            this-> tmpMatrix.at((i)).push_back(mat.at((i*(unsigned int)cols) + j));
             }
         }
     }
@@ -36,22 +36,26 @@ namespace zich{
 
     }
 
-    // Matrix::Matrix (int rows,int cols){
-    //     this -> row=rows;
-    //     this ->colum = cols;
-    //     this->tmpMatrix.resize(rows,vector<double>(cols));
-    // }
+    Matrix::Matrix (int rows,int cols){
+        this -> row=rows;
+        this ->colum = cols;
+        this->tmpMatrix.resize((unsigned int)rows,vector<double>((unsigned int)cols));
+    }
 
-    // Matrix::Matrix(const Matrix& other_mat){
-    //     this->row=other_mat.row;
-    //     this->colum=other_mat.colum;
-    //     this->tmpMatrix.resize(other_mat.row);
-    //     for (int i = 0; i < other_mat.row; i++){
-    //         for (int j = 0; j < other_mat.colum; j++){
-    //             this->tmpMatrix.at(i).push_back(other_mat.tmpMatrix.at(i).at(j));
-    //         }
-    //     }
-    // }
+    Matrix::Matrix(const Matrix& other_mat){
+        this->row=other_mat.row;
+        this->colum=other_mat.colum;
+        this->tmpMatrix.resize((unsigned int)other_mat.row);
+        for (size_t i = 0; i < other_mat.row; i++){
+            for (size_t j = 0; j < other_mat.colum; j++){
+                this->tmpMatrix.at(i).push_back(other_mat.tmpMatrix.at(i).at(j));
+            }
+        }
+    }
+    Matrix::Matrix(){
+        this->row=0;
+        this->colum=0;
+    }
 
 
     void check_inputs(vector<double> const&mat, int row,int col){
