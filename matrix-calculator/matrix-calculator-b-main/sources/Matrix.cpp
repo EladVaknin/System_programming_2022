@@ -22,11 +22,11 @@ namespace zich{
     Matrix::Matrix(vector<double> mat,int rows,int cols){
         check_inputs (mat,rows,cols);
         vector<double> ans;
-        for (int i = 0; i < rows; ++i) {
+        for (size_t i = 0; i < rows; ++i) {
              tmpMatrix.push_back(ans);
-          for (int j = 0; j < colum; ++j) {
-            int tmp = (i*colum) + j;
-            tmpMatrix.at(i).push_back(mat.at(tmp));
+          for (size_t j = 0; j < cols; ++j) {
+            int tmp = ((unsigned long)i*(unsigned long)cols) + j;
+            tmpMatrix.at(i).push_back(mat.at((unsigned long)tmp));
             }
         }
     }
@@ -63,9 +63,9 @@ namespace zich{
     // operators:
     //+
     Matrix& Matrix::operator++ (){
-        for (int i =0 ;i<this->tmpMatrix.size();i++){
-            for(int j =0;this->tmpMatrix[0].size();j++){
-                this ->tmpMatrix.at(i).at(j)+1;
+        for (size_t i =0 ;i<this->tmpMatrix.size();i++){
+            for(size_t j =0;this->tmpMatrix[0].size();j++){
+                this ->tmpMatrix.at((unsigned long)i).at((unsigned long)j)+1;
             }
         }
         return *this;
@@ -83,9 +83,9 @@ namespace zich{
         vector <double> tmp;
         int row = tmpMatrix.size();
         int col = tmpMatrix[0].size();
-         for (int i =0 ;i<row;i++){
-            for(int j =0;j<col;j++){
-                tmp.push_back(this->tmpMatrix.at(i).at(j)+other_mat.tmpMatrix.at(i).at(j));
+         for (size_t i =0 ;i<row;i++){
+            for(size_t j =0;j<col;j++){
+                tmp.push_back(this->tmpMatrix.at((unsigned long)i).at((unsigned long)j)+other_mat.tmpMatrix.at((unsigned long)i).at((unsigned long)j));
             }
         }
         Matrix ans (tmp,row,col);
@@ -96,9 +96,9 @@ namespace zich{
         vector <double> tmp;
         int row = tmpMatrix.size();
         int col = tmpMatrix[0].size();
-         for (int i =0 ;i<row;i++){
-            for(int j =0;j<col;j++){
-                tmp.push_back(this->tmpMatrix.at(i).at(j));
+         for (size_t i =0 ;i<row;i++){
+            for(size_t j =0;j<col;j++){
+                tmp.push_back(this->tmpMatrix.at((unsigned long)i).at((unsigned long)j));
             }
         }
         Matrix ans (tmp,row,col);
@@ -110,13 +110,13 @@ namespace zich{
         vector <double> tmp;
         int row = tmpMatrix.size();
         int col = tmpMatrix[0].size();
-         for (int i =0 ;i<row;i++){
-            for(int j =0;j<col;j++){
-             this->tmpMatrix.at(i).at(j)+= other_mat.tmpMatrix.at(i).at(j);
+         for (size_t i =0 ;i<row;i++){
+            for(size_t j =0;j<col;j++){
+             this->tmpMatrix.at((unsigned long)i).at((unsigned long)j)+= other_mat.tmpMatrix.at((unsigned long)i).at((unsigned long)j);
             }
         }
-        Matrix ans (tmp,row,col);
-        return ans;
+        // Matrix ans (tmp,row,col);
+        return *this;
     }
 
 
@@ -124,9 +124,9 @@ namespace zich{
 
     // -
     Matrix& Matrix::operator -- (){
-        for (int i =0 ;i<this->tmpMatrix.size();i++){
-            for(int j =0;this->tmpMatrix[0].size();j++){
-                this ->tmpMatrix.at(i).at(j)-1;
+        for (size_t i =0 ;i<this->tmpMatrix.size();i++){
+            for(size_t j =0;this->tmpMatrix[0].size();j++){
+                this ->tmpMatrix.at((unsigned long)i).at((unsigned long)j)-1;
             }
         }
         return *this;
@@ -141,9 +141,9 @@ namespace zich{
         vector <double> tmp;
         int row = tmpMatrix.size();
         int col = tmpMatrix[0].size();
-         for (int i =0 ;i<row;i++){
-            for(int j =0;j<col;j++){
-                tmp.push_back((-1)*this->tmpMatrix.at(i).at(j));
+         for (size_t i =0 ;i<row;i++){
+            for(size_t j =0;j<col;j++){
+                tmp.push_back((-1)*this->tmpMatrix.at((unsigned long)i).at((unsigned long)j));
             }
         }
         Matrix ans (tmp,row,col);
@@ -159,9 +159,9 @@ namespace zich{
         vector <double> tmp;
         int row = tmpMatrix.size();
         int col = tmpMatrix[0].size();
-         for (int i =0 ;i<row;i++){
-            for(int j =0;j<col;j++){
-                tmp.push_back(this->tmpMatrix.at(i).at(j)-other_mat.tmpMatrix.at(i).at(j));
+         for (size_t i =0 ;i<row;i++){
+            for(size_t j =0;j<col;j++){
+                tmp.push_back(this->tmpMatrix.at((unsigned long)i).at((unsigned long)j)-other_mat.tmpMatrix.at((unsigned long)i).at((unsigned long)j));
             }
         }
         Matrix ans (tmp,row,col);
@@ -174,13 +174,13 @@ namespace zich{
         vector <double> tmp;
         int row = tmpMatrix.size();
         int col = tmpMatrix[0].size();
-         for (int i =0 ;i<row;i++){
-            for(int j =0;j<col;j++){
-             this->tmpMatrix.at(i).at(j)-= mat.tmpMatrix.at(i).at(j);
+         for (size_t i =0 ;i<row;i++){
+            for(size_t j =0;j<col;j++){
+             this->tmpMatrix.at((unsigned long)i).at((unsigned long)j)-= mat.tmpMatrix.at((unsigned long)i).at((unsigned long)j);
             }
         }
-        Matrix ans (tmp,row,col);
-        return ans;
+        // Matrix ans (tmp,row,col);
+        return *this;
     }
 
 
@@ -196,10 +196,10 @@ namespace zich{
         vector <double> tmp;
         Matrix ans (tmp,n,p);
         // formula of Matrix multiplication - sigma# Aik*Bkj
-        for (int i =0 ;i<n;i++){
-            for(int j =0;j<p;j++){
-                for(int x =0 ;x<k;k++){
-                  ans.tmpMatrix.at(i).at(j) += this->tmpMatrix.at(i).at(k)*other_mat.tmpMatrix.at(k).at(j);
+        for (size_t i =0 ;i<n;i++){
+            for(size_t j =0;j<p;j++){
+                for(size_t x =0 ;x<k;k++){
+                  ans.tmpMatrix.at(i).at(j) += this->tmpMatrix.at(i).at((unsigned long)k)*other_mat.tmpMatrix.at((unsigned long)k).at((unsigned long)j);
                 }
             }
         }       
@@ -210,8 +210,8 @@ namespace zich{
         vector <double> tmp;
         int row = other_mat.tmpMatrix.size();
         int col = other_mat.tmpMatrix[0].size();
-         for (int i =0 ;i<row;i++){
-            for(int j =0;j<col;j++){
+         for (size_t i =0 ;i<row;i++){
+            for(size_t j =0;j<col;j++){
                 if (other_mat.tmpMatrix.at(i).at(j)!=0){
                     tmp.push_back(skalar*other_mat.tmpMatrix.at(i).at(j));
                 }else{
@@ -232,8 +232,8 @@ namespace zich{
         vector <double> tmp;
         int row = tmpMatrix.size();
         int col = tmpMatrix[0].size();
-         for (int i =0 ;i<row;i++){
-            for(int j =0;j<col;j++){
+         for (size_t i =0 ;i<row;i++){
+            for(size_t j =0;j<col;j++){
                 if(this->tmpMatrix.at(i).at(j) != 0){  // Basic conditions for multiplication
                     this->tmpMatrix.at(i).at(j)*= skalar;
                 }
@@ -243,9 +243,8 @@ namespace zich{
         return ans;
     }
     Matrix& Matrix::operator *= (const Matrix &other_mat){
-         Matrix ans (*this);
-        ans = ans*other_mat;
-        return ans;
+        *this = *this*other_mat;
+        return *this;
     }
 
 
@@ -257,8 +256,8 @@ namespace zich{
         }
         double sum1 = 0;
         double sum2 = 0 ;
-        for (int i =0 ;i<this->tmpMatrix.size();i++){
-            for(int j =0;this->tmpMatrix[0].size();j++){
+        for (size_t i =0 ;i<this->tmpMatrix.size();i++){
+            for(size_t j =0;this->tmpMatrix[0].size();j++){
                 sum1 += this ->tmpMatrix.at(i).at(j);
                 sum2 += other_mat.tmpMatrix.at(i).at(j);
             }
@@ -277,8 +276,8 @@ namespace zich{
         }
         double sum1 = 0;
         double sum2 = 0 ;
-        for (int i =0 ;i<this->tmpMatrix.size();i++){
-            for(int j =0;this->tmpMatrix[0].size();j++){
+        for (size_t i =0 ;i<this->tmpMatrix.size();i++){
+            for(size_t j =0;this->tmpMatrix[0].size();j++){
                 sum1 += this ->tmpMatrix.at(i).at(j);
                 sum2 += other_mat.tmpMatrix.at(i).at(j);
             }
@@ -294,8 +293,8 @@ namespace zich{
         if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
             throw invalid_argument ("invaild input - the size should be match");
         }
-        for (int i =0 ;i<this->tmpMatrix.size();i++){
-            for(int j =0;this->tmpMatrix[0].size();j++){
+        for (size_t i =0 ;i<this->tmpMatrix.size();i++){
+            for(size_t j =0;this->tmpMatrix[0].size();j++){
                 if (this->tmpMatrix.at(i).at(j) != other_mat.tmpMatrix.at(i).at(j)){
                     return false;
                 }
@@ -333,8 +332,8 @@ namespace zich{
 
     // << >> 
     ostream& operator<< (ostream& out, const Matrix& mat){
-        for (int i =0 ; i< mat.tmpMatrix.size();i++){
-            for (int j=0;j<mat.tmpMatrix[0].size();j++){
+        for (size_t i =0 ; i< mat.tmpMatrix.size();i++){
+            for (size_t j=0;j<mat.tmpMatrix[0].size();j++){
                 out<<mat.tmpMatrix.at(i).at(j);
             }
             out<<endl;
@@ -343,8 +342,8 @@ namespace zich{
 
     }
     istream& operator>> (istream& in,Matrix& mat){
-        for (int i =0 ; i< mat.tmpMatrix.size();i++){
-            for (int j=0;j<mat.tmpMatrix[0].size();j++){
+        for (size_t i =0 ; i< mat.tmpMatrix.size();i++){
+            for (size_t j=0;j<mat.tmpMatrix[0].size();j++){
             in >> mat.tmpMatrix.at(i).at(j);
               }
             }
