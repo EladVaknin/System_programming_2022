@@ -9,18 +9,20 @@ and becuse its my second time that i made the course i base on my last year impl
 https://github.com/EladVaknin/CPP-/tree/master/number%20with%20units 
 https://en.wikipedia.org/wiki/Matrix_(mathematics) */
 
-
 #include <iostream>
 #include "Matrix.hpp"
 #include <vector>
 #include <fstream>
 using namespace std;
 
+
 namespace zich{
 
     //cos 
     Matrix::Matrix(const vector<double> &mat,const int rows,const int cols){
+        // cout<<"11111"<<endl;
         check_inputs (mat,rows,cols);
+        // cout<<"22222"<<endl;
         this->row = rows;
         this->colum=cols;
         this->tmpMatrix.resize((unsigned int)rows);
@@ -196,9 +198,9 @@ namespace zich{
             throw invalid_argument ("Num of cols in matrix A should be equal to rows of Matrix B");
         }
         // size of Matrix A = n*m , size of Matrix B = m*p , size of Matrix c = n*p.
-        int n = this->tmpMatrix.size();   
-        int p = other_mat.tmpMatrix[0].size();
-        int k = this->tmpMatrix[0].size(); 
+        int n = this->tmpMatrix[0].size();   // cols of A    
+        int p = other_mat.tmpMatrix.size(); // row of B   
+        int k = other_mat.tmpMatrix.size(); 
         // vector <double> tmp;
         double tmpSum=0;
         Matrix ans (n,p);
@@ -206,8 +208,8 @@ namespace zich{
         for (size_t i =0 ;i<n;i++){
             for(size_t j =0;j<p;j++){
                 tmpSum =0;
-                for(size_t x =0 ;x<k;k++){
-                  tmpSum += this->tmpMatrix.at(i).at((unsigned long)k)*other_mat.tmpMatrix.at((unsigned long)k).at((unsigned long)j);
+                for(size_t x =0 ;x<k;x++){
+                  tmpSum += this->tmpMatrix.at(i).at(x)*other_mat.tmpMatrix.at(x).at(j);
                 }
                 ans.tmpMatrix.at((unsigned long)i).at((unsigned long)j) = tmpSum;
             }

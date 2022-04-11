@@ -7,6 +7,7 @@
         "initializer_list": "cpp",
         "utility": "cpp",
         "atomic": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "iostream": "cpp"
     }
 }
