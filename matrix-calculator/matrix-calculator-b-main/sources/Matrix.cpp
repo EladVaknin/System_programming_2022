@@ -22,14 +22,24 @@ namespace zich{
     Matrix::Matrix(vector<double> mat,int rows,int cols){
         check_inputs (mat,rows,cols);
         vector<double> ans;
+        this->row = rows;
+        this->colum=cols;
         for (size_t i = 0; i < rows; ++i) {
              tmpMatrix.push_back(ans);
           for (size_t j = 0; j < cols; ++j) {
-            int tmp = ((unsigned long)i*(unsigned long)cols) + j;
+            unsigned long tmp = ((unsigned long)i*cols) + j;
             tmpMatrix.at(i).push_back(mat.at((unsigned long)tmp));
             }
         }
     }
+
+    Matrix::~Matrix(){
+
+    }
+
+    
+
+
 
     // Matrix::Matrix (int rows,int cols){
     //     vector< vector<double>> tmp; // inizalize the matrix to 0
@@ -64,8 +74,8 @@ namespace zich{
     //+
     Matrix& Matrix::operator++ (){
         for (size_t i =0 ;i<this->tmpMatrix.size();i++){
-            for(size_t j =0;this->tmpMatrix[0].size();j++){
-                this ->tmpMatrix.at((unsigned long)i).at((unsigned long)j)+1;
+            for(size_t j =0;j<this->tmpMatrix[0].size();j++){
+                this ->tmpMatrix.at((unsigned long)i).at((unsigned long)j)++;
             }
         }
         return *this;
@@ -121,12 +131,11 @@ namespace zich{
 
 
 
-
     // -
     Matrix& Matrix::operator -- (){
         for (size_t i =0 ;i<this->tmpMatrix.size();i++){
-            for(size_t j =0;this->tmpMatrix[0].size();j++){
-                this ->tmpMatrix.at((unsigned long)i).at((unsigned long)j)-1;
+            for(size_t j =0;j<this->tmpMatrix[0].size();j++){
+                this ->tmpMatrix.at((unsigned long)i).at((unsigned long)j)--;
             }
         }
         return *this;
@@ -257,16 +266,17 @@ namespace zich{
         double sum1 = 0;
         double sum2 = 0 ;
         for (size_t i =0 ;i<this->tmpMatrix.size();i++){
-            for(size_t j =0;this->tmpMatrix[0].size();j++){
+            for(size_t j =0;j<this->tmpMatrix[0].size();j++){
                 sum1 += this ->tmpMatrix.at(i).at(j);
                 sum2 += other_mat.tmpMatrix.at(i).at(j);
             }
         }
-        if (sum1 > sum2){
-            return true;
-        }else{
-            return false;
-        }
+        // if (sum1 > sum2){
+        //     return true;
+        // }else{
+        //     return false;
+        // }
+        return sum1>sum2;
 
     }
 
@@ -277,24 +287,24 @@ namespace zich{
         double sum1 = 0;
         double sum2 = 0 ;
         for (size_t i =0 ;i<this->tmpMatrix.size();i++){
-            for(size_t j =0;this->tmpMatrix[0].size();j++){
+            for(size_t j =0;j<this->tmpMatrix[0].size();j++){
                 sum1 += this ->tmpMatrix.at(i).at(j);
                 sum2 += other_mat.tmpMatrix.at(i).at(j);
             }
         }
-        if (sum1 < sum2){
-            return true;
-        }else{
-            return false;
-        }
-
+        // if (sum1 < sum2){
+        //     return true;
+        // }else{
+        //     return false;
+        // }
+        return sum1<sum2;
     }
     bool Matrix::operator == (const Matrix &other_mat) const {
         if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
             throw invalid_argument ("invaild input - the size should be match");
         }
         for (size_t i =0 ;i<this->tmpMatrix.size();i++){
-            for(size_t j =0;this->tmpMatrix[0].size();j++){
+            for(size_t j =0;j<this->tmpMatrix[0].size();j++){
                 if (this->tmpMatrix.at(i).at(j) != other_mat.tmpMatrix.at(i).at(j)){
                     return false;
                 }
