@@ -204,7 +204,7 @@ namespace zich{
         // size of Matrix A = n*m , size of Matrix B = m*p , size of Matrix c = n*p.
         int n = this->tmpMatrix.size();      // row of matrix A
         int p = other_mat.tmpMatrix[0].size();  // col of Matrix B
-        int k = other_mat.tmpMatrix[0].size(); 
+        int k = this->tmpMatrix[0].size(); //col of matrix a
         // vector <double> tmp;
         double tmpSum=0;
         Matrix ans (n,p);
@@ -242,7 +242,6 @@ namespace zich{
         }
         Matrix ans (tmp,row,col);
         return ans;
-          
     }
     Matrix Matrix::operator* (double skalar)const{
         return skalar*(*this);
@@ -266,21 +265,24 @@ namespace zich{
         if (this->tmpMatrix[0].size()!= other_mat.tmpMatrix.size() ){  // colum size != row size
             throw invalid_argument ("Num of cols in matrix A should be equal to rows of Matrix B");
         }
-        int row =this-> tmpMatrix.size();   
-        int col = this->tmpMatrix[0].size(); 
-        int other_col = other_mat.tmpMatrix[0].size();
+        // int row =this-> tmpMatrix.size();   
+        // int col = this->tmpMatrix[0].size(); 
+        // int other_col = other_mat.tmpMatrix[0].size();
+        int n = this->tmpMatrix.size();      // row of matrix A
+        int p = other_mat.tmpMatrix[0].size();  // col of Matrix B
+        int x = this->tmpMatrix[0].size(); //col of matrix a
         double tmpSum=0;
-        Matrix ans (row,col);
-         for (size_t i =0 ;i<row;i++){
-            for(size_t j =0;j<other_col;j++){
+        Matrix ans (n,p);
+         for (size_t i =0 ;i<n;i++){
+            for(size_t j =0;j<p;j++){
                 tmpSum=0;
-                for (size_t k=0 ;k<col;k++){
+                for (size_t k=0 ;k<x;k++){
                     tmpSum += this->tmpMatrix.at(i).at(k)*other_mat.tmpMatrix.at(k).at(j);
                 }
-                ans.tmpMatrix.at(i).at(j)= tmpSum;
+               ans.tmpMatrix.at(i).at(j)= tmpSum;
             }
          }
-         //convert 
+         //convert to this
          this->row=ans.row;
          this->colum =ans.colum;
          this->tmpMatrix=ans.tmpMatrix;
@@ -347,6 +349,21 @@ namespace zich{
         }
         return true;
     }
+    bool operator==( Matrix &mat,  Matrix &other_mat){    // just for stupid student 2
+        if (mat.tmpMatrix.size() != other_mat.tmpMatrix.size() || mat.tmpMatrix[0].size() != other_mat.tmpMatrix[0].size() ){
+            throw invalid_argument ("invaild input - the size should be match");
+        }
+        int row = mat.tmpMatrix.size();
+        int col = mat.tmpMatrix[0].size();
+        for (size_t i =0 ;i<row;i++){
+            for(size_t j =0;j<col;j++){
+                if (mat.tmpMatrix.at(i).at(j) != other_mat.tmpMatrix.at(i).at(j)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     bool Matrix::operator<= (const Matrix &other_mat) const {
         if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
             throw invalid_argument ("invaild input - the size should be match");
@@ -362,17 +379,18 @@ namespace zich{
 
     }
     bool Matrix::operator!= (const  Matrix &other_mat) const {
-        if (this->tmpMatrix.size() != other_mat.tmpMatrix.size() || this->tmpMatrix[0].size() != other_mat.tmpMatrix[0].size() ){
-            throw invalid_argument ("invaild input - the size should be match");
-        }
-        // for (int i =0 ;i<this->tmpMatrix.size();i++){
-        //     for(int j =0;this->tmpMatrix[0].size();j++){
+        // if (this->tmpMatrix.size() != other_mat.tmpMatrix.size() || this->tmpMatrix[0].size() != other_mat.tmpMatrix[0].size() ){
+        //     throw invalid_argument ("invaild input - the size should be match");
+        // }
+        // for (size_t i =0 ;i<this->tmpMatrix.size();i++){
+        //     for(size_t j =0;this->tmpMatrix[0].size();j++){
         //         if (this->tmpMatrix.at(i).at(j) == other_mat.tmpMatrix.at(i).at(j)){
         //             return false;
         //         }
         //     }
         // }
         return !(*this == other_mat);
+        // return true;
     }
 
     // << >> 
@@ -402,10 +420,12 @@ namespace zich{
         int row = mat.tmpMatrix.size();
         int col = mat.tmpMatrix[0].size();
         if (row <= in_row){
-            throw invalid_argument("not good size");
+            throw invalid_argument("not good row size");
         }
         if (col <= in_col){
-            throw invalid_argument("not good size");
+            cout<<col<<endl;
+            cout<<in_col<<endl;
+            throw invalid_argument("not good col size");
         }
          
     }
@@ -414,7 +434,7 @@ namespace zich{
         unsigned long in_col=0;
         string tmp;
         double holder=0;
-        in.fill(' ');
+        in.fill('8');
         in.get();
         for (char i =0 ; in.get(i);){
             if (i=='\n'){
@@ -426,12 +446,14 @@ namespace zich{
                check_input_size(mat,in_row,in_col);
             }
             if(i == ' '||i ==']'){   // start of colum
-               check_input_size(mat,in_row,in_col);
-               holder = stod(tmp);  // convert string to double;
-               mat.tmpMatrix.at(in_row).at(in_col)= holder;
-               cout<<in_row<<","<<in_col<<","<<holder <<endl;
-               in_col++;
-               tmp="";
+                if(tmp.length() !=0){
+                    check_input_size(mat,in_row,in_col);
+                    holder = stod(tmp);  // convert string to double;
+                    mat.tmpMatrix.at(in_row).at(in_col)= holder;
+                    cout<<in_row<<","<<in_col<<","<<holder <<endl;
+                    in_col++;
+                    tmp="";
+                }
             }
             if (isdigit(i)!=0){   // check if the first character in str is a digit
                 tmp +=i;

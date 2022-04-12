@@ -48,10 +48,10 @@ namespace zich {
 
         // *
         Matrix operator* (const Matrix &other_mat)const;
-        friend Matrix operator* (double skalar, const Matrix &other_mat);
-        Matrix operator* (double skalar)const;
+        Matrix operator* (const double skalar)const;
         Matrix operator *= (const double skalar);
         Matrix operator *= (const Matrix &other_mat);
+        friend Matrix operator* (const double skalar, const Matrix &other_mat);
 
 
 
@@ -59,6 +59,7 @@ namespace zich {
         bool operator> (const Matrix &other_mat) const ;
         bool operator< (const Matrix &other_mat) const;
         bool operator == (const Matrix &other_mat) const;
+        friend bool operator==( Matrix &mat,  Matrix &other_mat);    // just for stupid student 2  
         bool operator<= (const Matrix &other_mat) const;
         bool operator>= (const Matrix &other_mat) const;
         bool operator!= (const  Matrix &other_mat) const;

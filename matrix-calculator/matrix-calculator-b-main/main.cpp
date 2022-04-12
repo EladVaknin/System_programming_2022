@@ -137,6 +137,8 @@ Matrix mat7_7{arr_h_1,4,3};
 // cout<<"^7^"<<endl;
 // bool ans = mat5 == mat7;
 // cout<<ans<<endl;
+// bool ans2 = mat5 != mat7;
+// cout<<ans2<<endl;
 
 
 
@@ -144,12 +146,12 @@ Matrix mat7_7{arr_h_1,4,3};
 
 
 //*= 
-mat1 *= mat1 ;
-cout<<mat1<<endl;
-cout<<"^1^"<<endl;
-// CHECK(mat1 == mat2);
-bool ans = mat1 == mat2;
-cout<<ans<<endl;
+// mat1 *= mat1 ;
+// cout<<mat1<<endl;
+// cout<<"^1^"<<endl;
+// // CHECK(mat1 == mat2);
+// bool ans = mat1 == mat2;
+// cout<<ans<<endl;
 // mat1-=mat3;
 // mat1*=4;
 // CHECK(mat4 == mat1);
@@ -199,7 +201,43 @@ cout<<ans<<endl;
 // is1 >> mat1;
 // cout<<mat1<<endl;
     
+// istringstream is7{"[1 1 1 1], [1 1 1 1], [1 1 1 1]\n"};
+//  cout<<mat1<<endl;
+//  cout<<"befor"<<endl;
+//  is7 >> mat1;
+//  cout<<mat1<<endl;
 
+
+
+
+
+
+
+
+//student 3 
+
+
+// CHECK_NOTHROW(C * D);
+// CHECK_NOTHROW(C *= D);
+
+ vector<double> vector;
+ for (double i = 0; i < 30; ++i) {
+        vector.push_back(i);
+    }
+    Matrix C{vector, 5, 6};
+    vector.clear();
+    for (double i = 0; i < 60; ++i) {
+        vector.push_back(i);
+    }
+    Matrix D{vector, 6, 10};
+
+    cout<<C<<endl;
+    cout<<"^c^"<<endl;
+    cout<<D<<endl;
+    cout<<"^D^"<<endl;
+    
+    cout<<C*=D<<endl;
+    cout<<"^C*D"<<endl;
 
 
 
