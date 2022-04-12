@@ -8,6 +8,7 @@
         "utility": "cpp",
         "atomic": "cpp",
         "chrono": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ratio": "cpp"
     }
 }

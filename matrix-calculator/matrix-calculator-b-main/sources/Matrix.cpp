@@ -20,9 +20,7 @@ namespace zich{
 
     //cos 
     Matrix::Matrix(const vector<double> &mat,const int rows,const int cols){
-        // cout<<"11111"<<endl;
         check_inputs (mat,rows,cols);
-        // cout<<"22222"<<endl;
         this->row = rows;
         this->colum=cols;
         this->tmpMatrix.resize((unsigned int)rows);
@@ -371,24 +369,50 @@ namespace zich{
         }
         return out;
     }
+
+    
+    void check_input_size (Matrix &mat,unsigned long in_row,unsigned long in_col){
+        int row = mat.tmpMatrix.size();
+        int col = mat.tmpMatrix[0].size();
+        if (row <= in_row){
+            throw invalid_argument("not good size");
+        }
+        if (col <= in_col){
+            throw invalid_argument("not good size");
+        }
+         
+    }
     istream& operator>> (istream& in,Matrix& mat){
-        for (size_t i =0 ; i< mat.tmpMatrix.size();i++){
-            for (size_t j=0;j<mat.tmpMatrix[0].size();j++){
-            in >> mat.tmpMatrix.at(i).at(j);
-              }
+        unsigned long in_row = 0;
+        unsigned long in_col=0;
+        string tmp;
+        double holder=0;
+        in.fill(' ');
+        in.get();
+        for (char i =0 ; in.get(i);){
+            if (i=='\n'){
+                break;
             }
+            if(i=='['){   // start of row
+               in_col =0;
+               in_row++;
+               check_input_size(mat,in_row,in_col);
+            }
+            if(i == ' '||i ==']'){   // start of colum
+               check_input_size(mat,in_row,in_col);
+               holder = stod(tmp);  // convert string to double;
+               mat.tmpMatrix.at(in_row).at(in_col)= holder;
+               cout<<in_row<<","<<in_col<<","<<holder <<endl;
+               in_col++;
+               tmp="";
+            }
+            if (isdigit(i)!=0){   // check if the first character in str is a digit
+                tmp +=i;
+            }
+        }
         return in;
     }
 
-// istream& operator>>(istream & in, Matrix &a){
-//         cout<<"Input data"<<endl;
-//         for(int i = 0; i<a.row; i++){
-//             for (int j = 0; j<a.column; j++){
-//                 in >> a.matrix[i][j];
-//             }
-//         }
-//         return in;
-//     }
-
+    
 
 }

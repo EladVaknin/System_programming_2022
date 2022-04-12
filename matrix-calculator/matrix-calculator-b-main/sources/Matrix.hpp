@@ -66,6 +66,7 @@ namespace zich {
         // << >> 
         friend ostream& operator<< (ostream& out, const Matrix& mat);
         friend istream& operator>> (istream& in, Matrix& mat);
+        void check_input_size (Matrix &mat,int in_row,int in_col);
         };
         void check_inputs(vector<double> const&mat, int row,int col);
 
