@@ -33,7 +33,6 @@ namespace zich{
     }
 
     Matrix::~Matrix(){
-
     }
 
     Matrix::Matrix (int rows,int cols){
@@ -42,22 +41,7 @@ namespace zich{
         this->tmpMatrix.resize((unsigned int)rows,vector<double>((unsigned int)cols));
     }
 
-    // Matrix::Matrix(const Matrix& other_mat){
-    //     this->row=other_mat.row;
-    //     this->colum=other_mat.colum;
-    //     this->tmpMatrix.resize((unsigned int)other_mat.row);
-    //     for (size_t i = 0; i < other_mat.row; i++){
-    //         for (size_t j = 0; j < other_mat.colum; j++){
-    //             this->tmpMatrix.at(i).push_back(other_mat.tmpMatrix.at(i).at(j));
-    //         }
-    //     }
-    // }
-    // Matrix::Matrix(){
-    //     this->row=0;
-    //     this->colum=0;
-    // }
-
-
+   
     void check_inputs(vector<double> const&mat, int row,int col){
         if (mat.size() != (row*col)){
             throw invalid_argument ("invaild input - the size should be match22222");
@@ -111,24 +95,21 @@ namespace zich{
         Matrix ans (tmp,row,col);
         return ans;
     }
+
+
     //+=
     Matrix& Matrix::operator+= (const Matrix &other_mat){
          if (this->tmpMatrix.size() != other_mat.tmpMatrix.size() || this->tmpMatrix[0].size()!= other_mat.tmpMatrix[0].size()){
             throw invalid_argument("invaild size = the size should be match");
         }
-        // Matrix ans;
         vector <double> tmp;
         int row = tmpMatrix.size();
         int col = tmpMatrix[0].size();
-        // cout<<"11111"<<endl;
          for (size_t i =0 ;i<row;i++){
             for(size_t j =0;j<col;j++){
-                // cout<<"22222"<<endl;
              this->tmpMatrix.at((unsigned long)i).at((unsigned long)j)+= other_mat.tmpMatrix.at((unsigned long)i).at((unsigned long)j);
             }
         }
-                // cout<<"33333"<<endl;
-
         // Matrix ans (tmp,row,col);
         return *this;
     }
@@ -161,9 +142,8 @@ namespace zich{
         }
         Matrix ans (tmp,row,col);
         return ans;
-
-
     }
+
     Matrix Matrix::operator- (const Matrix &other_mat) {
         if (this->tmpMatrix.size()!=other_mat.tmpMatrix.size()){
             throw invalid_argument ("invaild input - the size should be match");
@@ -172,10 +152,8 @@ namespace zich{
         vector <double> tmp;
         int row = tmpMatrix.size();
         int col = tmpMatrix[0].size();
-        // cout<<"1111111"<<endl;
          for (size_t i =0 ;i<row;i++){
             for(size_t j =0;j<col;j++){
-                // cout<<"222222"<<endl;
                 tmp.push_back(this->tmpMatrix.at((unsigned long)i).at((unsigned long)j)-other_mat.tmpMatrix.at((unsigned long)i).at((unsigned long)j));
             }
         }
@@ -207,7 +185,6 @@ namespace zich{
         if (this->tmpMatrix[0].size()!= other_mat.tmpMatrix.size() ){
             throw invalid_argument ("Num of cols in matrix A should be equal to rows of Matrix B");
         }
-        // cout<<"11111"<<endl;
         // size of Matrix A = n*m , size of Matrix B = m*p , size of Matrix c = n*p.
         int n = this->tmpMatrix.size();      // row of matrix A
         int p = other_mat.tmpMatrix[0].size();  // col of Matrix B
@@ -215,19 +192,14 @@ namespace zich{
         // vector <double> tmp;
         double tmpSum=0;
         Matrix ans (n,p);
-        // cout<<"222222"<<endl;
         // formula of Matrix multiplication - sigma# Aik*Bkj
         for (size_t i =0 ;i<n;i++){
             for(size_t j =0;j<p;j++){
-                // cout<<"333333"<<endl;
                 tmpSum =0;
                 for(size_t x =0 ;x<k;x++){
-                //   cout<<"444444"<<endl;
                   tmpSum += this->tmpMatrix.at(i).at(x)*other_mat.tmpMatrix.at(x).at(j);
                 }
                 ans.tmpMatrix.at((unsigned long)i).at((unsigned long)j) = tmpSum;
-                        // cout<<"5555555"<<endl;
-
             }
         }       
         return ans;
@@ -250,6 +222,7 @@ namespace zich{
         Matrix ans (tmp,row,col);
         return ans;
     }
+
     Matrix Matrix::operator* (double skalar)const{
         return skalar*(*this);
     }
@@ -272,12 +245,9 @@ namespace zich{
         if (this->tmpMatrix[0].size()!= other_mat.tmpMatrix.size() ){  // colum size != row size
             throw invalid_argument ("Num of cols in matrix A should be equal to rows of Matrix B");
         }
-        // int row =this-> tmpMatrix.size();   
-        // int col = this->tmpMatrix[0].size(); 
-        // int other_col = other_mat.tmpMatrix[0].size();
         int n = this->tmpMatrix.size();      // row of matrix A
         int p = other_mat.tmpMatrix[0].size();  // col of Matrix B
-        int x = this->tmpMatrix[0].size(); //col of matrix a
+        int x = this->tmpMatrix[0].size(); //col of matrix A
         double tmpSum=0;
         Matrix ans (n,p);
          for (size_t i =0 ;i<n;i++){
@@ -289,16 +259,12 @@ namespace zich{
                ans.tmpMatrix.at(i).at(j)= tmpSum;
             }
          }
-         //convert to this
-         this->row=ans.row;
-         this->colum =ans.colum;
+         //convert to *this
+         this->row=ans.tmpMatrix.size();
+         this->colum =ans.tmpMatrix[0].size();
          this->tmpMatrix=ans.tmpMatrix;
         return *this;
     }
-
-
-    
-
 
     // < > = 
     bool Matrix::operator> (const Matrix &other_mat) const{
@@ -313,13 +279,7 @@ namespace zich{
                 sum2 += other_mat.tmpMatrix.at(i).at(j);
             }
         }
-        // if (sum1 > sum2){
-        //     return true;
-        // }else{
-        //     return false;
-        // }
         return sum1>sum2;
-
     }
 
     bool Matrix::operator< (const Matrix &other_mat) const {
@@ -334,11 +294,6 @@ namespace zich{
                 sum2 += other_mat.tmpMatrix.at(i).at(j);
             }
         }
-        // if (sum1 < sum2){
-        //     return true;
-        // }else{
-        //     return false;
-        // }
         return sum1<sum2;
     }
     bool Matrix::operator == (const Matrix &other_mat) const {
@@ -350,21 +305,6 @@ namespace zich{
         for (size_t i =0 ;i<row;i++){
             for(size_t j =0;j<col;j++){
                 if (this->tmpMatrix.at(i).at(j) != other_mat.tmpMatrix.at(i).at(j)){
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    bool operator==( Matrix &mat,  Matrix &other_mat){    // just for stupid student 2
-        if (mat.tmpMatrix.size() != other_mat.tmpMatrix.size() || mat.tmpMatrix[0].size() != other_mat.tmpMatrix[0].size() ){
-            throw invalid_argument ("invaild input - the size should be match");
-        }
-        int row = mat.tmpMatrix.size();
-        int col = mat.tmpMatrix[0].size();
-        for (size_t i =0 ;i<row;i++){
-            for(size_t j =0;j<col;j++){
-                if (mat.tmpMatrix.at(i).at(j) != other_mat.tmpMatrix.at(i).at(j)){
                     return false;
                 }
             }
@@ -459,7 +399,7 @@ namespace zich{
         }
 
 
-       /////// the original function 
+       /////// the original logic 
         for (char i =0 ; in.get(i);){
             if (i=='\n'){
                 break;

@@ -15,7 +15,6 @@ namespace zich {
      class Matrix{
 
      private:
-     
      int row;
      int colum;
 
@@ -23,8 +22,6 @@ namespace zich {
         vector <vector <double>> tmpMatrix; // [][]
         Matrix(const vector<double> &mat,const int rows,const int cols);  // constructor
         Matrix (int row , int cols);
-        // Matrix(const Matrix& other_mat);   // copy constructor
-        // Matrix();
         ~Matrix();   // distructors 
 
         // operators:
@@ -59,7 +56,6 @@ namespace zich {
         bool operator> (const Matrix &other_mat) const ;
         bool operator< (const Matrix &other_mat) const;
         bool operator == (const Matrix &other_mat) const;
-        friend bool operator==( Matrix &mat,  Matrix &other_mat);    // just for stupid student 2  
         bool operator<= (const Matrix &other_mat) const;
         bool operator>= (const Matrix &other_mat) const;
         bool operator!= (const  Matrix &other_mat) const;
