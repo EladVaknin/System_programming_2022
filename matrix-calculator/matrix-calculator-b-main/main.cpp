@@ -195,17 +195,19 @@ using namespace zich;
 
 
 /// stream in ------------ only this
-// std::vector<double> unit_matrix = {1, 0, 0, 0, 1, 0, 0, 0, 1};
-// istringstream is1{"[1 1 1 ],[1 1 1], [1 1 1]\n"};
-// Matrix mat1{unit_matrix,3,3};
+std::vector<double> unit_matrix = {1, 0, 0, 0, 1, 0, 0, 0, 1};
+istringstream is1{"[1 1 1 ],[1 1 1], [1 1 1]\n"};
+Matrix mat1{unit_matrix,3,3};
 // is1 >> mat1;
 // cout<<mat1<<endl;
     
-// istringstream is7{"[1 1 1 1], [1 1 1 1], [1 1 1 1]\n"};
-//  cout<<mat1<<endl;
-//  cout<<"befor"<<endl;
-//  is7 >> mat1;
-//  cout<<mat1<<endl;
+istringstream is7{"[1 1 1 1], [1 1 1 1], [1 1 1 1]\n"};
+// should print 
+ cout<<mat1<<endl;
+ cout<<"befor"<<endl;
+ is7 >> mat1;
+ cout<<mat1<<endl;
+ cout<<"after"<<endl;
 
 
 

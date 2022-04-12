@@ -9,6 +9,8 @@
         "atomic": "cpp",
         "chrono": "cpp",
         "iostream": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "iosfwd": "cpp",
+        "stdexcept": "cpp"
     }
 }
