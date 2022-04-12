@@ -84,41 +84,41 @@ using namespace zich;
 
 
     /////// student 2 :
-std::vector<double> arr1 = {-1, 0, 0, 0, -1, 0, 0, 0, -1};
-std::vector<double> unit_matrix = {1, 0, 0, 0, 1, 0, 0, 0, 1};
-std::vector<double> arr_b = {3, 0, 0, 0, 3, 0, 0, 0, 3};
-std::vector<double> arr_c = {2, 0, 0, 0, 2, 0, 0, 0, 2};
-std::vector<double> arr_d= {4, 0, 0, 0, 4, 0, 0, 0, 4};
-std::vector<double> arr_e= {4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0};
-std::vector<double> arr_f= {5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0};
-std::vector<double> arr_h= {9, 0, 0, 0, 9, 0, 0, 0, 9, 0, 0, 0};
+// std::vector<double> arr1 = {-1, 0, 0, 0, -1, 0, 0, 0, -1};
+// std::vector<double> unit_matrix = {1, 0, 0, 0, 1, 0, 0, 0, 1};
+// std::vector<double> arr_b = {3, 0, 0, 0, 3, 0, 0, 0, 3};
+// std::vector<double> arr_c = {2, 0, 0, 0, 2, 0, 0, 0, 2};
+// std::vector<double> arr_d= {4, 0, 0, 0, 4, 0, 0, 0, 4};
+// std::vector<double> arr_e= {4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0};
+// std::vector<double> arr_f= {5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0};
+// std::vector<double> arr_h= {9, 0, 0, 0, 9, 0, 0, 0, 9, 0, 0, 0};
 
-std::vector<double> arr1_1 = {0, 1, 1, 1, 0, 1, 1, 1,0};
-std::vector<double> unit_matrix_1 = {2, 1, 1, 1, 2, 1, 1, 1, 2};
-std::vector<double> arr_b_1 = {4, 1, 1, 1, 4, 1, 1, 1, 4};
-std::vector<double> arr_c_1 = {3, 1, 1, 1, 3, 1, 1, 1, 3};
-std::vector<double> arr_d_1= {5, 1, 1, 1, 5, 1, 1, 1, 5};
-std::vector<double> arr_e_1= {5, 1, 1, 1, 5, 1, 1, 1, 5, 1, 1, 1};
-std::vector<double> arr_f_1= {6, 1, 1, 1, 6, 1, 1, 1, 6, 1, 1, 1};
-std::vector<double> arr_h_1= {10, 1, 1,1, 10, 1, 1, 1, 10, 1, 1, 1};
+// std::vector<double> arr1_1 = {0, 1, 1, 1, 0, 1, 1, 1,0};
+// std::vector<double> unit_matrix_1 = {2, 1, 1, 1, 2, 1, 1, 1, 2};
+// std::vector<double> arr_b_1 = {4, 1, 1, 1, 4, 1, 1, 1, 4};
+// std::vector<double> arr_c_1 = {3, 1, 1, 1, 3, 1, 1, 1, 3};
+// std::vector<double> arr_d_1= {5, 1, 1, 1, 5, 1, 1, 1, 5};
+// std::vector<double> arr_e_1= {5, 1, 1, 1, 5, 1, 1, 1, 5, 1, 1, 1};
+// std::vector<double> arr_f_1= {6, 1, 1, 1, 6, 1, 1, 1, 6, 1, 1, 1};
+// std::vector<double> arr_h_1= {10, 1, 1,1, 10, 1, 1, 1, 10, 1, 1, 1};
 
-Matrix mat_un{arr1,3,3};
-Matrix mat1{unit_matrix,3,3};
-Matrix mat2{arr_b,3,3};
-Matrix mat3{arr_c,3,3};
-Matrix mat4{arr_d,3,3};
-Matrix mat5{arr_e,4,3};
-Matrix mat6{arr_f,4,3};
-Matrix mat7{arr_h,4,3};
+// Matrix mat_un{arr1,3,3};
+// Matrix mat1{unit_matrix,3,3};
+// Matrix mat2{arr_b,3,3};
+// Matrix mat3{arr_c,3,3};
+// Matrix mat4{arr_d,3,3};
+// Matrix mat5{arr_e,4,3};
+// Matrix mat6{arr_f,4,3};
+// Matrix mat7{arr_h,4,3};
 
-Matrix mat_un_1{arr1_1,3,3};
-Matrix mat1_1{unit_matrix_1,3,3};
-Matrix mat2_2{arr_b_1,3,3};
-Matrix mat3_3{arr_c_1,3,3};
-Matrix mat4_4{arr_d_1,3,3};
-Matrix mat5_5{arr_e_1,4,3};
-Matrix mat6_6{arr_f_1,4,3};
-Matrix mat7_7{arr_h_1,4,3};
+// Matrix mat_un_1{arr1_1,3,3};
+// Matrix mat1_1{unit_matrix_1,3,3};
+// Matrix mat2_2{arr_b_1,3,3};
+// Matrix mat3_3{arr_c_1,3,3};
+// Matrix mat4_4{arr_d_1,3,3};
+// Matrix mat5_5{arr_e_1,4,3};
+// Matrix mat6_6{arr_f_1,4,3};
+// Matrix mat7_7{arr_h_1,4,3};
 
 //   CHECK_THROWS(mat3-=mat7);       // -= 
 
@@ -194,7 +194,7 @@ Matrix mat7_7{arr_h_1,4,3};
 
 
 
-/// stream in 
+/// stream in ------------ only this
 // std::vector<double> unit_matrix = {1, 0, 0, 0, 1, 0, 0, 0, 1};
 // istringstream is1{"[1 1 1 ],[1 1 1], [1 1 1]\n"};
 // Matrix mat1{unit_matrix,3,3};
@@ -214,32 +214,45 @@ Matrix mat7_7{arr_h_1,4,3};
 
 
 
-//student 3 
+//student 3    -- paasseee
 
 
 // CHECK_NOTHROW(C * D);
 // CHECK_NOTHROW(C *= D);
 
- vector<double> vector;
- for (double i = 0; i < 30; ++i) {
-        vector.push_back(i);
-    }
-    Matrix C{vector, 5, 6};
-    vector.clear();
-    for (double i = 0; i < 60; ++i) {
-        vector.push_back(i);
-    }
-    Matrix D{vector, 6, 10};
+//  vector<double> vector;
+//  for (double i = 0; i < 30; ++i) {
+//         vector.push_back(i);
+//     }
+//     Matrix C{vector, 5, 6};
+//     vector.clear();
+//     for (double i = 0; i < 60; ++i) {
+//         vector.push_back(i);
+//     }
+//     Matrix D{vector, 6, 10};
 
-    cout<<C<<endl;
-    cout<<"^c^"<<endl;
-    cout<<D<<endl;
-    cout<<"^D^"<<endl;
+//     cout<<C<<endl;
+//     cout<<"^c^"<<endl;
+//     cout<<D<<endl;
+//     cout<<"^D^"<<endl;
     
-    cout<<C*=D<<endl;
-    cout<<"^C*D"<<endl;
+//     cout<<C*=D<<endl;
+//     cout<<"^C*D"<<endl;
+////// +=
+//     vector<double> arr={1,2,3,4,5,6,7,8,9,10,11,12};
+//     Matrix A(arr,4,3);
+//     Matrix B(arr,2,6);
+//         Matrix C(arr,3,4);
 
-
+// //  CHECK_THROWS(C+=A);     
+//     cout<<C<<endl;
+//     cout<<"^c^"<<endl;
+//     cout<<A<<endl;
+//     cout<<"^a^"<<endl;
+    
+//     C+=A;
+//     cout<<C<<endl;
+//     cout<<"^c+=a"<<endl;
 
 
     }

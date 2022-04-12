@@ -113,15 +113,23 @@ namespace zich{
     }
     //+=
     Matrix& Matrix::operator+= (const Matrix &other_mat){
+         if (this->tmpMatrix.size() != other_mat.tmpMatrix.size() || this->tmpMatrix[0].size()!= other_mat.tmpMatrix[0].size()){
+            throw invalid_argument("invaild size = the size should be match");
+        }
         // Matrix ans;
         vector <double> tmp;
         int row = tmpMatrix.size();
         int col = tmpMatrix[0].size();
+        // cout<<"11111"<<endl;
          for (size_t i =0 ;i<row;i++){
             for(size_t j =0;j<col;j++){
+                        // cout<<"22222"<<endl;
+
              this->tmpMatrix.at((unsigned long)i).at((unsigned long)j)+= other_mat.tmpMatrix.at((unsigned long)i).at((unsigned long)j);
             }
         }
+                cout<<"33333"<<endl;
+
         // Matrix ans (tmp,row,col);
         return *this;
     }
