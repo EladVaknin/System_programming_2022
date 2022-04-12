@@ -50,8 +50,8 @@ namespace zich {
         Matrix operator* (const Matrix &other_mat)const;
         friend Matrix operator* (double skalar, const Matrix &other_mat);
         Matrix operator* (double skalar)const;
-        Matrix operator *= (double skalar);
-        Matrix& operator *= (const Matrix &other_mat);
+        Matrix operator *= (const double skalar);
+        Matrix operator *= (const Matrix &other_mat);
 
 
 
