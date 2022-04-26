@@ -399,7 +399,7 @@ namespace zich{
         }
 
 
-       /////// the original logic 
+     
         for (char i =0 ; in.get(i);){
             if (i=='\n'){
                 break;

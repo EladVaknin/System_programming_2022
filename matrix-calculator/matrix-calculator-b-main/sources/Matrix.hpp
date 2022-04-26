@@ -48,7 +48,7 @@ namespace zich {
         Matrix operator* (const double skalar)const;
         Matrix operator *= (const double skalar);
         Matrix operator *= (const Matrix &other_mat);
-        friend Matrix operator* (const double skalar, const Matrix &other_mat);
+        friend Matrix operator* (const double skalar, const Matrix &other_mat);           // not function of the class but still have acsess to the private fields
 
 
 
