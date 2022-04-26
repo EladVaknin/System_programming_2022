@@ -6,8 +6,6 @@
 #include<vector>
 #include <iostream>
 #include <stdexcept>
-#include <fstream>
-#include <sstream>
 #include "Game.hpp"
 #include "Game.cpp"
 #include "Player.hpp"
@@ -19,14 +17,17 @@ namespace cuop{
     class Assassian:public Player{
 
     private:
-    string name;
     
     public:
     Assassian();  // empty constructor;
-    Assassian(Game &_game ,const string name);
+    Assassian(Game &_game ,const string &name) : Player(_game,name){
+        this->name =name;
+        _game.add_player();
+
+    }
 
     //Actions
-    void assassination();
+    void assassination(Player &player);
 
 
 

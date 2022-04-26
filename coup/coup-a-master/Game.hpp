@@ -5,17 +5,16 @@
  */
 #include<vector>
 #include <stdexcept>
-#include "Player.hpp"
-class player;
 using namespace std;
-// using namespace coup;
-// #pragma once
+#pragma once
 
 
 namespace cuop{
+    class player;
+
     class Game{
         
-        public:
+    public:
         Game();
         vector<string> players();
         string turn();

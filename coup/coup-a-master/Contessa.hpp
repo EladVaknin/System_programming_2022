@@ -22,11 +22,15 @@ namespace cuop{
     
     public:
     Contessa();  // empty constructor;
-    Contessa(Game &_game ,const string name);
+    Contessa(Game &_game ,const string &name) : Player(_game,name){
+        this->name =name;
+        _game.add_player();
+
+    }
 
     //Actions
 
-    void block_assassination();
+    void block_assassination(Player &assassian);
 
 
 

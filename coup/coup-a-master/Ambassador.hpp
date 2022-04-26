@@ -19,21 +19,21 @@ using namespace std;
 namespace cuop{
     class Ambassdor:public Player{
 
-    private:
-    // coup::Game &game;
-    string name;
+    // private:
+    // // coup::Game &game;
+    // string name;
     
     public:
     Ambassdor(){}  // empty constructor;
-    Ambassdor(Game &_game ,const string name){}
+    Ambassdor(Game &_game ,const string &name) : Player(_game,name){
+        this->name =name;
+        _game.add_player();
+
+    }
 
     //Actions
-    void move_coin();
-    void block_steal();
-
-
-
-
+    void move_coin(Player& from ,Player&to);
+    void block_steal(Player &block_capitan);
     };
 
 }

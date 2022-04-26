@@ -23,11 +23,15 @@ namespace cuop{
     
     public:
     Capitan();  // empty constructor;
-    Capitan(Game &_game ,const string name);
+    Capitan(Game &_game ,const string &name) : Player(_game,name){
+        this->name =name;
+        _game.add_player();
+
+    }
 
     //Actions
-    void steal();
-    void block_steal();
+    void steal(Player &player);
+    void block_steal(Player &player);
 
 
 

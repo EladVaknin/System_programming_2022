@@ -4,10 +4,7 @@
  * Date: 2022-04
  */
 #include<vector>
-#include <iostream>
 #include <stdexcept>
-#include <fstream>
-#include <sstream>
 #include "Game.hpp"
 #include "Game.cpp"
 using namespace std;
@@ -17,16 +14,22 @@ using namespace std;
 namespace cuop{
 
     class Player{
-
     private:
+    int counter_coin;
     
     public:
+    string name;
     Player();  // empty constructor;
+    
+    Player(Game &_game ,const string &name) {
+         this->name = name;
+        _game.add_player();
+    }
 
     //actions  
     void income();
     void foreign_aid ();
-    void coup();
+    void coup(Player &player);
     /////
     string role();
     int coins ();

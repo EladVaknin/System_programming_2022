@@ -22,12 +22,16 @@ namespace cuop{
     
     public:
     Duke();
-    Duke(Game &_game ,const string name);
+    Duke(Game &_game ,const string &name) : Player(_game,name){
+        this->name =name;
+        _game.add_player();
+
+    }
 
     //Actions
     void take_taxes();
-    void block_foreign_aid();
-    
+    void block_foreign_aid(Player &player);
+
     };
 
 
