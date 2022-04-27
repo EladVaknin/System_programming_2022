@@ -14,6 +14,14 @@ using namespace std;
 // using namespace coup;
 #pragma once
 
-namespace cuop{
+namespace coup{
+
+    void Duke::tax(){
+
+    }
+    void Duke::block(Player &player){
+
+    }
+
 
 }

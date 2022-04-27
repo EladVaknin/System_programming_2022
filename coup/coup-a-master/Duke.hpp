@@ -15,22 +15,22 @@ using namespace std;
 // using namespace coup;
 #pragma once
 
-namespace cuop{
+namespace coup{
     class Duke:public Player{
 
-    private:
+    // private:
     
     public:
-    Duke();
+    // Duke();
     Duke(Game &_game ,const string &name) : Player(_game,name){
         this->name =name;
-        _game.add_player();
+        _game.add_player(this);
 
     }
 
     //Actions
-    void take_taxes();
-    void block_foreign_aid(Player &player);
+    void tax();
+    void block(Player &player);
 
     };
 

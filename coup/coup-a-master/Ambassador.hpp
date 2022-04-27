@@ -16,7 +16,7 @@ using namespace std;
 // using namespace coup;
 #pragma once
 
-namespace cuop{
+namespace coup{
     class Ambassdor:public Player{
 
     // private:
@@ -24,16 +24,15 @@ namespace cuop{
     // string name;
     
     public:
-    Ambassdor(){}  // empty constructor;
+    // Ambassdor(){}  // empty constructor;
     Ambassdor(Game &_game ,const string &name) : Player(_game,name){
         this->name =name;
-        _game.add_player();
+        _game.add_player(this);
 
     }
-
     //Actions
-    void move_coin(Player& from ,Player&to);
-    void block_steal(Player &block_capitan);
+    void transfer(Player& from ,Player&to);
+    void block(Player &block_capitan);   //block steal from the capitan
     };
 
 }

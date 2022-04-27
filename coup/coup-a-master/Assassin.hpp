@@ -13,21 +13,21 @@ using namespace std;
 // using namespace coup;
 #pragma once
 
-namespace cuop{
+namespace coup{
     class Assassian:public Player{
 
-    private:
+    // private:
     
     public:
-    Assassian();  // empty constructor;
+    // Assassian();  // empty constructor;
     Assassian(Game &_game ,const string &name) : Player(_game,name){
         this->name =name;
-        _game.add_player();
+        _game.add_player(this);
 
     }
 
     //Actions
-    void assassination(Player &player);
+    void coup(Player &player);
 
 
 

@@ -15,22 +15,22 @@ using namespace std;
 // using namespace coup;
 #pragma once
 
-namespace cuop{
+namespace coup{
     class Contessa:public Player{
 
     private:
     
     public:
-    Contessa();  // empty constructor;
+    // Contessa();  // empty constructor;
     Contessa(Game &_game ,const string &name) : Player(_game,name){
         this->name =name;
-        _game.add_player();
+        _game.add_player(this);
 
     }
 
     //Actions
 
-    void block_assassination(Player &assassian);
+    void block(Player &assassian);  //block_assassination
 
 
 

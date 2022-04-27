@@ -6,34 +6,34 @@
 #include<vector>
 #include <stdexcept>
 #include "Game.hpp"
-#include "Game.cpp"
 using namespace std;
-// using namespace coup;
 #pragma once
 
-namespace cuop{
+namespace coup{
+    class Game;
 
     class Player{
-    private:
-    int counter_coin;
-    
-    public:
-    string name;
-    Player();  // empty constructor;
-    
-    Player(Game &_game ,const string &name) {
-         this->name = name;
-        _game.add_player();
-    }
 
-    //actions  
-    void income();
-    void foreign_aid ();
-    void coup(Player &player);
-    /////
-    string role();
-    int coins ();
-    };
+        // private:
+        
+        public:
+        //fields
+        string name;
+        int counter_coin;
+        //cons
+        Player(Game &_game ,const string &name) {
+            this->name = name;
+            _game.add_player(this);
+        }
+
+        //actions  
+        void income();
+        void foreign_aid ();
+        void coup(Player &player);
+        /////
+        string role();
+        int coins ();
+        };
 
 
 }

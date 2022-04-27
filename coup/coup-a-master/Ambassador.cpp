@@ -8,13 +8,19 @@
 #include <stdexcept>
 #include <fstream>
 #include <sstream>
-#include "Game.hpp"
-#include "Game.cpp"
+#include "Ambassador.hpp"
 using namespace std;
-// using namespace coup;
 #pragma once
 
 namespace coup {
+
+      //Actions
+    void Ambassdor::transfer(Player& from ,Player&to){
+
+    }
+    void Ambassdor::block(Player &block_capitan){
+
+    }
     
 
 }

@@ -14,6 +14,13 @@ using namespace std;
 // using namespace coup;
 #pragma once
 
-namespace cuop{
+namespace coup{
+
+    void Capitan::steal(Player &player){
+
+    }
+    void Capitan::block(Player &player){
+
+    }
 
 }

@@ -14,6 +14,24 @@ using namespace std;
 // using namespace coup;
 #pragma once
 
-namespace cuop{
+namespace coup{
+
+
+    //actions  
+    void Player::income(){
+        
+    }
+    void Player::foreign_aid (){
+
+    }
+    void Player::coup(Player &player){
+
+    }
+    string Player::role(){
+
+    }
+    int Player::coins (){
+        
+    }
 
 }

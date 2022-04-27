@@ -13,6 +13,6 @@ using namespace std;
 #pragma once
 
 
-namespace cuop{
+namespace coup{
 
 }
