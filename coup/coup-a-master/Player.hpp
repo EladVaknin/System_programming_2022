@@ -4,10 +4,13 @@
  * Date: 2022-04
  */
 #include<vector>
+#include<string>
 #include <stdexcept>
 #include "Game.hpp"
 using namespace std;
+
 #pragma once
+
 
 namespace coup{
     class Game;
@@ -16,15 +19,17 @@ namespace coup{
 
         // private:
         
-        public:
+        public: 
         //fields
         string name;
+        string role_player;
         int counter_coin;
         //cons
-        Player(Game &_game ,const string &name) {
+        Player(Game &_game ,const string &name) { //:Game(_game)
             this->name = name;
             _game.add_player(this);
         }
+        ~Player(){};
 
         //actions  
         void income();
@@ -33,7 +38,7 @@ namespace coup{
         /////
         string role();
         int coins ();
+
+
         };
-
-
 }

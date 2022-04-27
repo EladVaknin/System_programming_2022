@@ -20,7 +20,7 @@ using namespace coup;
 #include <vector>
 using namespace std;
 
-int main() {
+int main() {      
 
 	Game game_1{};
 

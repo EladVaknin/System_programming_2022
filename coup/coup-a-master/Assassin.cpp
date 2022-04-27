@@ -6,18 +6,15 @@
 #include<vector>
 #include <iostream>
 #include <stdexcept>
-#include <fstream>
-#include <sstream>
-#include "Game.hpp"
-#include "Game.cpp"
+// #include "Game.hpp"
+#include "Assassin.hpp"
 using namespace std;
 // using namespace coup;
-#pragma once
 
 
 namespace coup{
-        //Actions
-    void Assassian::coup(Player &player){
+    //Actions
+    void Assassin::coup(Player &player){
 
     }
 

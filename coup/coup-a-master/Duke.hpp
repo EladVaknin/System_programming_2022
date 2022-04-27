@@ -8,21 +8,19 @@
 #include <stdexcept>
 #include <fstream>
 #include <sstream>
-#include "Game.hpp"
-#include "Game.cpp"
 #include "Player.hpp"
+// #include "Game.hpp"
 using namespace std;
 // using namespace coup;
-#pragma once
 
-namespace coup{
-    class Duke:public Player{
+namespace coup{ 
+    class Duke:public Player{     
 
     // private:
     
-    public:
+    public:            
     // Duke();
-    Duke(Game &_game ,const string &name) : Player(_game,name){
+    Duke(Game &_game ,const string &name) :Player(_game,name){
         this->name =name;
         _game.add_player(this);
 

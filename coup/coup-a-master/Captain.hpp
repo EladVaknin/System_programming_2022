@@ -8,22 +8,20 @@
 #include <stdexcept>
 #include <fstream>
 #include <sstream>
-#include "Game.hpp"
-#include "Game.cpp"
+// #include "Game.hpp"
 #include "Player.hpp"
 using namespace std;
 // using namespace coup;
-#pragma once
 
 
 namespace coup{
-    class Capitan:public Player{
+    class Captain:public Player{
 
     // private:
     
-    public:
+    public: 
     // Capitan();  // empty constructor;
-    Capitan(Game &_game ,const string &name) : Player(_game,name){
+    Captain(Game &_game ,const string &name) :Player(_game,name){
         this->name =name;
         _game.add_player(this);
 

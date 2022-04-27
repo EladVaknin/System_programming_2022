@@ -9,16 +9,16 @@
 #include <fstream>
 #include <sstream>
 #include "Ambassador.hpp"
+// #include "Game.hpp"
 using namespace std;
-#pragma once
 
-namespace coup {
+namespace coup{
 
-      //Actions
-    void Ambassdor::transfer(Player& from ,Player&to){
+    //Actions
+    void Ambassador::transfer(Player& from ,Player&to){
 
     }
-    void Ambassdor::block(Player &block_capitan){
+    void Ambassador::block(Player &block_capitan){
 
     }
     

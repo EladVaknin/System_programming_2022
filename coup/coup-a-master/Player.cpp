@@ -8,19 +8,20 @@
 #include <stdexcept>
 #include <fstream>
 #include <sstream>
+#include "Player.hpp"
 #include "Game.hpp"
-#include "Game.cpp"
+
 using namespace std;
 // using namespace coup;
-#pragma once
 
 namespace coup{
 
 
     //actions  
     void Player::income(){
-        
+        this->counter_coin++;
     }
+
     void Player::foreign_aid (){
 
     }
@@ -28,10 +29,14 @@ namespace coup{
 
     }
     string Player::role(){
+        string tmp="";
+        return tmp;
 
     }
     int Player::coins (){
-        
+        int x=0;
+        return x;
+
     }
 
 }

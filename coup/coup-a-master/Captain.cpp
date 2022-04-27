@@ -8,18 +8,17 @@
 #include <stdexcept>
 #include <fstream>
 #include <sstream>
-#include "Game.hpp"
-#include "Game.cpp"
+// #include "Game.hpp"
+#include "Captain.hpp"
 using namespace std;
 // using namespace coup;
-#pragma once
 
 namespace coup{
 
-    void Capitan::steal(Player &player){
+    void Captain::steal(Player &player){
 
     }
-    void Capitan::block(Player &player){
+    void Captain::block(Player &player){
 
     }
 

@@ -8,11 +8,10 @@
 #include <stdexcept>
 #include <fstream>
 #include <sstream>
-#include "Game.hpp"
-#include "Game.cpp"
+// #include "Game.hpp"
+#include "Contessa.hpp"
 using namespace std;
 // using namespace coup;
-#pragma once
 
 
 namespace coup{

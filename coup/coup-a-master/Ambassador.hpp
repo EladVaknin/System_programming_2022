@@ -6,33 +6,24 @@
 #include<vector>
 #include <iostream>
 #include <stdexcept>
-#include <fstream>
-#include <sstream>
-#include "Game.hpp"
-#include "Game.cpp"
-#include "Game.cpp"
 #include "Player.hpp"
+// #include "Game.hpp"
 using namespace std;
 // using namespace coup;
-#pragma once
 
 namespace coup{
-    class Ambassdor:public Player{
+    class Ambassador:public Player{
+        // private:
+        public:      
+        // Ambassdor(){}  // empty constructor;
+        Ambassador(Game &_game ,const string &name) :Player(_game,name){
+            this->name =name;
+            _game.add_player(this);
 
-    // private:
-    // // coup::Game &game;
-    // string name;
-    
-    public:
-    // Ambassdor(){}  // empty constructor;
-    Ambassdor(Game &_game ,const string &name) : Player(_game,name){
-        this->name =name;
-        _game.add_player(this);
-
-    }
-    //Actions
-    void transfer(Player& from ,Player&to);
-    void block(Player &block_capitan);   //block steal from the capitan
-    };
+        }
+        //Actions
+        void transfer(Player& from ,Player&to);
+        void block(Player &block_capitan);   //block steal from the capitan
+        };
 
 }

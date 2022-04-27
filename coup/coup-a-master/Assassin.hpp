@@ -6,21 +6,19 @@
 #include<vector>
 #include <iostream>
 #include <stdexcept>
-#include "Game.hpp"
-#include "Game.cpp"
+// #include "Game.hpp"
 #include "Player.hpp"
 using namespace std;
 // using namespace coup;
-#pragma once
 
 namespace coup{
-    class Assassian:public Player{
+    class Assassin:public Player{
 
     // private:
     
-    public:
+    public: 
     // Assassian();  // empty constructor;
-    Assassian(Game &_game ,const string &name) : Player(_game,name){
+    Assassin(Game &_game ,const string &name) :Player(_game,name){
         this->name =name;
         _game.add_player(this);
 

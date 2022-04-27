@@ -14,7 +14,7 @@
 using namespace std;
 using namespace coup;
 
-
+  
 TEST_CASE("checks"){
 
     Game game_1{};
@@ -23,6 +23,12 @@ TEST_CASE("checks"){
 	Ambassador ambassador{game_1, "Meirav"};
 	Captain captain{game_1, "Reut"};
 	Contessa contessa{game_1, "Gilad"};
+
+
+	CHECK_THROWS(duke.tax());
+
+	
+
 
  
 }
