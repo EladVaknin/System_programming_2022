@@ -18,6 +18,8 @@ namespace coup{
         // Ambassdor(){}  // empty constructor;
         Ambassador(Game &_game ,const string &name) :Player(_game,name){
             this->name =name;
+            this->counter_coin=0;
+            this->role_player = "Ambassador";
             _game.add_player(this);
 
         }

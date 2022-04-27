@@ -20,6 +20,8 @@ namespace coup{
     // Assassian();  // empty constructor;
     Assassin(Game &_game ,const string &name) :Player(_game,name){
         this->name =name;
+        this->counter_coin=0;
+        this->role_player = "Assassin";
         _game.add_player(this);
 
     }
