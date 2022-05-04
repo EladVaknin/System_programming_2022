@@ -1,0 +1,71 @@
+/**
+ * AUTHORS: <Elad Vaknin>
+ * 
+ * Date: 2022-04
+ */
+#include<vector>
+#include <iostream>
+#include <stdexcept>
+#include <fstream>
+#include <sstream>
+#include "Player.hpp"
+#include "Game.hpp"
+
+using namespace std;
+// using namespace coup;
+
+namespace coup{
+
+    int Min_players =2;
+    int Max_players =6;
+    int cost_of_coup =7;
+    int add_coins = 2;
+
+    //checks
+    void check_turn(){       
+        // if(_game->turn() != this->name) {
+        // throw invalid_argument ("You cant play - thats not your turn");
+        // }
+    }
+
+
+
+    //actions  
+    void Player::income(){
+        if(_game->turn() != this->name) {
+            throw invalid_argument ("You cant play - thats not your turn");
+        }
+        this->counter_coin++;
+    }
+
+    void Player::foreign_aid (){
+        if(_game->turn() != this->name) {
+            throw invalid_argument ("You cant play - thats not your turn");
+        }
+        this->counter_coin+=add_coins;
+
+    }
+    void Player::coup(Player &player){
+        if(_game->turn() != this->name) {
+            throw invalid_argument ("You cant play - thats not your turn");
+        }
+        if (this->counter_coin<cost_of_coup){
+            throw invalid_argument ("You cant play - you dont have enough coins");
+        }
+        this->counter_coin -= cost_of_coup;
+        _game->in_the_game.pop_back();      // need to think how to remove  (need to use in player)
+        // _game->listPlayer.erase(player.name);   // need to think how to remove the name
+        
+    }
+
+
+
+    string Player::role(){             //return the role of the player
+        return this->role_player;
+    }
+    
+    int Player::coins (){
+        return this->counter_coin;        //return the number of the coins
+    }
+
+}
