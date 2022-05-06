@@ -16,8 +16,9 @@ using namespace std;
 namespace coup{
 
     void Duke::tax(){
-
+        this->counter_coin = this->counter_coin+3;
     }
+    
     void Duke::block(Player &player){
 
     }
