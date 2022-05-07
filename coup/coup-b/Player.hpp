@@ -18,10 +18,10 @@ namespace coup{
     class Player{
 
         private:
-        Game* _game;
         
         public: 
         //fields
+        Game* _game;
         string name;
         string role_player;
         int counter_coin;
@@ -30,9 +30,9 @@ namespace coup{
         Player(Game &_game ,const string &name) { 
             this->name = name;
             this->_game=&_game;
-            _game.add_player(this);
+            _game.add_player(this);           //check if we have place to this player in the game.
             _game.in_the_game.push_back(this);         //add the player to vector players in the game 
-            _game.listPlayer.push_back(this->name);     //add the player name to vector players list for players function in game.cpp
+            _game.listPlayer.push_back(name);     //add the player name to vector players list for players function in game.cpp
         }
         ~Player(){};
 

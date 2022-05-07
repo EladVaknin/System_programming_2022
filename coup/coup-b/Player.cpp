@@ -32,17 +32,22 @@ namespace coup{
 
     //actions  
     void Player::income(){
-        if(_game->turn() != this->name) {
+        if(_game->turn() != this->name ||_game->listPlayer.size()<2) {
             throw invalid_argument ("You cant play - thats not your turn");
         }
         this->counter_coin++;
+        _game->listTurns.at(_game->counter_turns) ="income";
+        _game->counter_turns+=1;
     }
 
     void Player::foreign_aid (){
-        if(_game->turn() != this->name) {
+        if(_game->turn() != this->name||_game->listPlayer.size()<2) {
             throw invalid_argument ("You cant play - thats not your turn");
         }
         this->counter_coin+=add_coins;
+        _game->listTurns.at(_game->counter_turns) ="foreign_aid";
+        _game->counter_turns+=1;
+
 
     }
     void Player::coup(Player &player){
@@ -55,7 +60,8 @@ namespace coup{
         this->counter_coin -= cost_of_coup;
         _game->in_the_game.pop_back();      // need to think how to remove  (need to use in player)
         // _game->listPlayer.erase(player.name);   // need to think how to remove the name
-        
+        _game->listTurns.at(_game->counter_turns) ="coup";
+        _game->counter_turns+=1;
     }
 
 
@@ -63,7 +69,7 @@ namespace coup{
     string Player::role(){             //return the role of the player
         return this->role_player;
     }
-    
+
     int Player::coins (){
         return this->counter_coin;        //return the number of the coins
     }

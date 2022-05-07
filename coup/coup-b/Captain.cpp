@@ -22,12 +22,20 @@ namespace coup{
         if (player.counter_coin == 1 ){
             player.counter_coin --;
             this->counter_coin ++;
+            _game->listTurns.at(_game->counter_turns) ="steal";
+            _game->counter_turns+=1;
         }else{
             player.counter_coin -= 2 ;
             this->counter_coin += 2;
+            _game->listTurns.at(_game->counter_turns) ="steal";
+            _game->counter_turns+=1;
         }
     }
     void Captain::block(Player &player){
+        if(player.role_player != "Captain"){
+            throw invalid_argument ("you can block only capitans");
+        }
+        player.counter_coin-=2;
 
     }
 

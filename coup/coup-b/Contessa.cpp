@@ -19,6 +19,7 @@ namespace coup{
       //Actions
 
     void Contessa::block(Player &assassian){ //block_assassination
+    
 
     }  
 
