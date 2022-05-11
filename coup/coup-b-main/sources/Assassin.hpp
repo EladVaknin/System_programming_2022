@@ -6,32 +6,29 @@
 #include<vector>
 #include <iostream>
 #include <stdexcept>
-#include <fstream>
-#include <sstream>
-#include "Player.hpp"
 // #include "Game.hpp"
+#include "Player.hpp"
 using namespace std;
 // using namespace coup;
 
-
 namespace coup{
-    class Contessa:public Player{
+    class Assassin:public Player{
 
-    private:
+    // private:
     
     public: 
-    // Contessa();  // empty constructor;
-    Contessa(Game &_game ,const string &name) : Player(_game,name){
+    // Assassian();  // empty constructor;
+    Assassin(Game &_game ,const string &name) :Player(_game,name){
         // this->name =name;
         // this->counter_coin=0;
-        this->role_player = "Contessa";
+        this->role_player = "Assassin";
         // _game.add_player(this);
 
     }
+    ~Assassin(){}
 
     //Actions
-
-    void block(Player &assassian);  //block_assassination
+    void coup(Player &player);
 
 
 

@@ -8,30 +8,32 @@
 #include <stdexcept>
 #include <fstream>
 #include <sstream>
-// #include "Game.hpp"
 #include "Player.hpp"
+// #include "Game.hpp"
 using namespace std;
 // using namespace coup;
 
 
 namespace coup{
-    class Captain:public Player{
+    class Contessa:public Player{
 
-    // private:
+    private:
     
     public: 
-    // Capitan();  // empty constructor;
-    Captain(Game &_game ,const string &name) :Player(_game,name){
+    // Contessa();  // empty constructor;
+    Contessa(Game &_game ,const string &name) : Player(_game,name){
         // this->name =name;
         // this->counter_coin=0;
-        this->role_player = "Captain";
+        this->role_player = "Contessa";
         // _game.add_player(this);
 
     }
+    ~Contessa(){}
+
 
     //Actions
-    void steal(Player &player);
-    void block(Player &player);
+
+    void block(Player &assassian);  //block_assassination
 
 
 

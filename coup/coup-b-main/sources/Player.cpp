@@ -16,10 +16,11 @@ using namespace std;
 
 namespace coup{
 
-    int Min_players =2;
-    int Max_players =6;
-    int cost_of_coup =7;
-    int add_coins = 2;
+    unsigned int Max_coins =10;
+    unsigned int Min_players =2;
+    unsigned int Max_players =6;
+    unsigned int cost_of_coup =7;
+    unsigned int add_coins = 2;
 
     //checks
     void check_turn(){       
@@ -58,8 +59,13 @@ namespace coup{
             throw invalid_argument ("You cant play - you dont have enough coins");
         }
         this->counter_coin -= cost_of_coup;
-        _game->in_the_game.pop_back();      // need to think how to remove  (need to use in player)
+        // _game->in_the_game.pop_back();      // need to think how to remove  (need to use in player)
         // _game->listPlayer.erase(player.name);   // need to think how to remove the name
+
+
+        vector<string>::iterator new_end;
+        // new_end = remove(_game->listPlayer.begin(),_game->listPlayer.end(),player.name);
+        // _game->listPlayer.erase(std::remove(_game->listPlayer.begin(),_game->listPlayer.end(),player.name));         //https://iq.opengenus.org/ways-to-remove-elements-from-vector-cpp/
         _game->listTurns.at(_game->counter_turns) ="coup";
         _game->counter_turns+=1;
     }

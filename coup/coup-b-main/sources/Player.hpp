@@ -25,6 +25,7 @@ namespace coup{
         string name;
         string role_player;
         int counter_coin;
+        Player* just_for_block;
 
         //cons
         Player(Game &_game ,const string &name) { 
@@ -39,7 +40,7 @@ namespace coup{
         //actions  
         void income();
         void foreign_aid ();
-        void coup(Player &player);
+        virtual void coup(Player &player);
 
         ///// 
         string role();

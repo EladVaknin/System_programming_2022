@@ -27,7 +27,7 @@ namespace coup{
         // _game.add_player(this);
 
     }
-
+    ~Duke(){}
     //Actions
     void tax();
     void block(Player &player);

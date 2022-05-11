@@ -35,7 +35,15 @@ namespace coup{
         if(player.role_player != "Captain"){
             throw invalid_argument ("you can block only capitans");
         }
+        if(_game->listTurns.at(0)=="steal" ){
+            throw invalid_argument ("you cant block this now");
+        }
         player.counter_coin-=2;
+        Captain &captain = dynamic_cast<Captain&>(player);
+        captain.just_for_block->counter_coin += 2;
+        _game->listTurns.at(_game->counter_turns) ="block";
+        
+
 
     }
 

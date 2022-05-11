@@ -23,6 +23,7 @@ namespace coup{
             // _game.add_player(this);
 
         }
+        ~Ambassador(){};
         //Actions
         void transfer(Player& from ,Player&to);
         void block(Player &block_capitan);   //block steal from the capitan

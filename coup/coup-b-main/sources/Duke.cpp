@@ -25,6 +25,17 @@ namespace coup{
     }
 
     void Duke::block(Player &player){
+        if (_game->listTurns.at(0) != "foreign_aid"){
+            throw invalid_argument ("You cant do this block");
+        }
+        if(player.counter_coin<2){
+            throw invalid_argument ("You cant do this block");
+        }
+        player.counter_coin -=2;
+        _game->listTurns.at(_game->counter_turns) ="block";
+
+
+
 
     }
 

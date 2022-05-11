@@ -9,6 +9,8 @@
 #include <fstream>
 #include <sstream>
 #include "Ambassador.hpp"
+#include "Captain.hpp"
+
 // #include "Game.hpp"
 using namespace std;
 
@@ -32,8 +34,14 @@ namespace coup{
         if(block_capitan.role_player != "Captain"){
             throw invalid_argument ("you cant block this player");
         }
+        if(_game->listTurns.at(0)=="steal" ){
+            throw invalid_argument ("you cant block this now");
+        }
         block_capitan.counter_coin-=2;
-        //need to add 2 coins to the player fthat the coins stoled
+        Captain &captain = dynamic_cast<Captain&>(block_capitan);
+        captain.just_for_block->counter_coin += 2;
+        _game->listTurns.at(_game->counter_turns) ="block";
+
 
     }
     

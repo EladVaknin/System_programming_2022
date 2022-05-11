@@ -16,8 +16,8 @@ using namespace std;
 
 namespace coup{
 
-    int Min_players =2;
-    int Max_players =6;
+    unsigned int Min_players =2;
+    unsigned int Max_players =6;
 
     vector<string> Game::players(){
         if (this->listPlayer.size() == 0 ){
