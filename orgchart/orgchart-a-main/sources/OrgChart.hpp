@@ -21,14 +21,14 @@ namespace ariel
     };
 
     class OrgChart{
-        
+
         private:
         Node root;
         int counter;
 
         public:
-        OrgChart();
-        ~OrgChart();
+        OrgChart(){};
+        ~OrgChart(){};
         OrgChart &add_root (string x);
         OrgChart &add_sub (string x, string y);
         string *begin_level_order ();

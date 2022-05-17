@@ -14,41 +14,60 @@ using namespace std;
 
 namespace ariel
 {
+        //     OrgChart(){};     V
+        // ~OrgChart(){};   V
+        // OrgChart &add_root (string x); V
+        // OrgChart &add_sub (string x, string y); V
+        // string *begin_level_order ();   V
+        // string *begin_reverse_order();   V
+        // string *begin_preorder(); V
+        // string *end_level_order (); V
+        // void *reverse_order();  V
+        // void *end_preorder();    V
+        // string *begin();       V
+        // string *end();     V
+        // friend ostream &operator << (ostream &out ,OrgChart &r); V
+
+
         OrgChart &OrgChart::add_root (string x){
             this->root.name =x;
             return *this;
         }
         OrgChart &OrgChart::add_sub (string x, string y){
-            if(begin_level_order() )
+            // if(begin_level_order() )
             return *this;
         }
-        string *begin_level_order (){
+        string *OrgChart::begin_level_order (){
             string x = "";
             return NULL;
         }
-        string *begin_reverse_order(){
+        string *OrgChart::begin_reverse_order(){
             string x = "";
             return NULL;
         }
-        string *begin_preorder(){
+        string *OrgChart::begin_preorder(){
             string x = "";
             return NULL;
         }
-        string *end_level_order (){
+        string *OrgChart::end_level_order (){
             string x = "";
             return NULL;
         }
-        void *reverse_order(){
-
+        void *OrgChart::reverse_order(){
+            return NULL;
         }
-        void *end_preorder(){
-
+        void *OrgChart::end_preorder(){
+            return NULL;
         }
-        string *begin(){
+        string *OrgChart::begin(){
             return begin_level_order();
         }
-        string *end(){
+        string *OrgChart::end(){
             // return end_level_order();
             return NULL;
         }
+        ostream &operator << (ostream &out ,OrgChart &r) {
+           return out;
+       }
+
 }
