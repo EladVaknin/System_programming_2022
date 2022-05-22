@@ -39,32 +39,32 @@ namespace ariel
             // if(begin_level_order() )
             return *this;
         }
-        string *OrgChart::begin_level_order (){
+        iterator *OrgChart::begin_level_order (){
             string x = "";
             return NULL;
         }
-        string *OrgChart::begin_reverse_order(){
+        iterator *OrgChart::begin_reverse_order(){
             string x = "";
             return NULL;
         }
-        string *OrgChart::begin_preorder(){
+        iterator *OrgChart::begin_preorder(){
             string x = "";
             return NULL;
         }
-        string *OrgChart::end_level_order (){
+        iterator *OrgChart::end_level_order (){
             string x = "";
             return NULL;
         }
-        void *OrgChart::reverse_order(){
+        iterator *OrgChart::reverse_order(){
             return NULL;
         }
-        void *OrgChart::end_preorder(){
+        iterator *OrgChart::end_preorder(){
             return NULL;
         }
-        string *OrgChart::begin(){
+        iterator *OrgChart::begin(){
             return begin_level_order();
         }
-        string *OrgChart::end(){
+        iterator *OrgChart::end(){
             // return end_level_order();
             return NULL;
         }

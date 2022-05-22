@@ -12,6 +12,9 @@
 #include <stdexcept>
 #include <vector>
 #include <iostream>
+#include <queue>
+#include <stack>
+// #pragma once
 using namespace std;
 
 namespace ariel 
@@ -22,7 +25,7 @@ namespace ariel
         T name;
         vector <Node *> childrens;
         Node *parent;
-        node (T &data) : name(data) ,parent(nullptr);
+        Node (T &data) : name(data) ,parent(nullptr){}
         };
 
         // Node root;
@@ -37,37 +40,57 @@ namespace ariel
         ~OrgChart(){};
         OrgChart &add_root (T x);
         OrgChart &add_sub (T x, T y);
-        string *begin_level_order ();
-        string *begin_reverse_order();
-        string *begin_preorder();
-        string *end_level_order ();
-        void *reverse_order();
-        void *end_preorder();
-        string *begin();
-        string *end();
+
+        // implements iterator in sub class for the tree-functions https://programmer.group/principle-and-simple-implementation-of-c-stl-iterator-just-read-this-one.html
+        enum Order_of_iterator {
+            level_order ,preorder ,reverse_orders
+        };
+
+        class iterator{
+            private :
+            Node *current;
+            vector <Node *> list_of_nodes;
+            int i;
+            queue <Node *> queue_of_nodes;
+            stack <Node *> stack_of_nodes;
+            Order_of_iterator direction;
+
+            public :
+            // iterator (){
+            //     current = NULL;
+            //     i =0;
+            // }
+            //cons
+            iterator (Node *p ,Order_of_iterator o):current(p),Order_of_iterator(o){
+                if ((p =! nullptr) && (o =! level_order) && (!p->childrens.emty())){  // level order
+                    for (auto &childrens :current->childrens){
+                        queue_of_nodes.push(childrens);
+                    }
+                }
+                if ((p =! nullptr) && (o =! reverse_orders) && (!p->childrens.emty())){  // revers order
+                  
+                }
+            }
+            // ++ , =! , == ,*
+            iterator &operator++(){}
+            iterator &operator*(){}
+            bool operator ==(const iterator &i)const{}
+            bool operator!=(const iterator &i)const{}
+            // iterator &operator*(){}
+
+
+        };
+
+        iterator *begin_level_order ();
+        iterator *begin_reverse_order();
+        iterator *begin_preorder();
+        iterator *end_level_order ();
+        iterator *reverse_order();
+        iterator *end_preorder();
+        iterator *begin();
+        iterator *end();
         friend ostream &operator << (ostream &out ,OrgChart &r);
 
 
     };
-    // enum Order_of_iterator {
-//     level_order ,preorder ,reversed_order
-
-// };
-
-// class iterator{
-//     private :
-//     node *current;
-//     vector <node *> list_of_nodes;
-//     int i;
-
-//     public :
-    
-//     iterator (){
-//         current = NULL;
-//         i =0;
-//     }
-//     // ++ , =! , == ,*
-
-
-// };
 }
