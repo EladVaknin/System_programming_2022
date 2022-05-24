@@ -38,6 +38,14 @@ namespace ariel
             root = nullptr;
         }
         ~OrgChart(){};
+        OrgChart(OrgChart<T> &orgchart){   // copy constructor
+            this->root=orgchart->root;
+        }          
+        OrgChart(OrgChart<T> &&orgchart)noexcept {
+            this->root=orgchart->root;
+            orgchart.root =nullptr;
+        } 
+
 
         OrgChart &add_root (T x) {
             if (root == nullptr){
@@ -48,7 +56,7 @@ namespace ariel
             return *this;
         }
         OrgChart &add_sub (T x, T y){
-            check_node(x);   //if x is nullptr.
+            check_node(root);   //if x is nullptr.
             if (this->root->name == x ){   //this root is the father
                 this->root->childrens.push_back(new Node (y));
             }
@@ -66,14 +74,14 @@ namespace ariel
 
         // implements iterator in sub class for the tree-functions https://programmer.group/principle-and-simple-implementation-of-c-stl-iterator-just-read-this-one.html
         enum Order_of_iterator {
-            level_order ,preorder ,reverse_orders
+            level_order ,preorders ,reverse_orders
         };
 
         class iterator{
             private :
             Node *current;
-            vector <Node *> list_of_nodes;
-            int i;
+            // vector <Node *> list_of_nodes;
+            // int i;
             //queues
             queue <Node *> queue_to_level; 
             queue <Node *> queue_to_reverse;   
@@ -85,7 +93,7 @@ namespace ariel
             Order_of_iterator direction;
 
             public :
-            iterator (Node *p ,Order_of_iterator o):current(p),Order_of_iterator(o){
+            iterator (Node *p ,Order_of_iterator o):current(p),direction(o){
                 check_input(p);
                 // initzale to be non empty.
                 queue_to_level.push(nullptr);
@@ -99,8 +107,17 @@ namespace ariel
                 }
 
             }
+            ~iterator(){};
 
-            iterator bfs () {      // to next level order - becuse its tree we dont check if we visited becuse in thos tree cant be circuls
+            iterator(const iterator& i){}
+
+            iterator(iterator&& i) noexcept{}
+
+            // iterator();
+            explicit iterator(Node* tmp = nullptr):current(tmp){
+            }
+
+            iterator bfs (){      // to next level order - becuse its tree we dont check if we visited becuse in thos tree cant be circuls
                 if (queue_to_level.empty()){
                     current=nullptr;
                 }else{
@@ -119,8 +136,8 @@ namespace ariel
                     Node* tmp = queue_to_reverse.front();
                     queue_to_reverse.pop();
                     stack_to_reverse.push(tmp);
-                    for (int i=0 ;i<tmp->childrens.size();i++){
-                        int index = tmp->childrens.size() -1 -i;
+                    for (unsigned  int i=0 ;i<tmp->childrens.size();i++){
+                        unsigned  index = tmp->childrens.size() -1 -i;
                         queue_to_reverse.push(tmp->childrens[index]);
                     }
                 }
@@ -148,17 +165,16 @@ namespace ariel
             }
 
             void plus_plus_reverse_order(){
-                 if(stack_to_reverse.empty()){
+                if(stack_to_reverse.empty()){
                     current= nullptr;
-                }
-                else{
+                }else{
                     current=stack_to_reverse.top();
                     stack_to_reverse.pop();
                 }
             }
 
             void plus_plus_preorder(){
-                  if(stack_for_preorder.empty()){
+                if(stack_for_preorder.empty()){
                     current= nullptr;
                 }else{
                     current=stack_for_preorder.top();
@@ -175,7 +191,7 @@ namespace ariel
                     plus_plus_reverse_order();
                     break;
 
-                    case preorder:
+                    case preorders:
                     plus_plus_preorder();    
                     break;
 
@@ -187,9 +203,25 @@ namespace ariel
             }
 
 
-            iterator &operator*(){
+            T& operator*()const{
                 return this->current->name;
             }
+            
+            iterator& operator=(const iterator& i){
+                if(this != i){
+                    this->current =i.current;
+                }
+                return *this;
+            }
+            iterator& operator=(iterator&& i) noexcept {
+                this->current =i.current;
+                i.current=nullptr;
+                return *this;
+            }
+            T* operator->()const{
+                return &(this->current->name);
+            }
+
             bool operator ==(const iterator &i)const{
                 return this->current ==i.current;
             }
@@ -200,43 +232,51 @@ namespace ariel
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        iterator *begin_level_order (){
+        iterator begin_level_order (){
             return iterator(root,level_order);
         }            
-        iterator *begin_reverse_order(){
+        iterator begin_reverse_order(){
             return iterator(root,reverse_orders);
         }           
-        iterator *begin_preorder(){
-            return iterator(root,preorder);
+        iterator begin_preorder(){
+            return iterator(root,preorders);
         }
-        iterator *end_level_order (){ 
+        iterator end_level_order (){ 
             check_node(root);
             return iterator();  
         }
-        iterator *reverse_order(){
+        iterator reverse_order(){
             check_node(root);
             return iterator();  
         }
-        iterator *end_preorder(){
+        iterator end_preorder(){
             check_node(root);
             return iterator();  
         }
-        iterator *begin(){
+        iterator begin(){
             return begin_level_order();
         }
-        iterator *end(){
+        iterator end(){
           return end_level_order();
         }
-        friend ostream &operator << (ostream &out ,OrgChart &r);
-        // void print_tree (ostream &out,Node *tmp){
-        // }
+
         void check_node(Node *tmp){
             if(tmp == nullptr){
                 throw invalid_argument ("the tree is empty - cant run on the tree");
             }
         }
-
-
+        static void print_tree (Node *tmp){
+            for (Node *t:tmp->childrens){
+                cout<<" "<<t->name<<"on"<<endl; /////// need to think how to get the father
+                print_tree(t);
+            }
+        }
+        friend ostream &operator << (ostream &out ,OrgChart &orgchart) {
+            Node * tmp = orgchart.root;
+            out<< "-----"<<tmp->name<<"-----"<<endl;
+            print_tree(tmp);
+            return out;
+        }
     };
 }
 
