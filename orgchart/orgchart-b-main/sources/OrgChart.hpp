@@ -27,6 +27,21 @@ namespace ariel
         vector <Node *> childrens;
         Node *parent;
         Node (T &data) : name(data) ,parent(nullptr){}
+        // Node finde_node (string &search_name ,Node * tmp){
+        //     if (tmp->name ==search_name){
+        //         return tmp;
+        //     }
+        //     if (tmp == nullptr){
+        //         return nullptr;
+        //     }
+        //     for(auto s:tmp->childrens){
+        //         Node* tmp2 = finde_node(search_name,tmp2);
+        //         if (tmp2 !=nullptr ){
+        //             return tmp2;
+        //         }
+        //     }
+        //     return nullptr;
+        // }
         };
 /////////////////////////////////OrgChart///////////////////////////
         Node *root;
@@ -74,17 +89,19 @@ namespace ariel
             }
             return *this;
         }
+
+
         OrgChart &add_sub (T x, T y){
             check_node(root);   //if x is nullptr.
             if (this->root->name == x ){   //this root is the father
                 this->root->childrens.push_back(new Node (y));
             }
-            for (Node* tmp :this->root->childrens){
+            for (Node* tmp :this->root->childrens){                  ///  adi ,sapir,naama,davis //// x = haim
                 if(tmp->name==x){
                     this->root->childrens.push_back(new Node (y)); 
-                }
-                
+                }            
             }
+            throw invalid_argument ("The names dosent exist");
             return *this;
 
         }
@@ -239,7 +256,7 @@ namespace ariel
                 i.current=nullptr;
                 return *this;
             }
-            
+
             T* operator->()const{
                 return &(this->current->name);
             }
