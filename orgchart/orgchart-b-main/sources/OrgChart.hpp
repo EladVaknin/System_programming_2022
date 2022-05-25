@@ -30,14 +30,19 @@ namespace ariel
         };
 /////////////////////////////////OrgChart///////////////////////////
         Node *root;
-        int counter_level;
-        int counter_children;
+        // int counter_level;
+        // int counter_children;
 
         public:
         OrgChart(){
             root = nullptr;
         }
-        ~OrgChart(){};
+
+        ~OrgChart() = default;
+
+        // OrgChart() = default;
+
+
         OrgChart(OrgChart<T> &orgchart){   // copy constructor
             this->root=orgchart->root;
         }          
@@ -45,6 +50,20 @@ namespace ariel
             this->root=orgchart->root;
             orgchart.root =nullptr;
         } 
+
+        // OrgChart & operator= (OrgChart &&) = default;
+        // OrgChart& operator = (const OrgChart && orgchart) = default;
+
+
+        OrgChart &operator=(OrgChart<T> orgchart){
+            this->root=orgchart.root;
+            orgchart.root= nullptr;
+        }
+
+        OrgChart &operator=(OrgChart<T> &&orgchart)noexcept{
+            this->root=orgchart.root;
+            orgchart.root= nullptr;
+        }
 
 
         OrgChart &add_root (T x) {
@@ -207,17 +226,20 @@ namespace ariel
                 return this->current->name;
             }
             
-            iterator& operator=(const iterator& i){
-                if(this != i){
-                    this->current =i.current;
-                }
-                return *this;
-            }
+            // iterator& operator=(const iterator& i){
+            //     if(this != i){
+            //         this->current =i.current;
+            //     }
+            //     return *this;
+            // }
+            iterator& operator=(const iterator& i) = default;
+
             iterator& operator=(iterator&& i) noexcept {
                 this->current =i.current;
                 i.current=nullptr;
                 return *this;
             }
+            
             T* operator->()const{
                 return &(this->current->name);
             }
