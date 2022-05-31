@@ -13,6 +13,7 @@
 #include <iostream>
 #include <queue>
 #include <stack>
+#include <algorithm>
 #include "Team.hpp"
 // #pragma once
 using namespace std;
@@ -48,7 +49,7 @@ namespace ariel
                 random_skill = rand();   // num 0-1
                 srand(time(0));     // every iteration we get new numbers;
                 name_after_random =name_club[random_club] +" "+ cities[random_city];  
-                this->My_Leauge.push_back(new Team (name_after_random,random_skill,0,0));
+                this->My_Leauge.push_back(new Team (name_after_random,random_skill,0,0,0));
                 this->counter_num_teams--;
             }
         }
@@ -61,9 +62,19 @@ namespace ariel
 
 
 
-        Team return_the_leaders (int number);   // return the leader teames by the input
+        void return_the_leaders (int number){   // return the leader teames by the input
+            sort(this->My_Leauge.begin(),this->My_Leauge.end(), this->My_Leauge.at(0)->winners_counter);         //sort by winner counter
+
+            for (int i =0 ;i<number;i++){
+                cout<<this->My_Leauge.at(i)->name<<endl;     // print the name of the teams
+            }
+        }
+
         int winner_sequence();
         int loser_sequence();
+
+        void sort_leauge (Leauge &leauge){
+        }
     };
     
 }

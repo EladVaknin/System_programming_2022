@@ -21,9 +21,10 @@ namespace ariel
 {
     class Game {
         public:
-        int game_score = 0;
+        int game_score = 0;       // to know the difference obtained from each game
         // Team *home;
         // Team *gests;
+
         Game();   
         
         Game(Team* home,Team* gests){
@@ -34,8 +35,8 @@ namespace ariel
         void who_winner(Team* home,Team* gests){
             int home_bonos_pts =5;
             int skill_bonos_pts = 10;
-            int home_random_score =0;          // need to be num between 55-100
-            int gest_random_score =0;          // 50 -100
+            int home_random_score = rand() %50 +55;          // 55-100
+            int gest_random_score =rand() %50 +50;          // 50 -100
 
 
             if (home->skills > gests->skills){     // how get the skill bonos
@@ -52,16 +53,22 @@ namespace ariel
                     gests->winners_counter ++;
                     home->loser_counter ++;
                 }
+                game_score = 0;
             }
             if(home_random_score > gest_random_score){   // home win
                 home->winners_counter ++;
                 gests->loser_counter ++;
+                game_score = home_random_score - gest_random_score;
+                home->difference_basket  +=game_score;
+                gests->difference_basket -=game_score;
 
             }else{                                      // gests win
                 gests->winners_counter ++;
                 home->loser_counter ++;
-
-            }
+                game_score = gest_random_score - home_random_score;
+                home->difference_basket -= game_score;
+                gests->difference_basket+= game_score;
+            }            
         }
 
 

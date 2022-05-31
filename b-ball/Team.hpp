@@ -21,22 +21,22 @@ namespace ariel
 
     class Team {
 
-        private:
-        string name;
-
-
         public:
+        string name;
         double skills;
         int winners_counter;
         int loser_counter;
+        int difference_basket;
+        
         ///// need to implements list of result w/l - to know the strike
         Team(); // defult;
 
-        Team(string name ,double skills ,int winner_counter,int loser_counter){
+        Team(string name ,double skills ,int winner_counter,int loser_counter,int difference_basket){
             this->name =name;
             this->skills=skills;
             this->winners_counter=0;
             this->loser_counter=0;
+            this->difference_basket=0;
         }
 
         void Change_skills(double skill_cahnge){      // if i want to change the skills of the team
