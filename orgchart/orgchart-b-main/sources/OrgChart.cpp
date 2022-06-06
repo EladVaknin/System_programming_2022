@@ -1,9 +1,12 @@
 /**
  *
- * @author Elad Vaknin
  * @since 2022-05
-
- https://www.geeksforgeeks.org/templates-cpp/
+ * 
+ * AUTHORS: <Elad Vaknin>
+ *  To see the whole process and the committees -
+ *  https://github.com/EladVaknin/System_programming_2022 
+ * 
+ * https://www.geeksforgeeks.org/templates-cpp/
  */
 
 #include <iostream>

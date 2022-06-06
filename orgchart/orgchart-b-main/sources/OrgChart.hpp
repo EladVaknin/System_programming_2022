@@ -1,7 +1,9 @@
 /**
  *
- * @author Elad Vaknin
  * @since 2022-05
+ * AUTHORS: <Elad Vaknin>
+ *  To see the whole process and the committees -
+ *  https://github.com/EladVaknin/System_programming_2022 
  * 
  * https://www.geeksforgeeks.org/templates-cpp/
  */
@@ -14,94 +16,86 @@
 #include <iostream>
 #include <queue>
 #include <stack>
-// #pragma once
+
+#pragma once
 using namespace std;
 
-namespace ariel 
-{
+namespace ariel {
     template<typename T=string>
-    class OrgChart{
+    class OrgChart {
 ///////////////////////////////////////Node/////////////////////////////
-        struct Node{
-        T name;
-        vector <Node *> childrens;
-        Node *parent;
-        Node (T &data) : name(data) ,parent(nullptr){}
-        // Node finde_node (string &search_name ,Node * tmp){
-        //     if (tmp->name ==search_name){
-        //         return tmp;
-        //     }
-        //     if (tmp == nullptr){
-        //         return nullptr;
-        //     }
-        //     for(auto s:tmp->childrens){
-        //         Node* tmp2 = finde_node(search_name,tmp2);
-        //         if (tmp2 !=nullptr ){
-        //             return tmp2;
-        //         }
-        //     }
-        //     return nullptr;
-        // }
+        struct Node {
+            T name;
+            vector<Node *> childrens;
+            Node *parent;
+
+            Node(T &data) : name(data), parent(nullptr) {}
+
         };
+
 /////////////////////////////////OrgChart///////////////////////////
         Node *root;
-        // int counter_level;
-        // int counter_children;
 
-        public:
-        OrgChart(){
+        Node *finde_node(T &search_name, Node *tmp) {
+            if (tmp == nullptr) {
+                return nullptr;
+            }
+            if (tmp->name == search_name) {
+                return tmp;
+            }
+            for (auto s:tmp->childrens) {
+                Node *tmp2 = finde_node(search_name, s);
+                if (tmp2 != nullptr) {
+                    return tmp2;
+                }
+            }
+            return nullptr;
+        }
+
+    public:
+        OrgChart() {
             root = nullptr;
         }
 
         ~OrgChart() = default;
 
-        // OrgChart() = default;
-
-
-        OrgChart(OrgChart<T> &orgchart){   // copy constructor
-            this->root=orgchart->root;
-        }          
-        OrgChart(OrgChart<T> &&orgchart)noexcept {
-            this->root=orgchart->root;
-            orgchart.root =nullptr;
-        } 
-
-        // OrgChart & operator= (OrgChart &&) = default;
-        // OrgChart& operator = (const OrgChart && orgchart) = default;
-
-
-        OrgChart &operator=(OrgChart<T> orgchart){
-            this->root=orgchart.root;
-            orgchart.root= nullptr;
+        OrgChart(OrgChart<T> &orgchart) {   // copy constructor
+            this->root = orgchart->root;
         }
 
-        OrgChart &operator=(OrgChart<T> &&orgchart)noexcept{
-            this->root=orgchart.root;
-            orgchart.root= nullptr;
+        OrgChart(OrgChart<T> &&orgchart) noexcept {
+            this->root = orgchart->root;
+            orgchart.root = nullptr;
+        }
+
+        OrgChart &operator=(OrgChart<T> orgchart) {
+            this->root = orgchart.root;
+            orgchart.root = nullptr;
+        }
+
+        OrgChart &operator=(OrgChart<T> &&orgchart) noexcept {
+            this->root = orgchart.root;
+            orgchart.root = nullptr;
         }
 
 
-        OrgChart &add_root (T x) {
-            if (root == nullptr){
-                this->root=new Node (x);
-            }else{    //replace
-               this->root->name=x;
+        OrgChart &add_root(T x) {
+            if (root == nullptr) {
+                this->root = new Node(x);
+            } else {    //replace
+                this->root->name = x;
             }
             return *this;
         }
 
 
-        OrgChart &add_sub (T x, T y){
+        OrgChart &add_sub(T x, T y) {
             check_node(root);   //if x is nullptr.
-            if (this->root->name == x ){   //this root is the father
-                this->root->childrens.push_back(new Node (y));
+            auto *father = finde_node(x, root);
+            if (father == nullptr) {
+                throw invalid_argument("The names dosent exist");
             }
-            for (Node* tmp :this->root->childrens){                  ///  adi ,sapir,naama,davis //// x = haim
-                if(tmp->name==x){
-                    this->root->childrens.push_back(new Node (y)); 
-                }            
-            }
-            throw invalid_argument ("The names dosent exist");
+            father->childrens.push_back(new Node(y));
             return *this;
 
         }
@@ -110,235 +104,219 @@ namespace ariel
 
         // implements iterator in sub class for the tree-functions https://programmer.group/principle-and-simple-implementation-of-c-stl-iterator-just-read-this-one.html
         enum Order_of_iterator {
-            level_order ,preorders ,reverse_orders
+            level_order, preorders, reverse_orders
         };
 
-        class iterator{
-            private :
+        class iterator {
+        private :
             Node *current;
-            // vector <Node *> list_of_nodes;
-            // int i;
             //queues
-            queue <Node *> queue_to_level; 
-            queue <Node *> queue_to_reverse;   
-            //stacks
-            stack <Node *> stack_of_nodes;
-            stack <Node *> stack_to_reverse;
-            stack <Node *> stack_for_preorder; 
+            queue<Node *> queue_to_level;
+            stack<Node *> stack_to_reverse;
+            queue<Node *> queue_to_preorder;
             //enum object
             Order_of_iterator direction;
 
-            public :
-            iterator (Node *p ,Order_of_iterator o):current(p),direction(o){
+        public :
+            iterator(Node *p, Order_of_iterator o) : current(p), direction(o) {
                 check_input(p);
-                // initzale to be non empty.
-                queue_to_level.push(nullptr);
-                queue_to_reverse.push(nullptr); 
-                stack_of_nodes.push(nullptr);
-                stack_to_reverse.push(nullptr);
-                stack_for_preorder.push(nullptr);
-
-                if(o==reverse_orders){     
-                    reverse_bfs(p);        //to end level order
+                // checks the order : 
+                if (o == level_order) {
+                    queue_to_level.push(p);
+                } else if (o == preorders) {
+                    preorder(p);
+                    current = queue_to_preorder.front();
+                    queue_to_preorder.pop();
+                } else if (o == reverse_orders) {
+                    reverse_bfs(p);
+                    current = stack_to_reverse.top();
+                    stack_to_reverse.pop();
                 }
 
             }
-            ~iterator(){};
 
-            iterator(const iterator& i){}
+            ~iterator() {};
 
-            iterator(iterator&& i) noexcept{}
+            iterator(const iterator &i) {}
 
-            // iterator();
-            explicit iterator(Node* tmp = nullptr):current(tmp){
+            iterator(iterator &&i) noexcept {}
+
+            explicit iterator(Node *tmp = nullptr) : current(tmp) {
             }
 
-            iterator bfs (){      // to next level order - becuse its tree we dont check if we visited becuse in thos tree cant be circuls
-                if (queue_to_level.empty()){
-                    current=nullptr;
-                }else{
-                    current =queue_to_level.front();
+            iterator bfs_step() {      // to next level order - becuse its tree we dont check if we visited becuse in thos tree cant be circuls
+                if (queue_to_level.empty()) {
+                    current = nullptr;
+                } else {
+                    current = queue_to_level.front();
                     queue_to_level.pop();
-                    for (Node* tmp :current->childrens){
+                    for (Node *tmp :current->childrens) {
                         queue_to_level.push(tmp);
                     }
                 }
                 return *this;
             }
 
-            void reverse_bfs (Node* root){        //to revrse order
+            void reverse_bfs(Node *root) {
+                queue<Node*> queue_to_reverse;
                 queue_to_reverse.push(root);
-                while (!queue_to_reverse.empty()){
-                    Node* tmp = queue_to_reverse.front();
+                while (!queue_to_reverse.empty()) {
+                    Node *tmp = queue_to_reverse.front();
                     queue_to_reverse.pop();
                     stack_to_reverse.push(tmp);
-                    for (unsigned  int i=0 ;i<tmp->childrens.size();i++){
-                        unsigned  index = tmp->childrens.size() -1 -i;
-                        queue_to_reverse.push(tmp->childrens[index]);
+                    for (auto ritr = tmp->childrens.rbegin(); ritr != tmp->childrens.rend(); ritr++) {
+                        queue_to_reverse.push(*ritr);
                     }
                 }
-                // current = stack_to_reverse.top();
-                // stack_to_reverse.pop();
+
             }
-            void preorder (Node *tmp){      
-                stack_for_preorder.push(tmp);
-                for(Node* tmp2 : tmp->childrens){
+
+            void preorder(Node *tmp) {
+                queue_to_preorder.push(tmp);
+                for (Node *tmp2 : tmp->childrens) {
                     preorder(tmp2);        // recurseve becuse its goes left automatically
                 }
             }
 
-            void check_input (Node *tmp){
-                if(tmp == nullptr){
-                    throw invalid_argument ("the tree is empty - cant run on the tree");
+            void check_input(Node *tmp) {
+                if (tmp == nullptr) {
+                    throw invalid_argument("the tree is empty - cant run on the tree");
                 }
             }
 
 
-
-
-            void plus_plus_level_order(){
-                bfs();
+            void plus_plus_level_order() {
+                bfs_step();
             }
 
-            void plus_plus_reverse_order(){
-                if(stack_to_reverse.empty()){
-                    current= nullptr;
-                }else{
-                    current=stack_to_reverse.top();
+            void plus_plus_reverse_order() {
+                if (stack_to_reverse.empty()) {
+                    current = nullptr;
+                } else {
+                    current = stack_to_reverse.top();
                     stack_to_reverse.pop();
                 }
             }
 
-            void plus_plus_preorder(){
-                if(stack_for_preorder.empty()){
-                    current= nullptr;
-                }else{
-                    current=stack_for_preorder.top();
-                    stack_for_preorder.pop();
+            void plus_plus_preorder() {
+                if (queue_to_preorder.empty()) {
+                    current = nullptr;
+                } else {
+                    current = queue_to_preorder.front();
+                    queue_to_preorder.pop();
                 }
-
             }
 
             // ++ , =! , == ,*
-            iterator &operator++(){
-                switch (direction)
-                {
+
+            iterator &operator++() {
+                switch (direction) {
                     case reverse_orders:
-                    plus_plus_reverse_order();
-                    break;
+                        plus_plus_reverse_order();
+                        break;
 
                     case preorders:
-                    plus_plus_preorder();    
-                    break;
+                        plus_plus_preorder();
+                        break;
 
                     case level_order:
-                    plus_plus_level_order();
-                    break;
-                    }
-                    return *this;
-            }
 
-
-            T& operator*()const{
-                return this->current->name;
-            }
-            
-            // iterator& operator=(const iterator& i){
-            //     if(this != i){
-            //         this->current =i.current;
-            //     }
-            //     return *this;
-            // }
-            iterator& operator=(const iterator& i) = default;
-
-            iterator& operator=(iterator&& i) noexcept {
-                this->current =i.current;
-                i.current=nullptr;
+                        plus_plus_level_order();
+                        break;
+                }
                 return *this;
             }
 
-            T* operator->()const{
+            iterator &operator++(int) {
+                iterator tmp = *this;
+                ++(*this);
+                return tmp;
+            }
+
+            T &operator*() const {
+                return this->current->name;
+            }
+
+      
+            iterator &operator=(const iterator &i) = default;
+
+            iterator &operator=(iterator &&i) noexcept {
+                this->current = i.current;
+                i.current = nullptr;
+                return *this;
+            }
+
+            T *operator->() const {
                 return &(this->current->name);
             }
 
-            bool operator ==(const iterator &i)const{
-                return this->current ==i.current;
+            bool operator==(const iterator &i) const {
+                return this->current == i.current;
             }
-            bool operator!=(const iterator &i)const{
+
+            bool operator!=(const iterator &i) const {
                 return this->current != i.current;
             }
         };
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        iterator begin_level_order (){
-            return iterator(root,level_order);
-        }            
-        iterator begin_reverse_order(){
-            return iterator(root,reverse_orders);
-        }           
-        iterator begin_preorder(){
-            return iterator(root,preorders);
-        }
-        iterator end_level_order (){ 
-            check_node(root);
-            return iterator();  
-        }
-        iterator reverse_order(){
-            check_node(root);
-            return iterator();  
-        }
-        iterator end_preorder(){
-            check_node(root);
-            return iterator();  
-        }
-        iterator begin(){
-            return begin_level_order();
-        }
-        iterator end(){
-          return end_level_order();
+        iterator begin_level_order() {
+            auto ite = iterator(root, level_order);
+            ite.bfs_step();
+            return ite;
         }
 
-        void check_node(Node *tmp){
-            if(tmp == nullptr){
-                throw invalid_argument ("the tree is empty - cant run on the tree");
+        iterator begin_reverse_order() {
+            return iterator(root, reverse_orders);
+        }
+
+        iterator begin_preorder() {
+            return iterator(root, preorders);
+        }
+
+        iterator end_level_order() {
+            check_node(root);
+            return iterator();
+        }
+
+        iterator reverse_order() {
+            check_node(root);
+            return iterator();
+        }
+
+        iterator end_preorder() {
+            check_node(root);
+            return iterator();
+        }
+
+        iterator begin() {
+            return begin_level_order();
+        }
+
+        iterator end() {
+            return end_level_order();
+        }
+
+        void check_node(Node *tmp) {
+            if (tmp == nullptr) {
+                throw invalid_argument("the tree is empty - cant run on the tree");
             }
         }
-        static void print_tree (Node *tmp){
-            for (Node *t:tmp->childrens){
-                cout<<" "<<t->name<<"on"<<endl; /////// need to think how to get the father
+
+        static void print_tree(Node *tmp) {
+            for (Node *t:tmp->childrens) {
+                cout << " " << t->name << "on" << endl; /////// need to think how to get the father
                 print_tree(t);
             }
         }
-        friend ostream &operator << (ostream &out ,OrgChart &orgchart) {
-            Node * tmp = orgchart.root;
-            out<< "-----"<<tmp->name<<"-----"<<endl;
+
+        friend ostream &operator<<(ostream &out, OrgChart &orgchart) {
+            Node *tmp = orgchart.root;
+            out << "-----" << tmp->name << "-----" << endl;
             print_tree(tmp);
             return out;
         }
     };
 }
 
-
-            // iterator (Node *p ,Order_of_iterator o):current(p),Order_of_iterator(o){
-            //     if ((p =! nullptr) && (o =! level_order) && (!p->childrens.emty())){  // level order
-            //         for (auto &childrens :current->childrens){
-            //             queue_of_nodes.push(childrens);
-            //         }
-            //     }
-            //     if ((p =! nullptr) && (o =! reverse_orders) && (!p->childrens.emty())){  // revers order
-                  
-            //     }
-            // }
-
-
-
-
-
-            // iterator &operator*(){}
-
-            // iterator (){
-            //     current = NULL;
-            //     i =0;
-            // }
-            //cons
